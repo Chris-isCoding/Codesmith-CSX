@@ -17,6 +17,9 @@
 
 // You can uncomment lines 12-14 to test your code in the console.
 
+// ========================== SOLUTION ==========================
+// ====================================================================
+
 // Uncomment the lines below to see examples of strings
 console.log('A string can be written inside of single quotes.');
 console.log('It can also be written inside of double quotes.');
