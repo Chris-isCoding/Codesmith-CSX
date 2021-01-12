@@ -17,6 +17,9 @@
 
 // CONGRATULATIONS! You just made your first variable reassignment!
 
+// ========================== SOLUTION ==========================
+// ====================================================================
+
 // Declare a variable favFood and assign it a value of "tacos"
 // ADD CODE HERE
 let favFood = 'tacos';

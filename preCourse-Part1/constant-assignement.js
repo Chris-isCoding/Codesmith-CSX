@@ -21,6 +21,9 @@
 
 // Now in order to pass the tests, you'll need to get rid of that error, so comment out line 9 where you attempted to reassign the variable and click the Check My Answer button below to run the tests!
 
+// ========================== SOLUTION ==========================
+// ====================================================================
+
 // Declare a constant myCodingConfidence and assign it a value of "unwavering"
 // ADD CODE HERE
 const myCodingConfidence = 'unwavering';
