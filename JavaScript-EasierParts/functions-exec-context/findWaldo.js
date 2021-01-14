@@ -8,17 +8,8 @@ Create a function findWaldo that accepts an object and returns the value associa
 // ================================================================================
 
 function findWaldo(obj) {
-	for (let key in obj) {
-		if (key === 'Waldo') {
-			return obj[key];
-			if (key !== 'Waldo') return `Where's Waldo?`;
-		}
-	}
+	return obj.Waldo ? obj.Waldo : `Where's Waldo?`;
 }
-
-// function findWaldo(obj) {
-//   return obj.Waldo ? obj.Waldo : `Where's Waldo?`
-// }
 
 // Uncomment these to check your work!
 const DC = { Bruce: 'Wayne', Harley: 'Quinn' };
