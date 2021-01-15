@@ -1,3 +1,6 @@
+// ============================== INSTRUCTIONS ==============================
+// ================================================================================
+
 /*
 
 Create a function findWaldo that accepts an object and returns the value associated with the key 'Waldo'. If the key 'Waldo' is not found, the function should return 'Where's Waldo?'
@@ -18,6 +21,7 @@ Create a function findWaldo that accepts an object and returns the value associa
 // 	Dean: 'Winchester',
 // 	Waldo: 'unknown',
 // };
+
 // console.log(findWaldo(DC)); // should log: 'Where's Waldo?'
 // console.log(findWaldo(supernatural)); // should log: 'unknown'
 
@@ -40,5 +44,6 @@ const supernatural = {
 	Dean: 'Winchester',
 	Waldo: 'unknown',
 };
+
 console.log(findWaldo(DC)); // should log: 'Where's Waldo?'
 console.log(findWaldo(supernatural)); // should log: 'unknown'
