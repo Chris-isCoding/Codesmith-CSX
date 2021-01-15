@@ -16,6 +16,7 @@ Hint: Check out the remainder/modulo operator: %.
 
 // ========== FIRST SOLUTION =======================
 // ====================================================
+
 // const fb = [];
 // for (let i = 1; i < 17; i++) {
 //   if (i % 3 === 0 && i % 5 === 0) {
@@ -29,6 +30,8 @@ Hint: Check out the remainder/modulo operator: %.
 // 		fb.push(i)
 //   }
 // }
+
+// console.log(fb);
 
 // ========== SECOND SOLUTION =======================
 // ====================================================
@@ -49,25 +52,29 @@ Hint: Check out the remainder/modulo operator: %.
 // 	i++;
 // }
 
+// console.log(fb);
+
 // ========== THIRD SOLUTION =======================
 // ====================================================
 
-const fb = [];
-let i = 1;
-while (i < 17) {
-	fb.push(
-		i % 3 === 0 ? (i % 5 === 0 ? 'fizzbuzz' : 'fizz') : i % 5 === 0 ? 'buzz' : i
-	);
-	i++;
-}
+// const fb = [];
+// let i = 1;
+// while (i < 17) {
+// 	fb.push(
+// 		i % 3 === 0 ? (i % 5 === 0 ? 'fizzbuzz' : 'fizz') : i % 5 === 0 ? 'buzz' : i
+// 	);
+// 	i++;
+// }
+
+// console.log(fb);
 
 // ========== FOURTH SOLUTION =======================
 // ====================================================
 
-// const fb = [];
-// for (let i = 1; i < 17; i++) {
-// 	fb.push((i % 3 ? '' : 'fizz') + (i % 5 ? '' : 'buzz') || i);
-// }
+const fb = [];
+for (let i = 1; i < 17; i++) {
+	fb.push((i % 3 ? '' : 'fizz') + (i % 5 ? '' : 'buzz') || i);
+}
 
 console.log(fb);
 
