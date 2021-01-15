@@ -13,7 +13,7 @@ The body of the pluralize function should employ a single for loop that pluraliz
 // ================================================================================
 
 function pluralize(array) {
-	addS = [];
+	const addS = [];
 	for (let i = 0; i < array.length; i++) {
 		addS.push(array[i] + 's');
 	}
