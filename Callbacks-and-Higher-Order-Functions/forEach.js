@@ -29,7 +29,10 @@ function forEach(arr, callback) {
 
 function map(arr, callback) {
 	const newArr = [];
-	forEach(arr, (e) => newArr.push(callback(e)));
+	forEach(arr, function (e) {
+		// passing annonymous function which call//invoke callback with every element
+		newArr.push(callback(e));
+	});
 	return newArr;
 }
 
