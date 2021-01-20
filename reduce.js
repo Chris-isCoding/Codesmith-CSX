@@ -25,12 +25,41 @@ Construct your own reduce function that accepts an array, a callback, and an ini
 // ========================== SOLUTION ======================================
 // ================================================================================
 
+// function reduce(array, callback, initialValue) {
+// 	let accumulatorValue = initialValue;
+// 	for (let i = 0; i < array.length; i++) {
+// 		accumulatorValue = callback(accumulatorValue, array[i]);
+// 	}
+// 	return accumulatorValue;
+// }
+
+// // Uncomment these to check your work!
+// const nums = [4, 1, 3];
+// const add = function (a, b) {
+// 	return a + b;
+// };
+// console.log(reduce(nums, add, 0)); // should log 8
+
+// ========================== SOLUTION 2======================================
+// ================================================================================
+
 function reduce(array, callback, initialValue) {
-	let accumulatorValue = initialValue;
-	for (let i = 0; i < array.length; i++) {
-		accumulatorValue = callback(accumulatorValue, array[i]);
+	if (Array.isArray(array)) {
+		let accumulatorValue;
+		if (initialValue === 'undefined') {
+			accumulatorValue = arrray[0];
+			for (let i = 1; i < array.length; i++) {
+				accumulatorValue = callback(accumulatorValue, array[i]);
+				return accumulatorValue;
+			}
+		}
+		accumulatorValue = initialValue;
+		for (let i = 0; i < array.length; i++) {
+			accumulatorValue = callback(accumulatorValue, array[i]);
+		}
+		return accumulatorValue;
 	}
-	return accumulatorValue;
+	return 'Please pass an array as the first argument';
 }
 
 // Uncomment these to check your work!
@@ -38,4 +67,5 @@ const nums = [4, 1, 3];
 const add = function (a, b) {
 	return a + b;
 };
+
 console.log(reduce(nums, add, 0)); // should log 8
