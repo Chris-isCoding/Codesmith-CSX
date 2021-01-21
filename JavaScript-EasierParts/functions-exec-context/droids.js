@@ -28,18 +28,18 @@ Complete the function droids that accepts an array of strings and iterates throu
 // ======== SECOND SOLUTION =======
 // ================================
 
-const droids = (arr) => {
-	let result = '';
-	let i = 0;
-	while (i < arr.length) {
-		result =
-			arr[i] === 'Droids'
-				? 'Found Droids!'
-				: `These are not the droids you're looking for.`;
-		i++;
-	}
-	return result;
-};
+// const droids = (arr) => {
+// 	let result = '';
+// 	let i = 0;
+// 	while (i < arr.length) {
+// 		result =
+// 			arr[i] === 'Droids'
+// 				? 'Found Droids!'
+// 				: `These are not the droids you're looking for.`;
+// 		i++;
+// 	}
+// 	return result;
+// };
 
 // ======== THIRD SOLUTION =======
 // ================================
