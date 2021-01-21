@@ -14,10 +14,10 @@ Complete the function droids that accepts an array of strings and iterates throu
 // ================================
 
 // function droids(arr) {
-//   let result = '';
+//   let result;
 //   for (let i = 0; i < arr.length; i++) {
 //     if (arr[i] === 'Droids') {
-//       result = "Found Droids!";
+//       result = 'Found Droids!';
 //     } else {
 //       result = `These are not the droids you're looking for.`
 //     }
@@ -51,6 +51,18 @@ const droids = (arr) => {
 //   }
 //   return result;
 // }
+
+// ======== FOURTH SOLUTION =======
+// ================================
+
+function droids(arr) {
+	for (let i = 0; i < arr.length; i++) {
+		if (arr[i] === 'Droids') {
+			return 'Found Droids!';
+		}
+	}
+	return `These are not the droids you're looking for.`;
+}
 
 // Uncomment these to check your work!
 const starWars = ['Luke', 'Finn', 'Rey', 'Kylo', 'Droids'];
