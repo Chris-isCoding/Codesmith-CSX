@@ -14,7 +14,7 @@ Construct a function multiMap that will accept two arrays - an array of values a
 // arVa = array Of Values; arCa = array of Callbacks
 function multiMap(arVa, arCa) {
 	const obj = {};
-	for (let ele in arVa) {
+	for (const ele in arVa) {
 		obj[arVa[ele]] = arCa.map((func) => {
 			return func(arVa[ele]);
 		});
