@@ -11,15 +11,28 @@ Create a function majority that accepts an array and a callback. The callback wi
 // ========================== SOLUTION ======================================
 // ================================================================================
 
-const majority = (arr, callback) => {
-	let numOfTrue = 0; // counter to count true result of callback invocation
-	for (const ele of arr) {
-		if (callback(ele)) {
-			numOfTrue++;
-		}
-	}
-	return arr.length / 2 < numOfTrue; // return check if majority is true
-};
+// const majority = (arr, callback) => {
+// 	let numOfTrue = 0; // counter to count true result of callback invocation
+// 	for (const ele of arr) {
+// 		if (callback(ele)) {
+// 			numOfTrue++;
+// 		}
+// 	}
+// 	return arr.length / 2 < numOfTrue; // return check if majority is true
+// };
+
+// // Uncomment these to check your work!
+// const isOdd = function (num) {
+// 	return num % 2 === 1;
+// };
+// console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
+// console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
+
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
+
+const majority = ((arr, callback) =
+	arr.filter((ele) => callback(ele)).length > arr.length / 2);
 
 // Uncomment these to check your work!
 const isOdd = function (num) {
@@ -27,8 +40,3 @@ const isOdd = function (num) {
 };
 console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
 console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
-
-// ========================== SOLUTION 2 ======================================
-// ================================================================================
-
-// const majority = (arr, callback) => {};
