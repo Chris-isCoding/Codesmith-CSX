@@ -37,9 +37,22 @@ Create a function groupBy that accepts an array and a callback, and returns an o
 // ========================== SOLUTION 3 ======================================
 // ================================================================================
 
+// function groupBy(array, callback) {
+// 	const obj = {};
+// 	array.forEach((ele) => {
+// 		obj[callback(ele)]
+// 			? obj[callback(ele)].push(ele)
+// 			: (obj[callback(ele)] = [ele]);
+// 	});
+// 	return obj;
+// }
+
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
+
 function groupBy(array, callback) {
 	const obj = {};
-	array.forEach((ele) => {
+	array.map((ele) => {
 		obj[callback(ele)]
 			? obj[callback(ele)].push(ele)
 			: (obj[callback(ele)] = [ele]);
