@@ -11,18 +11,37 @@ Create a function countBy that accepts an array and a callback, and returns an o
 // ========================== SOLUTION ======================================
 // ================================================================================
 
-const countBy = (arr, callback) => {
-	// const obj = {};
-	const resultArr = [];
-	for (const ele of arr) {
-		resultArr.push(callback(ele));
-	}
-	const obj = resultArr.reduce((acc, ele) => {
-		acc[ele] = acc[ele] ? acc[ele] + 1 : 1;
-		return acc;
-	}, {});
-	return obj;
-};
+// const countBy = (arr, callback) => {
+// 	// const obj = {};
+// 	const resultArr = [];
+// 	for (const ele of arr) {
+// 		resultArr.push(callback(ele));
+// 	}
+// 	const obj = resultArr.reduce((acc, ele) => {
+// 		acc[ele] = acc[ele] ? acc[ele] + 1 : 1;
+// 		return acc;
+// 	}, {});
+// 	return obj;
+// };
+
+// // Uncomment these to check your work!
+// function evenOdd(n) {
+// 	if (n % 2 === 0) return 'even';
+// 	else return 'odd';
+// }
+// const nums = [1, 2, 3, 4, 5];
+// console.log(countBy(nums, evenOdd)); // should log: { odd: 3, even: 2 }
+
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
+
+const countBy = (arr, callback) =>
+	arr
+		.map((ele) => callback(ele))
+		.reduce((acc, ele) => {
+			acc[ele] = acc[ele] ? acc[ele] + 1 : 1;
+			return acc;
+		}, {});
 
 // Uncomment these to check your work!
 function evenOdd(n) {
