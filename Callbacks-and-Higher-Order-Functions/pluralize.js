@@ -12,13 +12,29 @@ The body of the pluralize function should employ a single for loop that pluraliz
 // ========================== SOLUTION ======================================
 // ================================================================================
 
-function pluralize(array) {
-	const addS = [];
-	for (let i = 0; i < array.length; i++) {
-		addS.push(array[i] + 's');
-	}
-	return addS;
-}
+// function pluralize(array) {
+// 	const addS = [];
+// 	for (let i = 0; i < array.length; i++) {
+// 		addS.push(array[i] + 's');
+// 	}
+// 	return addS;
+// }
+
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
+
+const pluralize = (arr) => arr.map((ele) => ele + 's');
+
+// ========================== SOLUTION 3 ======================================
+// ================================================================================
+
+// const pluralize = arr => {
+//   const addS = [];
+//   for (let ele of arr) {
+//     addS.push(ele + 's');
+//   }
+//   return addS;
+// }
 
 // Uncomment these to check your work!
 const animals = ['dog', 'cat', 'tree frog'];
