@@ -13,7 +13,7 @@
 function closestToTheMark(player1, player2) {
 	const theMark = Math.floor(Math.random() * 100);
 	console.log(`If theMark is ${theMark}...`);
-	if (player1 - theMark > player2 - theMark) {
+	if (Math.abs(player1 - theMark) < Math.abs(player2 - theMark)) {
 		return 'Player 1 is closest';
 	} else {
 		return 'Player 2 is closest';

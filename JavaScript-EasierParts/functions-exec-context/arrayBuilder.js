@@ -12,7 +12,7 @@ Write a function arrayBuilder that takes in a count object and returns an array 
 
 function arrayBuilder(obj) {
 	const arr = [];
-	for (let key in obj) {
+	for (const key in obj) {
 		for (let i = 0; i < obj[key]; i++) {
 			arr.push(key);
 		}
