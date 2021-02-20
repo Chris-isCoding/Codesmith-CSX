@@ -20,6 +20,24 @@ function arrayBuilder(obj) {
 	return arr;
 }
 
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
+
+function arrayBuilder(obj) {
+	const arr = [];
+	const keys = Object.keys(obj);
+	const values = Object.values(obj);
+	for (const [i, ele] of keys.entries()) {
+		const subArr = [];
+		subArr.length = values[i];
+		subArr.fill(ele);
+		for (const item of subArr) {
+			arr.push(item);
+		}
+	}
+	return arr;
+}
+
 // Uncomment these to check your work!
 console.log(arrayBuilder({ cats: 2, dogs: 1 })); // => ['cats', 'cats', 'dogs']
 console.log(arrayBuilder({})); // => []
