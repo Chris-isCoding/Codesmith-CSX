@@ -48,7 +48,7 @@ function arrayBuilder(obj) {
 	for (let i = 0; i < keys.length; i++) {
 		const num = arr.length;
 		arr.length += values[i];
-		arr.fill(keys[i], num, arr.length);
+		arr.fill(keys[i], num);
 	}
 	return arr;
 }
