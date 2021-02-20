@@ -41,14 +41,27 @@ Write a function arrayBuilder that takes in a count object and returns an array 
 // ========================== SOLUTION 3 ======================================
 // ================================================================================
 
+// function arrayBuilder(obj) {
+// 	const arr = [];
+// 	const keys = Object.keys(obj);
+// 	const values = Object.values(obj);
+// 	for (let i = 0; i < keys.length; i++) {
+// 		const num = arr.length;
+// 		arr.length += values[i];
+// 		arr.fill(keys[i], num);
+// 	}
+// 	return arr;
+// }
+
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
+
 function arrayBuilder(obj) {
 	const arr = [];
-	const keys = Object.keys(obj);
-	const values = Object.values(obj);
-	for (let i = 0; i < keys.length; i++) {
+	for (const [key, value] of Object.entries(obj)) {
 		const num = arr.length;
-		arr.length += values[i];
-		arr.fill(keys[i], num);
+		arr.length += value;
+		arr.fill(key, num);
 	}
 	return arr;
 }
