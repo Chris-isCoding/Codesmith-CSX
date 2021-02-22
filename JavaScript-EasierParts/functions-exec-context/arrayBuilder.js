@@ -59,9 +59,9 @@ Write a function arrayBuilder that takes in a count object and returns an array 
 function arrayBuilder(obj) {
 	const arr = [];
 	for (const [key, value] of Object.entries(obj)) {
-		const num = arr.length;
+		const i = arr.length; // index position on which we start fill(ele[,start][,end])
 		arr.length += value;
-		arr.fill(key, num);
+		arr.fill(key, i);
 	}
 	return arr;
 }
