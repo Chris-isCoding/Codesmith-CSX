@@ -13,13 +13,8 @@ Add code to the function eitherFilter in the place marked "ADD CODE HERE" in ord
 function eitherFilter(array, callback1, callback2) {
 	const newArr = [];
 	array.forEach((num) => {
-		if (callback1(num) === true) {
+		if (callback1(num) || callback2(num)) {
 			newArr.push(num);
-		}
-	});
-	array.map((item) => {
-		if (callback2(item) === true) {
-			newArr.unshift(item);
 		}
 	});
 	return newArr;
