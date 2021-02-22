@@ -17,7 +17,9 @@ function getTheRange(arr) {
 		if (arr[i] < low) {
 			low = arr[i];
 		}
-		if (arr[i] > high) high = arr[i];
+		if (arr[i] > high) {
+			high = arr[i];
+		}
 	}
 	const range = high - low;
 	return [low, high, range];
