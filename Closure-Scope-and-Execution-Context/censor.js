@@ -133,6 +133,24 @@ const censor = () => {
 //   }
 // }
 
+// ========================== SOLUTION 8 ======================================
+// ================================================================================
+
+// function censor(){
+//   const pairs = {};
+//   return function (str1, str2){
+//     if (str2) {
+//       pairs[str1] = str2;
+//       return;
+//     }
+//     Object.keys(pairs).forEach(key => {
+//       const regex = new RegExp(key, 'g');
+//       str1 = str1.replaceAll(regex, pairs[key]);
+//       })
+//     return str1;
+//   }
+// }
+
 // Uncomment these to check your work!
 const changeScene = censor();
 changeScene('dogs', 'cats');
