@@ -12,27 +12,24 @@ Create a function censor that accepts no arguments. censor will return a functio
 // ========================== SOLUTION 1 ======================================
 // ================================================================================
 
-function censor() {
-	const strings = [];
-	return function (str1, str2) {
-		if (str2) {
-			const pairs = {};
-			pairs[str1] = str2;
-			strings.push(pairs);
-			// console.log(pairs)
-		}
-		// console.log(strings)
-		if (!str2) {
-			const replaceStrings = (arrOfPairs, string) =>
-				arrOfPairs.reduce(
-					(string, ele) =>
-						string.replaceAll(Object.keys(ele), ele[Object.keys(ele)]),
-					string
-				);
-			return replaceStrings(strings, str1);
-		}
-	};
-}
+// function censor() {
+//   const strings = [];
+//   return function(str1, str2) {
+//     if (str2) {
+//       const pairs = {};
+//       pairs[str1] = str2
+//       strings.push(pairs);
+//       // console.log(pairs)
+//     }
+//     // console.log(strings)
+//     if (!str2) {
+//       const replaceStrings = (arrOfPairs, string) =>
+//         arrOfPairs.reduce((string, ele) =>
+//           string.replaceAll(Object.keys(ele), ele[Object.keys(ele)]), string);
+//       return replaceStrings(strings, str1)
+//     }
+//   }
+// }
 
 // ========================== SOLUTION 2 ======================================
 // ================================================================================
@@ -47,7 +44,7 @@ function censor() {
 //     }
 //     if (!str2) {
 //       const replacer = (arrOfPairs, string) => arrOfPairs.reduce((string, ele) => {
-//         return string.replaceAll(Object.entries(ele)[0][0], Object.entries(ele)[0][1])
+//         return string.replace(Object.entries(ele)[0][0], Object.entries(ele)[0][1])
 //       }, string);
 //       return replacer(strings, str1)
 //     }
@@ -67,7 +64,7 @@ function censor() {
 //     }
 //     // console.log(strings)
 //     if (str2 === undefined) {
-//       return strings.reduce((str1, ele) => str1.replaceAll(Object.keys(ele), ele[Object.keys(ele)), str1)
+//       return strings.reduce((str1, ele) => str1.replaceAll(Object.keys(ele), ele[Object.keys(ele)]), str1)
 //       }
 //   }
 // }
@@ -86,6 +83,52 @@ function censor() {
 //     	return str1.replaceAll(reg, function(match) {
 //         return pairs[match]
 //       })
+//     }
+//   }
+// }
+
+// ========================== SOLUTION 5 ======================================
+// ================================================================================
+
+// function censor() {
+//   const pairs = {};
+//   return function(str1, str2) {
+//     if (str2) {
+//       pairs[str1] = str2;
+//       return;
+//     }
+//     for (const key of Object.keys(pairs)) {
+//       str1 = str1.replace(key, pairs[key])
+//     }
+//     return str1;
+//   }
+// }
+
+// ========================== SOLUTION 6 ======================================
+// ================================================================================
+
+const censor = () => {
+	const pairs = {};
+	return (str1, str2) =>
+		str2
+			? ((pairs[str1] = str2), undefined)
+			: (Object.keys(pairs).forEach(
+					(key) => (str1 = str1.replaceAll(key, pairs[key]))
+			  ),
+			  str1);
+};
+
+// ========================== SOLUTION 7 ======================================
+// ================================================================================
+
+// function censor() {
+//   const pairs = {};
+//   return function(str1, str2) {
+//     if (str2) {
+//       pairs[str1] = str2;
+//     } else {
+//     Object.keys(pairs).forEach(key => str1 = str1.replaceAll(key, pairs[key]));
+//     return str1;
 //     }
 //   }
 // }
