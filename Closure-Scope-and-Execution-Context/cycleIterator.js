@@ -22,10 +22,10 @@ Create a function cycleIterator that accepts an array, and returns a function. T
 // ========================== SOLUTION 2 ======================================
 // ================================================================================
 
-const cycleIterator = (arr) => {
-	let i = 0;
-	return () => arr[i++ % arr.length];
-};
+// const cycleIterator = (arr) => {
+// 	let i = 0;
+// 	return () => arr[i++ % arr.length];
+// };
 
 // ========================== SOLUTION 3 ======================================
 // ================================================================================
@@ -40,6 +40,21 @@ const cycleIterator = (arr) => {
 //     return arr[counter - 1]
 //   }
 // }
+
+// ========================== SOLUTION 3 ======================================
+// ================================================================================
+
+function cycleIterator(arr) {
+	let pedal = [...arr];
+	return function () {
+		if (pedal.length === 0 || pedal[0] === undefined) {
+			pedal = [...arr];
+		}
+		while (pedal.length !== 0) {
+			return pedal.shift();
+		}
+	};
+}
 
 // Uncomment these to check your work!
 const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
