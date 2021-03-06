@@ -4,11 +4,12 @@
 /*
 
 Challenge: multiMap
+
 Construct a function multiMap that will accept two arrays - an array of values and an array of callbacks. multiMap will return an object whose keys match the elements in the array of values. The corresponding values that are assigned to the keys will be arrays consisting of outputs from the array of callbacks, where the input to each callback is the key.
 
 */
 
-// ========================== SOLUTION ======================================
+// ========================== SOLUTION 1 ======================================
 // ================================================================================
 
 // arVa = array Of Values; arCa = array of Callbacks
@@ -21,6 +22,21 @@ function multiMap(arVa, arCa) {
 	}
 	return obj;
 }
+
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
+
+// function multiMap(valuesArr, arrayOfCallbacks) {
+// 	const resultObj = {};
+// 	for (const ele of valuesArr) {
+// 		const valueOfKey = [];
+// 		arrayOfCallbacks.forEach((callback) => {
+// 			valueOfKey.push(callback(ele));
+// 		});
+// 		resultObj[ele] = valueOfKey;
+// 	}
+// 	return resultObj;
+// }
 
 // Uncomment these to check your work!
 function uppercaser(str) {
