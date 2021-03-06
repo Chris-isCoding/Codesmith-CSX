@@ -11,22 +11,35 @@ Create a function saveOutput that accepts a function (that will accept one argum
 // ========================== SOLUTION 1 ======================================
 // ================================================================================
 
-function saveOutput(callback, pass) {
+// function saveOutput(callback, pass) {
+// 	const log = {};
+// 	return function (arg) {
+// 		if (arg === pass) {
+// 			return log;
+// 		}
+// 		log[arg] = callback(arg);
+// 		return log[arg];
+// 	};
+// }
+
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
+
+const saveOutput = (cb, pass) => {
 	const log = {};
-	return function (arg) {
-		if (arg === pass) {
-			return log;
-		}
-		log[arg] = callback(arg);
-		return log[arg];
+	return (arg) => {
+		return arg === pass ? log : ((log[arg] = cb(arg)), log[arg]);
 	};
-}
+};
 
 // Uncomment these to check your work!
+
 const multiplyBy2 = function (num) {
 	return num * 2;
 };
+
 const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
+
 console.log(multBy2AndLog(2)); // should log: 4
 console.log(multBy2AndLog(9)); // should log: 18
 console.log(multBy2AndLog('boo')); // should log: { 2: 4, 9: 18 }
