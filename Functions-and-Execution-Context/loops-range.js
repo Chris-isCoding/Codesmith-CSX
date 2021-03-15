@@ -16,8 +16,7 @@ function getTheRange(arr) {
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i] < low) {
 			low = arr[i];
-		}
-		if (arr[i] > high) {
+		} else if (arr[i] > high) {
 			high = arr[i];
 		}
 	}
