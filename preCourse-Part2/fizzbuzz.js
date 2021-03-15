@@ -3,6 +3,7 @@
 
 /*
 Challenge: fizzbuzz
+
 Use a loop to iterate through the numbers 1 through 16. Push each number into fb, but push the string "fizz" in place of numbers divisible by 3, "buzz" in place of numbers divisible by 5, and "fizzbuzz" in place of numbers divisible by both 3 and 5.
 
 Log fb to the console to see the output.
@@ -11,11 +12,8 @@ Hint: Check out the remainder/modulo operator: %.
 
 */
 
-// ========================== SOLUTION ======================================
+// ========================== SOLUTION 1 ======================================
 // ================================================================================
-
-// ========== FIRST SOLUTION =======================
-// ====================================================
 
 // const fb = [];
 // for (let i = 1; i < 17; i++) {
@@ -33,8 +31,8 @@ Hint: Check out the remainder/modulo operator: %.
 
 // console.log(fb);
 
-// ========== SECOND SOLUTION =======================
-// ====================================================
+// ========================== SOLUTION 2 ======================================
+// ================================================================================
 
 // const fb = [];
 // let i = 1;
@@ -54,8 +52,8 @@ Hint: Check out the remainder/modulo operator: %.
 
 // console.log(fb);
 
-// ========== THIRD SOLUTION =======================
-// ====================================================
+// ========================== SOLUTION 3 ======================================
+// ================================================================================
 
 // const fb = [];
 // let i = 1;
@@ -68,8 +66,8 @@ Hint: Check out the remainder/modulo operator: %.
 
 // console.log(fb);
 
-// ========== FOURTH SOLUTION =======================
-// ====================================================
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
 
 const fb = [];
 for (let i = 1; i < 17; i++) {
