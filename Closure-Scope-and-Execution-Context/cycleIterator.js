@@ -15,33 +15,46 @@ Create a function cycleIterator that accepts an array, and returns a function. T
 // function cycleIterator(arr) {
 //   let index = -1;
 //   return function() {
-//     return arr[++index % arr.length]
+//     return arr[++index % arr.length];
 //   }
 // }
 
 // ========================== SOLUTION 2 ======================================
 // ================================================================================
 
-// const cycleIterator = (arr) => {
+// const cycleIterator = arr => {
 // 	let i = 0;
-// 	return () => arr[i++ % arr.length];
-// };
+//   return () => arr[i++ % arr.length];
+// }
 
 // ========================== SOLUTION 3 ======================================
 // ================================================================================
 
+const cycleIterator = (arr, i = 0) => () => arr[i++ % arr.length];
+
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
+
 // function cycleIterator(arr) {
-//   let counter = 0;
-//   return function() {
-//     if (counter >= arr.length) {
-//       counter = 0;
-//     }
-//     counter++;
-//     return arr[counter - 1]
-//   }
+// 	let counter = 0;
+// 	return function () {
+// 		if (counter >= arr.length) {
+// 			counter = 0;
+// 		}
+// 		counter++;
+// 		return arr[counter - 1];
+// 	};
 // }
 
-// ========================== SOLUTION 3 ======================================
+// ========================== SOLUTION 5 ======================================
+// ================================================================================
+
+// const cycleIterator = (arr, counter = 0) => () =>
+// 	counter >= arr.length
+// 		? ((counter = 0), counter++, arr[counter - 1])
+// 		: (counter++, arr[counter - 1]);
+
+// ========================== SOLUTION 6 ======================================
 // ================================================================================
 
 function cycleIterator(arr) {
