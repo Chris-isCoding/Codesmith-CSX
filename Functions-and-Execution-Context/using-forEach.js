@@ -12,8 +12,8 @@ Recreate the function droids from the previous challenge, but instead of using a
 
 function droids(arr) {
 	let result = `These are not the droids you're looking for.`;
-	arr.forEach((droid) => {
-		if (droid === 'Droids') {
+	arr.forEach((element) => {
+		if (element === 'Droids') {
 			result = `Found Droids!`;
 		}
 	});
