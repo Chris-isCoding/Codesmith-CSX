@@ -11,12 +11,10 @@ Recreate the function droids from the previous challenge, but instead of using a
 // ================================================================================
 
 function droids(arr) {
-	let result = '';
+	let result = `These are not the droids you're looking for.`;
 	arr.forEach((droid) => {
 		if (droid === 'Droids') {
 			result = `Found Droids!`;
-		} else {
-			result = `These are not the droids you're looking for.`;
 		}
 	});
 	return result;
