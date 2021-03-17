@@ -25,21 +25,40 @@ Output: {Number} - final output of final function
 // ========================== SOLUTION 2 ======================================
 // ================================================================================
 
-const flow = (input, funArr, i = 0) =>
-	funArr[i] ? flow(funArr[i](input), funArr, i + 1) : input;
+// const flow = (input, funArr, i = 0) => funArr[i]? flow(funArr[i](input), funArr, i + 1) : input;
+
+// ========================== SOLUTION 3 ======================================
+// ================================================================================
+
+// const flow = (input, funcArr) => {
+//   if (!funcArr[0]) return input;
+//   return flow(funcArr[0](input), funcArr.slice(1));
+// }
+
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
+
+const flow = (input, funcArr) => {
+	if (funcArr.toString() === [].toString()) return input;
+	return flow(funcArr[0](input), funcArr.slice(1));
+};
 
 // To check if you've completed the challenge, uncomment this code!
 function multiplyBy2(num) {
 	return num * 2;
 }
+
 function add7(num) {
 	return num + 7;
 }
+
 function modulo4(num) {
 	return num % 4;
 }
+
 function subtract10(num) {
 	return num - 10;
 }
+
 const arrayOfFunctions = [multiplyBy2, add7, modulo4, subtract10];
 console.log(flow(2, arrayOfFunctions)); // -> -7
