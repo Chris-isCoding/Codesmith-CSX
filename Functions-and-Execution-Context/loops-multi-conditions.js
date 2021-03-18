@@ -16,15 +16,16 @@ function addingAllTheWeirdStuff(array1, array2) {
 	let sumOdd = 0;
 	let sumEven = 0;
 	const weirdArr = [];
-	for (let element of array2) {
+	for (const element of array2) {
 		if (element > 20) {
 			for (let i = 0; i < array1.length; i++) {
 				array1[i] += 1;
 			}
+			break;
 		}
 	}
 
-	for (let element of array2) {
+	for (const element of array2) {
 		if (element % 2 !== 0) {
 			sumOdd += element;
 		} else {
@@ -32,7 +33,7 @@ function addingAllTheWeirdStuff(array1, array2) {
 		}
 	}
 
-	for (let element of array1) {
+	for (const element of array1) {
 		if (element < 10) {
 			weirdArr.push(element + sumOdd);
 		}
