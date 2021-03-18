@@ -55,6 +55,14 @@ function repeater(char) {
 //   return repeater(char)
 // }
 
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
+
+const repeater = (char, output = char) => {
+	if (output.length === 5) return output;
+	return repeater(char, output + char);
+};
+
 // To check if you've completed the challenge, uncomment these console.logs!
 console.log(repeater('g'));
 console.log(repeater('j'));
