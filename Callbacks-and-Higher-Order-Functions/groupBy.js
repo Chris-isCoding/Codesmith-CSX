@@ -14,10 +14,11 @@ Create a function groupBy that accepts an array and a callback, and returns an o
 // function groupBy(array, callback) {
 //   const obj = {};
 //   for (const ele of array) {
-//     if (obj[callback(ele)]) {
-//       obj[callback(ele)].push(ele)
+//     const key = callback(ele);
+//     if (key in obj) {
+//       obj[key].push(ele);
 //     } else {
-//       obj[callback(ele)] = [ele]
+//       obj[key] = [ele]; // one element array
 //     }
 //   }
 //   return obj;
@@ -29,7 +30,8 @@ Create a function groupBy that accepts an array and a callback, and returns an o
 // const groupBy = (array, callback) => {
 //   const obj = {};
 //   for (const ele of array) {
-//     !obj[callback(ele)]? obj[callback(ele)] = [ele] : obj[callback(ele)].push(ele)
+//     const key = callback(ele);
+//     !(key in obj) ? obj[key] = [ele] : obj[key].push(ele)
 //   }
 //   return obj;
 // }
@@ -37,27 +39,40 @@ Create a function groupBy that accepts an array and a callback, and returns an o
 // ========================== SOLUTION 3 ======================================
 // ================================================================================
 
-// function groupBy(array, callback) {
-// 	const obj = {};
-// 	array.forEach((ele) => {
-// 		obj[callback(ele)]
-// 			? obj[callback(ele)].push(ele)
-// 			: (obj[callback(ele)] = [ele]);
-// 	});
-// 	return obj;
+// function groupBy(array,callback) {
+//   const obj = {};
+//   array.forEach(ele => {
+//     const key = callback(ele);
+//     key in obj ? obj[key].push(ele) : obj[key] = [ele];
+//   })
+//   return obj;
 // }
 
 // ========================== SOLUTION 4 ======================================
 // ================================================================================
 
+// function groupBy(array, callback) {
+// 	const obj = {};
+// 	array.map((ele) => {
+//     const key = callback(ele)
+// 		obj.hasOwnProperty(key) ? obj[callback(ele)].push(ele) : (obj[callback(ele)] = [ele]);
+// 	});
+// 	return obj;
+// }
+
+// ========================== SOLUTION 5 ======================================
+// ================================================================================
+
 function groupBy(array, callback) {
-	const obj = {};
-	array.map((ele) => {
-		obj[callback(ele)]
-			? obj[callback(ele)].push(ele)
-			: (obj[callback(ele)] = [ele]);
-	});
-	return obj;
+	return array.reduce((accObj, curEle) => {
+		const key = callback(curEle);
+		if (accObj[key] === undefined) {
+			accObj[key] = [curEle];
+		} else {
+			accObj[key].push(curEle);
+		}
+		return accObj;
+	}, {});
 }
 
 // Uncomment these to check your work!
