@@ -11,18 +11,18 @@ Construct a function intersection that compares input arrays and returns a new a
 // ================================================================================
 
 function intersection(arrayOfArrays) {
-	const result = arrayOfArrays
-		.shift()
-		.reduce(function (accumulatorArray, currentArrayElement) {
-			if (
-				accumulatorArray.indexOf(currentArrayElement) === -1 &&
-				arrayOfArrays.every(function (nextArray) {
-					return nextArray.indexOf(currentArrayElement) !== -1;
-				})
-			)
-				accumulatorArray.push(currentArrayElement);
-			return accumulatorArray;
-		}, []);
+	const result = arrayOfArrays[0].reduce(function (accumulatorArray, currentArrayElement) {
+		if (
+			accumulatorArray.indexOf(currentArrayElement) === -1 &&
+			arrayOfArrays.every(function (nextArray) {
+				//if element is not present in the accumulator array and for every array check if element is present
+				// console.log(nextArray.indexOf(currentArrayElement) !== -1)
+				return nextArray.indexOf(currentArrayElement) !== -1;
+			})
+		)
+			accumulatorArray.push(currentArrayElement);
+		return accumulatorArray;
+	}, []); //empty array as initial value
 	return result;
 }
 
