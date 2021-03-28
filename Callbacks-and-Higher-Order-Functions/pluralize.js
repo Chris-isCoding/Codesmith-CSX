@@ -9,21 +9,21 @@ The body of the pluralize function should employ a single for loop that pluraliz
 
 */
 
-// ========================== SOLUTION ======================================
+// ========================== SOLUTION 1 ======================================
 // ================================================================================
 
 // function pluralize(array) {
-// 	const addS = [];
-// 	for (let i = 0; i < array.length; i++) {
-// 		addS.push(array[i] + 's');
-// 	}
-// 	return addS;
+//   const addS = [];
+//   for (let i = 0; i < array.length; i++) {
+//      addS.push(array[i] + 's');
+//   }
+//   return addS;
 // }
 
 // ========================== SOLUTION 2 ======================================
 // ================================================================================
 
-const pluralize = (arr) => arr.map((ele) => ele + 's');
+const pluralize = arr => arr.map(ele => ele + 's');
 
 // ========================== SOLUTION 3 ======================================
 // ================================================================================
@@ -32,6 +32,17 @@ const pluralize = (arr) => arr.map((ele) => ele + 's');
 //   const addS = [];
 //   for (let ele of arr) {
 //     addS.push(ele + 's');
+//   }
+//   return addS;
+// }
+
+// ========================== SOLUTION 4 ======================================
+// ================================================================================
+
+// function pluralize(array) {
+//   const addS = [];
+//   for (let i = 0; i < array.length; i++) {
+//      addS[i] = (array[i] + 's');
 //   }
 //   return addS;
 // }
