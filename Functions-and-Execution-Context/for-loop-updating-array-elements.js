@@ -11,11 +11,10 @@ Using a FOR loop, write a function addN which adds the argument n to each number
 // ================================================================================
 
 function addN(arr, n) {
-	const newArr = [];
-	for (let element of arr) {
-		newArr.push((element += n));
+	for (const index in arr) {
+		arr[index] += n;
 	}
-	return newArr;
+	return arr;
 }
 
 // Uncomment these to check your work!
