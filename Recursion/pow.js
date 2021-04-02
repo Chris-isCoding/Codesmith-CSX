@@ -26,13 +26,20 @@ Output: {Number} - expected value of base raised to exponent
 // ========================== SOLUTION 2 ======================================
 // ================================================================================
 
-const pow = (base, exponent) =>
-	exponent === 0
-		? 1
-		: exponent > 0
-		? base * pow(base, exponent - 1)
-		: 1 / (base * pow(base, -exponent - 1));
+// const pow = (base, exponent) =>
+// 	exponent === 0 ? 1
+// 		: exponent > 0 ? base * pow(base, exponent - 1)
+// 		: 1 / (base * pow(base, -exponent - 1));
+
+// ========================== SOLUTION 3 ======================================
+// ================================================================================
+
+function pow(base, exponent, res = 1) {
+	if (exponent === 0) return res;
+	if (exponent < 0) return pow(1 / base, -exponent - 1, 1 / base);
+	return pow(base, exponent - 1, res * base);
+}
 
 // To check if you've completed the challenge, uncomment these console.logs!
-console.log(pow(2, 1)); // -> 16
+console.log(pow(2, 4)); // -> 16
 console.log(pow(3, 5)); // -> 243
