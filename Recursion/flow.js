@@ -38,27 +38,31 @@ Output: {Number} - final output of final function
 // ========================== SOLUTION 4 ======================================
 // ================================================================================
 
-const flow = (input, funcArr) => {
-	if (funcArr.toString() === [].toString()) return input;
-	return flow(funcArr[0](input), funcArr.slice(1));
+// const flow = (input, funcArr) => {
+//   if (funcArr.toString() === [].toString()) return input;
+//   return flow(funcArr[0](input), funcArr.slice(1));
+// }
+
+// ========================== SOLUTION 5 ======================================
+// ================================================================================
+
+const flow = (input, funcArr, i = 0) => {
+	if (i in funcArr === false) return input;
+	return flow(funcArr[i](input), funcArr, i + 1);
 };
 
 // To check if you've completed the challenge, uncomment this code!
 function multiplyBy2(num) {
 	return num * 2;
 }
-
 function add7(num) {
 	return num + 7;
 }
-
 function modulo4(num) {
 	return num % 4;
 }
-
 function subtract10(num) {
 	return num - 10;
 }
-
 const arrayOfFunctions = [multiplyBy2, add7, modulo4, subtract10];
 console.log(flow(2, arrayOfFunctions)); // -> -7
