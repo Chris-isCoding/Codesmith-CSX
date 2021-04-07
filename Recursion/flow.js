@@ -51,6 +51,14 @@ const flow = (input, funcArr, i = 0) => {
 	return flow(funcArr[i](input), funcArr, i + 1);
 };
 
+// ========================== SOLUTION 6 ======================================
+// ================================================================================
+
+const flow = (input, funcArr, i = 0) => {
+	if (i === funcArr.length) return input;
+	return flow(funcArr[i](input), funcArr, i + 1);
+};
+
 // To check if you've completed the challenge, uncomment this code!
 function multiplyBy2(num) {
 	return num * 2;
