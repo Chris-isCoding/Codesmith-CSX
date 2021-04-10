@@ -149,3 +149,44 @@ const add = function (a, b) {
 	return a + b;
 };
 console.log(reduce(nums, add, 0)); //-> 8
+
+// ============================== CHALLENGE 7  ==============================
+// ==========================================================================
+
+/*
+
+Construct a function intersection that compares input arrays and returns a new array with elements found in all of the inputs. BONUS: Use reduce!
+
+*/
+
+// ============================== SOLUTION 1  ==============================
+// ==========================================================================
+
+function intersection(...arrays) {
+	return arrays[0].reduce((acc, cur) => {
+		if (acc.indexOf(cur) === -1 && arrays.every(array => array.indexOf(cur) !== -1)) {
+			acc.push(cur);
+		}
+		return acc;
+	}, []);
+}
+
+// ============================== SOLUTION 2  ==============================
+// ==========================================================================
+
+// const intersection = (...arrays) => {
+// 	const newArr = [];
+// 	arrays.forEach(array => {
+// 		for (const ele of array) {
+// 			if (newArr.indexOf(ele) === -1 && arrays.every(array => array.indexOf(ele) !== -1)) {
+// 				newArr.push(ele);
+// 			}
+// 		}
+// 	});
+// 	return newArr;
+// };
+
+// const arrays = [[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]
+// console.log(arrays.every(array => array.indexOf(4) !== -1))
+console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
+// should log: [5, 15]
