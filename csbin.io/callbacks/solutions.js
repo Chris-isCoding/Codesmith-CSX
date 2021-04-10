@@ -31,8 +31,8 @@ function addS(word) {
 }
 
 // uncomment these to check your work
-console.log(addS('pizza')); // => pizzas
-console.log(addS('bagel')); // => bagels
+// console.log(addS('pizza')); // => pizzas
+// console.log(addS('bagel')); // => bagels
 
 // ============================== CHALLENGE 3  ==============================
 // ==========================================================================
@@ -68,4 +68,36 @@ Have map return a new array filled with numbers that are the result of using the
 
 const map = (arr, cb) => arr.map(num => cb(num));
 
-console.log(map([1, 2, 3], addTwo)); // => [3, 4, 5]
+// uncomment these to check your work
+// console.log(map([1, 2, 3], addTwo)); // => [3, 4, 5]
+
+// ============================== CHALLENGE 4  ==============================
+// ==========================================================================
+
+/*
+
+The function forEach takes an array and a callback, and runs the callback on each element of the array. forEach does not return anything.
+
+  let alphabet = '';
+  const letters = ['a', 'b', 'c', 'd'];
+  forEach(letters, function(char) {
+    alphabet += char;
+  });
+  console.log(alphabet);   //prints 'abcd'
+
+*/
+
+function forEach(array, callback) {
+	for (const ele of array) {
+		callback(ele);
+	}
+}
+
+// test cases // => expected output
+
+let alphabet = '';
+const letters = ['a', 'b', 'c', 'd'];
+forEach(letters, function (char) {
+	alphabet += char;
+});
+console.log(alphabet); //prints 'abcd'
