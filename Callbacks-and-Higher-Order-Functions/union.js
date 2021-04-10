@@ -54,7 +54,7 @@ Construct a function union that takes an input array of arrays, compares each ar
 // 				accumulatorArr.push(currentElement); // push it to accumulatorArr
 // 			}
 // 			return accumulatorArr;
-// 		}, arrOfArrays[0]); // first arr as a initialValue
+// 		}, []); // empty array as a inital value
 // 	return result;
 // }
 
@@ -66,7 +66,7 @@ Construct a function union that takes an input array of arrays, compares each ar
 //       arr.push(ele);
 //     }
 //     return arr
-//   }, arrays[0]); // first array in arrays
+//   }, []); // empty arr as inital value
 
 // ========================== SOLUTION 5 ======================================
 // ================================================================================
@@ -76,31 +76,31 @@ Construct a function union that takes an input array of arrays, compares each ar
 // ========================== SOLUTION 6 ======================================
 // ================================================================================
 
-function union(arrays) {
-	return arrays.reduce(function (accum, cur) {
-		// console.log(cur)
-		cur.forEach(function (el) {
-			if (accum.includes(el) === false) {
-				accum.push(el);
-				// console.log(accum)
-			}
-		});
-		return accum;
-	});
-}
+// function union(arrays) {
+// 	return arrays.reduce(function (accum, cur) {
+// 		// console.log(cur)
+// 		cur.forEach(function (el) {
+// 			if (accum.includes(el) === false) {
+// 				accum.push(el);
+// 				// console.log(accum)
+// 			}
+// 		});
+// 		return accum;
+// 	}, []);
+// }
 
 // ========================== SOLUTION 7 ======================================
 // ================================================================================
 
-const union = (arrays) =>
+const union = arrays =>
 	arrays.reduce((acc, cur) => {
-		cur.forEach((el) => {
+		cur.forEach(el => {
 			if (!acc.includes(el)) {
 				acc.push(el);
 			}
 		});
 		return acc;
-	});
+	}, []);
 
 // // Uncomment these to check your work!
 const arr1 = [5, 10, 15];
