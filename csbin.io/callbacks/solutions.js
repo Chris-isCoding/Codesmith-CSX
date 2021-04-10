@@ -100,4 +100,22 @@ const letters = ['a', 'b', 'c', 'd'];
 forEach(letters, function (char) {
 	alphabet += char;
 });
-console.log(alphabet); //prints 'abcd'
+// console.log(alphabet); //prints 'abcd'
+
+// ============================== CHALLENGE 5  ==============================
+// ==========================================================================
+
+/*
+
+In the first part of this challenge, you're going to rebuild map as mapWith. This time you're going to use forEach inside of mapWith instead of using a for loop.
+
+*/
+
+function mapWith(array, callback) {
+	const newArr = [];
+	forEach(array, ele => newArr.push(callback(ele)));
+	return newArr;
+}
+
+// uncomment these to check your work
+console.log(mapWith([1, 2, 3], addTwo)); // => [3, 4, 5]
