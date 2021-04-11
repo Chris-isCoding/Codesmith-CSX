@@ -436,6 +436,9 @@ Create a function leastCommonMultiple that takes two numbers (integers) as input
 
 */
 
+// ============================== SOLUTION 1  ==============================
+// ==========================================================================
+
 function leastCommonMultiple(num1, num2) {
 	let least = num1 * num2;
 	const low = Math.min(num1, num2);
@@ -447,6 +450,19 @@ function leastCommonMultiple(num1, num2) {
 	}
 	return least;
 }
+
+// ============================== SOLUTION 2  ==============================
+// ==========================================================================
+
+const leastCommonMultiple = (num1, num2) => {
+	let low, high;
+	num1 > num2 ? ((high = num1), (low = num2)) : ((high = num2), (low = num1));
+	for (let least = high; least <= high * low; least += high) {
+		if (least % low === 0) {
+			return least;
+		}
+	}
+};
 
 //Uncomment the lines below to test your function:
 
