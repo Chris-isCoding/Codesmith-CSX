@@ -197,3 +197,36 @@ const intersection = (...arrays) => arrays.reduce((acc, cur) => acc.filter(ele =
 
 console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
 // should log: [5, 15]
+
+// ============================== CHALLENGE 8  ==============================
+// ==========================================================================
+
+/*
+
+Construct a function union that compares input arrays and returns a new array that contains all elements. If there are duplicate elements, only add it once to the new array. Preserve the order of the elements starting from the first element of the first input array. BONUS: Use reduce!
+
+*/
+
+// ============================== SOLUTION 1  ==============================
+// ==========================================================================
+
+function union(...arrays) {
+	return arrays
+		.reduce((accArr, curArr) => accArr.concat(curArr))
+		.reduce((acc, curEle) => {
+			if (!acc.includes(curEle)) {
+				acc.push(curEle);
+			}
+			return acc;
+		}, []);
+}
+
+// ============================== SOLUTION 2  ==============================
+// ==========================================================================
+
+// const union = (...arrays) => arrays
+//   .reduce((acc, cur) => acc.concat(cur))
+//   .reduce((result, ele) => !result.includes(ele) ? (result.push(ele), result) : result, []);
+
+console.log(union([5, 10, 15], [15, 88, 1, 5, 7], [100, 15, 10, 1, 5]));
+// should log: [5, 10, 15, 88, 1, 7, 100]
