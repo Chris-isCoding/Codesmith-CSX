@@ -49,22 +49,14 @@ const intersection = arrays => {
 // ========================== SOLUTION 4 ======================================
 // ===============================================================================
 
-// VERY BAD solution, modifying inout arrays - not recommended
-
-function intersection(arrays) {
-	let acc = arrays.pop();
-	while (arrays.length) {
-		const current = arrays.pop();
-		const newArr = [];
-		current.forEach(ele => {
-			if (acc.includes(ele) && !newArr.includes(ele)) newArr.push(ele);
-		});
-		acc = newArr;
-	}
-	return acc;
-}
+// const intersection = arrays => arrays.reduce((acc, arr) => acc.filter(ele => arr.includes(ele)), [...new Set(arrays[0])]);
 
 // ========================== SOLUTION 5 ======================================
+// ===============================================================================
+
+const intersection = arrays => arrays.reduce((acc, arr) => acc.filter(ele => arr.indexOf(ele) !== -1), [...new Set(arrays[0])]);
+
+// ========================== SOLUTION 6 ======================================
 // ===============================================================================
 
 function intersection(arrays) {
@@ -81,7 +73,18 @@ function intersection(arrays) {
 	return acc;
 }
 
-// ========================== SOLUTION 5A ======================================
+// ========================== SOLUTION 7 ======================================
+// ===============================================================================
+
+function intersection(arrays) {
+	let acc = [...new Set(arrays[0])];
+	for (let i = 1; i < arrays.length; i++) {
+		acc = arrays[i].filter(ele => acc.includes(ele));
+	}
+	return acc;
+}
+
+// ========================== SOLUTION 8 ======================================
 // ===============================================================================
 
 function intersection(arrays) {
@@ -100,7 +103,7 @@ function intersection(arrays) {
 	return acc;
 }
 
-// ========================== SOLUTION 6 ======================================
+// ========================== SOLUTION 9 ======================================
 // ===============================================================================
 // only works if elements in the arrays don't repeat
 
@@ -116,6 +119,24 @@ const intersection = arrays => {
 	}
 	return newArr;
 };
+
+// ========================== SOLUTION 10 ======================================
+// ===============================================================================
+
+// VERY BAD solution, modifying input arrays - not recommended
+
+function intersection(arrays) {
+	let acc = arrays.pop();
+	while (arrays.length) {
+		const current = arrays.pop();
+		const newArr = [];
+		current.forEach(ele => {
+			if (acc.includes(ele) && !newArr.includes(ele)) newArr.push(ele);
+		});
+		acc = newArr;
+	}
+	return acc;
+}
 
 // Uncomment these to check your work!
 const arr1 = [5, 10, 15, 20];
