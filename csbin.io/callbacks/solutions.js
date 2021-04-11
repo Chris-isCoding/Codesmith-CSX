@@ -148,6 +148,7 @@ const nums = [4, 1, 3];
 const add = function (a, b) {
 	return a + b;
 };
+
 console.log(reduce(nums, add, 0)); //-> 8
 
 // ============================== CHALLENGE 7  ==============================
@@ -186,7 +187,13 @@ function intersection(...arrays) {
 // 	return newArr;
 // };
 
+// ============================== SOLUTION 3  ==============================
+// ==========================================================================
+
+const intersection = (...arrays) => arrays.reduce((acc, cur) => acc.filter(ele => cur.includes(ele)), [...new Set(arrays[0])]);
+
 // const arrays = [[5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]]
 // console.log(arrays.every(array => array.indexOf(4) !== -1))
+
 console.log(intersection([5, 10, 15, 20], [15, 88, 1, 5, 7], [1, 10, 15, 5, 20]));
 // should log: [5, 15]
