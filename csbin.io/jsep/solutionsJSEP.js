@@ -569,6 +569,29 @@ function passingStudents(students) {
 	return above70;
 }
 
+// ============================== SOLUTION 3  ==============================
+// ==========================================================================
+
+function passingStudents(students) {
+	const above70 = [];
+	for (const student of students) {
+		let sumOfGrades = 0;
+		for (const list in student.grades) {
+			sumOfGrades += student.grades[list].score;
+		}
+		if (sumOfGrades / student.grades.length >= 70) {
+			above70.push(student.name);
+		}
+	}
+	return above70;
+}
+
+// ============================== SOLUTION 3  ==============================
+// ==========================================================================
+
+const passingStudents = arr =>
+	arr.filter(student => student.grades.reduce((acc, obj) => (acc += obj.score), 0) / student.grades.length > 70).map(student => student.name);
+
 //Uncomment the lines below to test your function:
 
 var students = [
