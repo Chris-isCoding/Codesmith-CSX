@@ -263,6 +263,7 @@ const objOfMatches = (arr1, arr2, cb) => arr1.reduce((acc, cur, i) => (cb(cur) =
 // 		return str.toUpperCase();
 // 	})
 // );
+
 // should log: { hi: 'HI', bye: 'BYE', later: 'LATER' }
 
 // ============================== CHALLENGE 10  ==============================
@@ -290,22 +291,23 @@ Construct a function multiMap that will accept two arrays: an array of values an
 
 const multiMap = (arrVal, arrCb) => arrVal.reduce((acc, cur) => ((acc[cur] = arrCb.map(cb => cb(cur))), acc), {});
 
-console.log(
-	multiMap(
-		['catfood', 'glue', 'beer'],
-		[
-			function (str) {
-				return str.toUpperCase();
-			},
-			function (str) {
-				return str[0].toUpperCase() + str.slice(1).toLowerCase();
-			},
-			function (str) {
-				return str + str;
-			},
-		]
-	)
-);
+// console.log(
+// 	multiMap(
+// 		['catfood', 'glue', 'beer'],
+// 		[
+// 			function (str) {
+// 				return str.toUpperCase();
+// 			},
+// 			function (str) {
+// 				return str[0].toUpperCase() + str.slice(1).toLowerCase();
+// 			},
+// 			function (str) {
+// 				return str + str;
+// 			},
+// 		]
+// 	)
+// );
+
 // should log: { catfood: ['CATFOOD', 'Catfood', 'catfoodcatfood'], glue: ['GLUE', 'Glue', 'glueglue'], beer: ['BEER', 'Beer', 'beerbeer'] }
 
 // ============================== CHALLENGE 11  ==============================
@@ -317,14 +319,23 @@ Construct a function objectFilter that accepts an object as the first parameter 
 
 */
 
-function objectFilter(obj, callback) {}
+function objectFilter(obj, callback) {
+	const newObj = {};
+	for (const key in obj) {
+		if (obj[key] === callback(key)) {
+			newObj[key] = obj[key];
+		}
+	}
+	return newObj;
+}
 
-// const cities = {
-// London: 'LONDON',
-// LA: 'Los Angeles',
-// Paris: 'PARIS',
-// };
-// console.log(objectFilter(cities, city => city.toUpperCase())) // Should log { London: 'LONDON', Paris: 'PARIS'}
+const cities = {
+	London: 'LONDON',
+	LA: 'Los Angeles',
+	Paris: 'PARIS',
+};
+
+console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
