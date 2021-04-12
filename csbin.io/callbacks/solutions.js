@@ -275,6 +275,9 @@ Construct a function multiMap that will accept two arrays: an array of values an
 
 */
 
+// ============================== SOLUTION 1  ==============================
+// ==========================================================================
+
 // function multiMap(arrVals, arrCallbacks) {
 //   const obj = {};
 //   for (const ele of arrVals) {
@@ -288,6 +291,9 @@ Construct a function multiMap that will accept two arrays: an array of values an
 //   }
 //   return obj;
 // }
+
+// ============================== SOLUTION 2  ==============================
+// ==========================================================================
 
 const multiMap = (arrVal, arrCb) => arrVal.reduce((acc, cur) => ((acc[cur] = arrCb.map(cb => cb(cur))), acc), {});
 
@@ -319,15 +325,23 @@ Construct a function objectFilter that accepts an object as the first parameter 
 
 */
 
-function objectFilter(obj, callback) {
-	const newObj = {};
-	for (const key in obj) {
-		if (obj[key] === callback(key)) {
-			newObj[key] = obj[key];
-		}
-	}
-	return newObj;
-}
+// ============================== SOLUTION 1  ==============================
+// ==========================================================================
+
+// function objectFilter(obj, callback) {
+// 	const newObj = {};
+// 	for (const key in obj) {
+// 		if (obj[key] === callback(key)) {
+// 			newObj[key] = obj[key];
+// 		}
+// 	}
+// 	return newObj;
+// }
+
+// ============================== SOLUTION 2  ==============================
+// ==========================================================================
+
+const objectFilter = (obj, cb) => Object.keys(obj).reduce((acc, cur) => (cb(cur) ? ((acc[cur] = obj[cur]), acc) : acc), {});
 
 const cities = {
 	London: 'LONDON',
@@ -335,7 +349,7 @@ const cities = {
 	Paris: 'PARIS',
 };
 
-// console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
+console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
