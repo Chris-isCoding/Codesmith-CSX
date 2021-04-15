@@ -349,7 +349,7 @@ const cities = {
 	Paris: 'PARIS',
 };
 
-console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
+// console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
@@ -368,8 +368,8 @@ const isOdd = function (num) {
 	return num % 2 === 1;
 };
 
-console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
-console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
+// console.log(majority([1, 2, 3, 4, 5], isOdd)); // should log: true
+// console.log(majority([2, 3, 4, 5], isOdd)); // should log: false
 
 // ============================== CHALLENGE 13  ==============================
 // ==========================================================================
@@ -380,12 +380,36 @@ Create a function prioritize that accepts an array and a callback. The callback 
 
 */
 
-function prioritize(array, callback) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+// function prioritize(array, callback) {
+// 	const trueArr = [];
+// 	const falseArr = [];
+// 	for (const ele of array) {
+// 		if (callback(ele)) {
+// 			trueArr.push(ele);
+// 		} else {
+// 			falseArr.push(ele);
+// 		}
+// 	}
+// 	return trueArr.concat(falseArr);
+// }
+
+// ============================== SOLUTION 2  ==============================
+// ==========================================================================
+
+const prioritize = (arr, cb) => {
+	let trueCounter = 0;
+	return arr.reduce((acc, cur) => (cb(cur) ? (acc.splice(trueCounter++, 0, cur), acc) : (acc.push(cur), acc)), []);
+};
 
 // /*** Uncomment these to check your work! ***/
-// const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
-// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log:
-['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
+const startsWithS = function (str) {
+	return str[0] === 's' || str[0] === 'S';
+};
+
+console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
 
 // ============================== CHALLENGE 14  ==============================
 // ==========================================================================
