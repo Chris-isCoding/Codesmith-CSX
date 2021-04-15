@@ -341,7 +341,7 @@ Construct a function objectFilter that accepts an object as the first parameter 
 // ============================== SOLUTION 2  ==============================
 // ==========================================================================
 
-const objectFilter = (obj, cb) => Object.keys(obj).reduce((acc, cur) => (cb(cur) ? ((acc[cur] = obj[cur]), acc) : acc), {});
+const objectFilter = (obj, cb) => Object.keys(obj).reduce((acc, cur) => (cb(cur) === obj[cur] ? ((acc[cur] = obj[cur]), acc) : acc), {});
 
 const cities = {
 	London: 'LONDON',
@@ -349,7 +349,7 @@ const cities = {
 	Paris: 'PARIS',
 };
 
-// console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
+console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
@@ -409,7 +409,7 @@ const startsWithS = function (str) {
 	return str[0] === 's' || str[0] === 'S';
 };
 
-console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
 
 // ============================== CHALLENGE 14  ==============================
 // ==========================================================================
