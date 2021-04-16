@@ -151,23 +151,52 @@ Here's how it works. The function has an "accumulator value" which starts as the
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function reduce(array, callback, initialValue) {
-	if (Array.isArray(array) === false) {
-		console.log(`${array} is not an array`);
+function reduce(...args) {
+	if (args.length <= 1) {
+		console.log(`Missing argument`);
 		return;
 	}
+	if (args.length > 1) {
+		if (Array.isArray(args[0]) === false) {
+			console.log(`Expected an array, got ${args[0]}`);
+			return;
+		}
+		if (typeof args[1] !== 'function') {
+			console.log(`${args[1]} is not a function`);
+			return;
+		}
+	}
+	if (args[0].length === 0 && args.length < 3) {
+		console.log(`Reduce of empty array with no initial value`);
+		return;
+	}
+	if (args[0].length === 0 && args.length >= 3) {
+		return args[2];
+	}
 	let i = 0;
-	let accumulatorValue;
-	if (arguments.length > 2) {
-		accumulatorValue = initialValue;
+	let accumulator;
+	if (args.length > 2) {
+		accumulator = args[2];
 	} else {
-		accumulatorValue = array[0];
+		while (!(i in args[0]) && i < args[0].length) {
+			if (i === args[0].length - 1) {
+				console.log(`Reduce of empty array with no initial value`);
+				return;
+			}
+			i++;
+		}
+		if (i in args[0]) {
+			accumulator = args[0][i];
+			i++;
+		}
+	}
+	while (i < args[0].length) {
+		if (i in args[0]) {
+			accumulator = args[1](accumulator, args[0][i]);
+		}
 		i++;
 	}
-	for (; i < array.length; i++) {
-		accumulatorValue = callback(accumulatorValue, array[i]);
-	}
-	return accumulatorValue;
+	return accumulator;
 }
 
 // uncomment these to check your work
