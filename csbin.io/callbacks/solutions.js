@@ -9,6 +9,9 @@ Create a function addTwo that accepts one input and adds 2 to it.
 
 */
 
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
 function addTwo(num) {
 	return num + 2;
 }
@@ -25,6 +28,9 @@ function addTwo(num) {
 Create a function addS that accepts one input and adds an "s" to it.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
 
 function addS(word) {
 	return word + 's';
@@ -87,6 +93,9 @@ The function forEach takes an array and a callback, and runs the callback on eac
 
 */
 
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
 function forEach(array, callback) {
 	for (const ele of array) {
 		callback(ele);
@@ -100,6 +109,7 @@ const letters = ['a', 'b', 'c', 'd'];
 forEach(letters, function (char) {
 	alphabet += char;
 });
+
 // console.log(alphabet); //prints 'abcd'
 
 // ============================== CHALLENGE 5  ==============================
@@ -110,6 +120,9 @@ forEach(letters, function (char) {
 In the first part of this challenge, you're going to rebuild map as mapWith. This time you're going to use forEach inside of mapWith instead of using a for loop.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
 
 function mapWith(array, callback) {
 	const newArr = [];
@@ -135,12 +148,76 @@ Here's how it works. The function has an "accumulator value" which starts as the
 
 */
 
-function reduce(array, callback, initialValue) {
-	let accumulatorValue = initialValue;
-	for (const ele of array) {
-		accumulatorValue = callback(accumulatorValue, ele);
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+function reduce(...args) {
+	if (args.length <= 1) {
+		console.log(`Missing argument`);
+		return;
 	}
-	return accumulatorValue;
+	if (args.length > 1) {
+		if (Array.isArray(args[0]) === false) {
+			console.log(`Expected an array, got ${args[0]}`);
+			return;
+		}
+		if (typeof args[1] !== 'function') {
+			console.log(`${args[1]} is not a function`);
+			return;
+		}
+	}
+	if (args[0].length === 0 && args.length < 3) {
+		console.log(`Reduce of empty array with no initial value`);
+		return;
+	}
+	if (args[0].length === 0 && args.length >= 3) {
+		return args[2];
+	}
+	let i = 0;
+	let accumulator;
+	if (args.length > 2) {
+		accumulator = args[2];
+	} else {
+		while (!(i in args[0]) && i < args[0].length) {
+			if (i === args[0].length - 1) {
+				console.log(`Reduce of empty array with no initial value`);
+				return;
+			}
+			i++;
+		}
+		if (i in args[0]) {
+			accumulator = args[0][i];
+			i++;
+		}
+	}
+	while (i < args[0].length) {
+		if (i in args[0]) {
+			accumulator = args[1](accumulator, args[0][i]);
+		}
+		i++;
+	}
+	return accumulator;
+}
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+function reduce(array, callback, initialValue) {
+	if (Array.isArray(array)) {
+		let i = 0;
+		let accumulatorValue;
+		if (arguments.length < 3) {
+			accumulatorValue = array[0];
+			i++;
+		} else {
+			accumulatorValue = initialValue;
+		}
+		// console.log(i);
+		for (; i < array.length; i++) {
+			accumulatorValue = callback(accumulatorValue, array[i]);
+		}
+		return accumulatorValue;
+	}
 }
 
 // uncomment these to check your work
@@ -341,7 +418,7 @@ Construct a function objectFilter that accepts an object as the first parameter 
 // ============================== SOLUTION 2  ==============================
 // ==========================================================================
 
-const objectFilter = (obj, cb) => Object.keys(obj).reduce((acc, cur) => (cb(cur) ? ((acc[cur] = obj[cur]), acc) : acc), {});
+const objectFilter = (obj, cb) => Object.keys(obj).reduce((acc, cur) => (cb(cur) === obj[cur] ? ((acc[cur] = obj[cur]), acc) : acc), {});
 
 const cities = {
 	London: 'LONDON',
@@ -359,6 +436,9 @@ const cities = {
 Create a function majority that accepts an array and a callback. The callback will return either true or false. majority will iterate through the array and perform the callback on each element until it can be determined if the majority of the return values from the callback are true. If the number of true returns is equal to the number of false returns, majority should return false.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
 
 const majority = (arr, cb) => arr.filter(ele => cb(ele)).length > arr.length / 2;
 
@@ -409,7 +489,8 @@ const startsWithS = function (str) {
 	return str[0] === 's' || str[0] === 'S';
 };
 
-console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
+// should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
 
 // ============================== CHALLENGE 14  ==============================
 // ==========================================================================
@@ -420,13 +501,23 @@ Create a function countBy that accepts an array and a callback, and returns an o
 
 */
 
-function countBy(array, callback) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+const countBy = (arr, cb) =>
+	arr.reduce((acc, cur) => {
+		const key = cb(cur);
+		return key in acc ? (acc[key]++, acc) : ((acc[key] = 1), acc);
+	}, {});
 
 // /*** Uncomment these to check your work! ***/
-// console.log(countBy([1, 2, 3, 4, 5], function(num) {
-// if (num % 2 === 0) return 'even';
-// else return 'odd';
-// })); // should log: { odd: 3, even: 2 }
+
+console.log(
+	countBy([1, 2, 3, 4, 5], function (num) {
+		if (num % 2 === 0) return 'even';
+		else return 'odd';
+	})
+); // should log: { odd: 3, even: 2 }
 
 // ============================== CHALLENGE 15  ==============================
 // ==========================================================================
@@ -437,7 +528,12 @@ Create a function groupBy that accepts an array and a callback, and returns an o
 
 */
 
-function groupBy(array, callback) {}
+function groupBy(array, callback) {
+	return array.reduce((acc, cur) => {
+		const key = callback(cur);
+		return key in acc ? (acc[key].push(cur), acc) : ((acc[key] = [cur]), acc);
+	}, {});
+}
 
 // /*** Uncomment these to check your work! ***/
 // const decimals = [1.3, 2.1, 2.4];
