@@ -199,6 +199,27 @@ function reduce(...args) {
 	return accumulator;
 }
 
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+function reduce(array, callback, initialValue) {
+	if (Array.isArray(array)) {
+		let i = 0;
+		let accumulatorValue;
+		if (arguments.length < 3) {
+			accumulatorValue = array[0];
+			i++;
+		} else {
+			accumulatorValue = initialValue;
+		}
+		// console.log(i);
+		for (; i < array.length; i++) {
+			accumulatorValue = callback(accumulatorValue, array[i]);
+		}
+		return accumulatorValue;
+	}
+}
+
 // uncomment these to check your work
 const nums = [4, 1, 3];
 const add = function (a, b) {
