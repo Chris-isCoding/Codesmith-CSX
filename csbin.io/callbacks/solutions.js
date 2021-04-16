@@ -160,7 +160,7 @@ const add = function (a, b) {
 	return a + b;
 };
 
-console.log(reduce(nums, add, 0)); //-> 8
+// console.log(reduce(nums, add, 0)); //-> 8
 
 // ============================== CHALLENGE 7  ==============================
 // ==========================================================================
@@ -420,8 +420,8 @@ const startsWithS = function (str) {
 	return str[0] === 's' || str[0] === 'S';
 };
 
-// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log:
-// ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS));
+// should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
 
 // ============================== CHALLENGE 14  ==============================
 // ==========================================================================
@@ -432,13 +432,22 @@ Create a function countBy that accepts an array and a callback, and returns an o
 
 */
 
-function countBy(array, callback) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+const countBy = (arr, cb) =>
+	arr.reduce((acc, cur) => {
+		const key = cb(cur);
+		return key in acc ? (acc[key]++, acc) : ((acc[key] = 1), acc);
+	}, {});
 
 // /*** Uncomment these to check your work! ***/
-// console.log(countBy([1, 2, 3, 4, 5], function(num) {
-// if (num % 2 === 0) return 'even';
-// else return 'odd';
-// })); // should log: { odd: 3, even: 2 }
+console.log(
+	countBy([1, 2, 3, 4, 5], function (num) {
+		if (num % 2 === 0) return 'even';
+		else return 'odd';
+	})
+); // should log: { odd: 3, even: 2 }
 
 // ============================== CHALLENGE 15  ==============================
 // ==========================================================================
