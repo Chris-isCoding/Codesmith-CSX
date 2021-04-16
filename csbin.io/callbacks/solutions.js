@@ -136,9 +136,20 @@ Here's how it works. The function has an "accumulator value" which starts as the
 */
 
 function reduce(array, callback, initialValue) {
-	let accumulatorValue = initialValue;
-	for (const ele of array) {
-		accumulatorValue = callback(accumulatorValue, ele);
+	if (Array.isArray(array) === false) {
+		console.log(`${array} is not an array`);
+		return;
+	}
+	let i = 0;
+	let accumulatorValue;
+	if (arguments.length > 2) {
+		accumulatorValue = initialValue;
+	} else {
+		accumulatorValue = array[0];
+		i++;
+	}
+	for (; i < array.length; i++) {
+		accumulatorValue = callback(accumulatorValue, array[i]);
 	}
 	return accumulatorValue;
 }
@@ -149,7 +160,7 @@ const add = function (a, b) {
 	return a + b;
 };
 
-// console.log(reduce(nums, add, 0)); //-> 8
+console.log(reduce(nums, add, 0)); //-> 8
 
 // ============================== CHALLENGE 7  ==============================
 // ==========================================================================
@@ -349,7 +360,7 @@ const cities = {
 	Paris: 'PARIS',
 };
 
-console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
+// console.log(objectFilter(cities, city => city.toUpperCase())); // Should log { London: 'LONDON', Paris: 'PARIS'}
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
@@ -409,7 +420,8 @@ const startsWithS = function (str) {
 	return str[0] === 's' || str[0] === 'S';
 };
 
-// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log:
+// ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends'];
 
 // ============================== CHALLENGE 14  ==============================
 // ==========================================================================
