@@ -512,12 +512,12 @@ const countBy = (arr, cb) =>
 
 // /*** Uncomment these to check your work! ***/
 
-console.log(
-	countBy([1, 2, 3, 4, 5], function (num) {
-		if (num % 2 === 0) return 'even';
-		else return 'odd';
-	})
-); // should log: { odd: 3, even: 2 }
+// console.log(
+// 	countBy([1, 2, 3, 4, 5], function (num) {
+// 		if (num % 2 === 0) return 'even';
+// 		else return 'odd';
+// 	})
+// ); // should log: { odd: 3, even: 2 }
 
 // ============================== CHALLENGE 15  ==============================
 // ==========================================================================
@@ -549,12 +549,30 @@ Create a function goodKeys that accepts an object and a callback. The callback w
 
 */
 
-function goodKeys(obj, callback) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+// function goodKeys(obj, callback) {
+// 	const outputArr = [];
+// 	for (const [key, value] of Object.entries(obj)) {
+// 		if (callback(value)) {
+// 			outputArr.push(key);
+// 		}
+// 	}
+// 	return outputArr;
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const goodKeys = (obj, cb) => Object.keys(obj).reduce((arr, key) => (cb(obj[key]) ? (arr.push(key), arr) : arr), []);
 
 // /*** Uncomment these to check your work! ***/
-// const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
-// const startsWithBird = function(str) { return str.slice(0, 4).toLowerCase() === 'bird'; };
-// console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
+const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
+const startsWithBird = function (str) {
+	return str.slice(0, 4).toLowerCase() === 'bird';
+};
+console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
 
 // ============================== CHALLENGE 17  ==============================
 // ==========================================================================
