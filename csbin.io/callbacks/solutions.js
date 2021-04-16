@@ -9,6 +9,9 @@ Create a function addTwo that accepts one input and adds 2 to it.
 
 */
 
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
 function addTwo(num) {
 	return num + 2;
 }
@@ -25,6 +28,9 @@ function addTwo(num) {
 Create a function addS that accepts one input and adds an "s" to it.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
 
 function addS(word) {
 	return word + 's';
@@ -87,6 +93,9 @@ The function forEach takes an array and a callback, and runs the callback on eac
 
 */
 
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
 function forEach(array, callback) {
 	for (const ele of array) {
 		callback(ele);
@@ -100,6 +109,7 @@ const letters = ['a', 'b', 'c', 'd'];
 forEach(letters, function (char) {
 	alphabet += char;
 });
+
 // console.log(alphabet); //prints 'abcd'
 
 // ============================== CHALLENGE 5  ==============================
@@ -110,6 +120,9 @@ forEach(letters, function (char) {
 In the first part of this challenge, you're going to rebuild map as mapWith. This time you're going to use forEach inside of mapWith instead of using a for loop.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
 
 function mapWith(array, callback) {
 	const newArr = [];
@@ -134,6 +147,9 @@ reduce(nums, add, 0);   //-> 8
 Here's how it works. The function has an "accumulator value" which starts as the initialValue and accumulates the output of each loop. The array is iterated over, passing the accumulator and the next array element as arguments to the callback. The callback's return value becomes the new accumulator value. The next loop executes with this new accumulator value. In the example above, the accumulator begins at 0. add(0,4) is called. The accumulator's value is now 4. Then add(4, 1) to make it 5. Finally add(5, 3) brings it to 8, which is returned.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
 
 function reduce(array, callback, initialValue) {
 	if (Array.isArray(array) === false) {
@@ -371,6 +387,9 @@ Create a function majority that accepts an array and a callback. The callback wi
 
 */
 
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
 const majority = (arr, cb) => arr.filter(ele => cb(ele)).length > arr.length / 2;
 
 // /*** Uncomment these to check your work! ***/
@@ -442,6 +461,7 @@ const countBy = (arr, cb) =>
 	}, {});
 
 // /*** Uncomment these to check your work! ***/
+
 console.log(
 	countBy([1, 2, 3, 4, 5], function (num) {
 		if (num % 2 === 0) return 'even';
@@ -458,7 +478,12 @@ Create a function groupBy that accepts an array and a callback, and returns an o
 
 */
 
-function groupBy(array, callback) {}
+function groupBy(array, callback) {
+	return array.reduce((acc, cur) => {
+		const key = callback(cur);
+		return key in acc ? (acc[key].push(cur), acc) : ((acc[key] = [cur]), acc);
+	}, {});
+}
 
 // /*** Uncomment these to check your work! ***/
 // const decimals = [1.3, 2.1, 2.4];
