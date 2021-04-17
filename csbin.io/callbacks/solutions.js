@@ -595,9 +595,9 @@ function commutative(func1, func2, value) {
 const multBy3 = n => n * 3;
 const divBy4 = n => n / 4;
 const subtract5 = n => n - 5;
-console.log(commutative(multBy3, divBy4, 11)); // should log: true
-console.log(commutative(multBy3, subtract5, 10)); // should log: false
-console.log(commutative(divBy4, subtract5, 48)); // should log: false
+// console.log(commutative(multBy3, divBy4, 11)); // should log: true
+// console.log(commutative(multBy3, subtract5, 10)); // should log: false
+// console.log(commutative(divBy4, subtract5, 48)); // should log: false
 
 // ============================== CHALLENGE 18 =============================
 // ==========================================================================
@@ -608,15 +608,29 @@ Create a function objFilter that accepts an object and a callback. objFilter sho
 
 */
 
-function objFilter(obj, callback) {}
+// function objFilter(obj, callback) {
+// 	const newObj = {};
+// 	for (const [key, value] of Object.entries(obj)) {
+// 		if (callback(key) === value) {
+// 			newObj[key] = value;
+// 		}
+// 	}
+// 	return newObj;
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const objFilter = (obj, cb) => Object.keys(obj).reduce((newObj, key) => (cb(key) === obj[key] ? ((newObj[key] = obj[key]), newObj) : newObj), {});
 
 // /*** Uncomment these to check your work! ***/
-// const startingObj = {};
-// startingObj[6] = 3;
-// startingObj[2] = 1;
-// startingObj[12] = 4;
-// const half = n => n / 2;
-// console.log(objFilter(startingObj, half)); // should log: { 2: 1, 6: 3 }
+const startingObj = {};
+startingObj[6] = 3;
+startingObj[2] = 1;
+startingObj[12] = 4;
+const half = n => n / 2;
+
+console.log(objFilter(startingObj, half)); // should log: { 2: 1, 6: 3 }
 
 // ============================== CHALLENGE 19 ============================
 // ==========================================================================
