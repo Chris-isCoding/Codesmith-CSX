@@ -690,7 +690,7 @@ const addLowerCase = str => str + str.toLowerCase();
 const repeat = str => str + str;
 const capAddlowRepeat = [capitalize, addLowerCase, repeat];
 
-console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
+// console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
 
 // ============================== CHALLENGE 21  ==============================
 // ==========================================================================
@@ -701,16 +701,39 @@ Create a function highestFunc that accepts an object (which will contain functio
 
 */
 
-function highestFunc(objOfFuncs, subject) {}
+// function highestFunc(objOfFuncs, subject) {
+// 	const temp = [-1 / 0];
+// 	for (const [key, func] of Object.entries(objOfFuncs)) {
+// 		const output = func(subject);
+// 		if (output > temp[0]) {
+// 			temp.length = 0;
+// 			temp.push(output, key);
+// 		}
+// 	}
+// 	return temp[1];
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const highestFunc = (objFuncs, subject) =>
+	Object.keys(objFuncs).reduce(
+		(acc, key) => {
+			const output = objFuncs[key](subject);
+			return output > acc.highest ? ((acc.highest = output), (acc.func = key), acc) : acc;
+		},
+		{ highest: -1 / 0 }
+	).func;
 
 // /*** Uncomment these to check your work! ***/
-// const groupOfFuncs = {};
-// groupOfFuncs.double = n => n * 2;
-// groupOfFuncs.addTen = n => n + 10;
-// groupOfFuncs.inverse = n => n * -1;
-// console.log(highestFunc(groupOfFuncs, 5)); // should log: 'addTen'
-// console.log(highestFunc(groupOfFuncs, 11)); // should log: 'double'
-// console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
+const groupOfFuncs = {};
+groupOfFuncs.double = n => n * 2;
+groupOfFuncs.addTen = n => n + 10;
+groupOfFuncs.inverse = n => n * -1;
+
+console.log(highestFunc(groupOfFuncs, 5)); // should log: 'addTen'
+console.log(highestFunc(groupOfFuncs, 11)); // should log: 'double'
+console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
 
 // ============================== CHALLENGE 22  ==============================
 // ==========================================================================
