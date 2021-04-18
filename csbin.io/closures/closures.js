@@ -12,7 +12,16 @@ Create a function createFunction that creates and returns a function. When that 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function createFunction() {}
+// function createFunction() {
+// 	return function () {
+// 		console.log(`hello`);
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const createFunction = () => () => console.log(`hello`);
 
 // /*** Uncomment these to check your work! ***/
 const function1 = createFunction();
