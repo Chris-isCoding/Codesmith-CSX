@@ -675,14 +675,14 @@ Create a function pipe that accepts an array (of functions) and a value. pipe sh
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-// function pipe(arrOfFuncs, value) {
-//   return arrOfFuncs.reduce((output, func) => func(output), arrOfFuncs[0](value));
-// }
+function pipe(arrOfFuncs, value) {
+	return arrOfFuncs.reduce((output, func) => func(output), value);
+}
 
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const pipe = (funcs, value) => funcs.reduce((output, func) => func(output), funcs[0](value));
+// const pipe = (funcs, value) => funcs.reduce((output, func) => func(output), value);
 
 // /*** Uncomment these to check your work! ***/
 const capitalize = str => str.toUpperCase();
@@ -690,7 +690,7 @@ const addLowerCase = str => str + str.toLowerCase();
 const repeat = str => str + str;
 const capAddlowRepeat = [capitalize, addLowerCase, repeat];
 
-// console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
+console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
 
 // ============================== CHALLENGE 21  ==============================
 // ==========================================================================
@@ -773,8 +773,8 @@ function addTen(num) {
 }
 
 // /*** Uncomment these to check your work! ***/
-console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60
-console.log(combineOperations(0, [divByFive, multiplyByThree, addTen])); // Should output 10
+// console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60
+// console.log(combineOperations(0, [divByFive, multiplyByThree, addTen])); // Should output 10
 
 // ============================== CHALLENGE 23  ==============================
 // ==========================================================================
