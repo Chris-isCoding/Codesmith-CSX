@@ -512,12 +512,12 @@ const countBy = (arr, cb) =>
 
 // /*** Uncomment these to check your work! ***/
 
-console.log(
-	countBy([1, 2, 3, 4, 5], function (num) {
-		if (num % 2 === 0) return 'even';
-		else return 'odd';
-	})
-); // should log: { odd: 3, even: 2 }
+// console.log(
+// 	countBy([1, 2, 3, 4, 5], function (num) {
+// 		if (num % 2 === 0) return 'even';
+// 		else return 'odd';
+// 	})
+// ); // should log: { odd: 3, even: 2 }
 
 // ============================== CHALLENGE 15  ==============================
 // ==========================================================================
@@ -549,11 +549,30 @@ Create a function goodKeys that accepts an object and a callback. The callback w
 
 */
 
-function goodKeys(obj, callback) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+// function goodKeys(obj, callback) {
+// 	const outputArr = [];
+// 	for (const [key, value] of Object.entries(obj)) {
+// 		if (callback(value)) {
+// 			outputArr.push(key);
+// 		}
+// 	}
+// 	return outputArr;
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const goodKeys = (obj, cb) => Object.keys(obj).reduce((arr, key) => (cb(obj[key]) ? (arr.push(key), arr) : arr), []);
 
 // /*** Uncomment these to check your work! ***/
-// const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
-// const startsWithBird = function(str) { return str.slice(0, 4).toLowerCase() === 'bird'; };
+const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
+const startsWithBird = function (str) {
+	return str.slice(0, 4).toLowerCase() === 'bird';
+};
+
 // console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
 
 // ============================== CHALLENGE 17  ==============================
@@ -565,12 +584,17 @@ Create a function commutative that accepts two callbacks and a value. commutativ
 
 */
 
-function commutative(func1, func2, value) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+function commutative(func1, func2, value) {
+	return func2(func1(value)) === func1(func2(value));
+}
 
 // /*** Uncomment these to check your work! ***/
-// const multBy3 = n => n * 3;
-// const divBy4 = n => n / 4;
-// const subtract5 = n => n - 5;
+const multBy3 = n => n * 3;
+const divBy4 = n => n / 4;
+const subtract5 = n => n - 5;
 // console.log(commutative(multBy3, divBy4, 11)); // should log: true
 // console.log(commutative(multBy3, subtract5, 10)); // should log: false
 // console.log(commutative(divBy4, subtract5, 48)); // should log: false
@@ -584,14 +608,28 @@ Create a function objFilter that accepts an object and a callback. objFilter sho
 
 */
 
-function objFilter(obj, callback) {}
+// function objFilter(obj, callback) {
+// 	const newObj = {};
+// 	for (const [key, value] of Object.entries(obj)) {
+// 		if (callback(key) === value) {
+// 			newObj[key] = value;
+// 		}
+// 	}
+// 	return newObj;
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const objFilter = (obj, cb) => Object.keys(obj).reduce((newObj, key) => (cb(key) === obj[key] ? ((newObj[key] = obj[key]), newObj) : newObj), {});
 
 // /*** Uncomment these to check your work! ***/
-// const startingObj = {};
-// startingObj[6] = 3;
-// startingObj[2] = 1;
-// startingObj[12] = 4;
-// const half = n => n / 2;
+const startingObj = {};
+startingObj[6] = 3;
+startingObj[2] = 1;
+startingObj[12] = 4;
+const half = n => n / 2;
+
 // console.log(objFilter(startingObj, half)); // should log: { 2: 1, 6: 3 }
 
 // ============================== CHALLENGE 19 ============================
@@ -603,14 +641,25 @@ Create a function rating that accepts an array (of functions) and a value. All t
 
 */
 
-function rating(arrOfFuncs, value) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+// function rating(arrOfFuncs, value) {
+// 	return (arrOfFuncs.filter(func => func(value)).length / arrOfFuncs.length) * 100;
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const rating = (funcs, value) => (funcs.filter(func => func(value)).length / funcs.length) * 100;
 
 // /*** Uncomment these to check your work! ***/
-// const isEven = n => n % 2 === 0;
-// const greaterThanFour = n => n > 4;
-// const isSquare = n => Math.sqrt(n) % 1 === 0;
-// const hasSix = n => n.toString().includes('6');
-// const checks = [isEven, greaterThanFour, isSquare, hasSix];
+const isEven = n => n % 2 === 0;
+const greaterThanFour = n => n > 4;
+const isSquare = n => Math.sqrt(n) % 1 === 0;
+const hasSix = n => n.toString().includes('6');
+const checks = [isEven, greaterThanFour, isSquare, hasSix];
+
 // console.log(rating(checks, 64)); // should log: 100
 // console.log(rating(checks, 66)); // should log: 75
 
@@ -622,13 +671,25 @@ function rating(arrOfFuncs, value) {}
 Create a function pipe that accepts an array (of functions) and a value. pipe should input the value into the first function in the array, and then use the output from that function as input for the second function, and then use the output from that function as input for the third function, and so forth, until we have an output from the last function in the array. pipe should return the final output.
 
 */
-function pipe(arrOfFuncs, value) {}
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+function pipe(arrOfFuncs, value) {
+	return arrOfFuncs.reduce((output, func) => func(output), value);
+}
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+// const pipe = (funcs, value) => funcs.reduce((output, func) => func(output), value);
 
 // /*** Uncomment these to check your work! ***/
-// const capitalize = str => str.toUpperCase();
-// const addLowerCase = str => str + str.toLowerCase();
-// const repeat = str => str + str;
-// const capAddlowRepeat = [capitalize, addLowerCase, repeat];
+const capitalize = str => str.toUpperCase();
+const addLowerCase = str => str + str.toLowerCase();
+const repeat = str => str + str;
+const capAddlowRepeat = [capitalize, addLowerCase, repeat];
+
 // console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
 
 // ============================== CHALLENGE 21  ==============================
@@ -640,13 +701,36 @@ Create a function highestFunc that accepts an object (which will contain functio
 
 */
 
-function highestFunc(objOfFuncs, subject) {}
+// function highestFunc(objOfFuncs, subject) {
+// 	const temp = [-1 / 0];
+// 	for (const [key, func] of Object.entries(objOfFuncs)) {
+// 		const output = func(subject);
+// 		if (output > temp[0]) {
+// 			temp.length = 0;
+// 			temp.push(output, key);
+// 		}
+// 	}
+// 	return temp[1];
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const highestFunc = (objFuncs, subject) =>
+	Object.keys(objFuncs).reduce(
+		(acc, key) => {
+			const output = objFuncs[key](subject);
+			return output > acc.highest ? ((acc.highest = output), (acc.func = key), acc) : acc;
+		},
+		{ highest: -1 / 0 }
+	).func;
 
 // /*** Uncomment these to check your work! ***/
-// const groupOfFuncs = {};
-// groupOfFuncs.double = n => n * 2;
-// groupOfFuncs.addTen = n => n + 10;
-// groupOfFuncs.inverse = n => n * -1;
+const groupOfFuncs = {};
+groupOfFuncs.double = n => n * 2;
+groupOfFuncs.addTen = n => n + 10;
+groupOfFuncs.inverse = n => n * -1;
+
 // console.log(highestFunc(groupOfFuncs, 5)); // should log: 'addTen'
 // console.log(highestFunc(groupOfFuncs, 11)); // should log: 'double'
 // console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
@@ -660,7 +744,17 @@ Create a function, combineOperations, that takes two parameters: a starting valu
 
 */
 
-function combineOperations(startVal, arrOfFuncs) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+// function combineOperations(startVal, arrOfFuncs) {
+//   return arrOfFuncs.reduce((value, func) => func(value), startVal)
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const combineOperations = (startVal, funcs) => funcs.reduce((value, func) => func(value), startVal);
 
 function add100(num) {
 	return num + 100;
@@ -674,9 +768,13 @@ function multiplyByThree(num) {
 	return num * 3;
 }
 
+function addTen(num) {
+	return num + 10;
+}
+
 // /*** Uncomment these to check your work! ***/
-// console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60 -->
-// console.log(combineOperations(0, [divByFive, multiplyFive, addTen])); // Should output 10
+// console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60
+// console.log(combineOperations(0, [divByFive, multiplyByThree, addTen])); // Should output 10
 
 // ============================== CHALLENGE 23  ==============================
 // ==========================================================================
@@ -686,7 +784,18 @@ function multiplyByThree(num) {
 Define a function myFunc that takes an array and a callback. myFunc should pass each element from the array (in order) into the callback. If the callback returns true, myFunc should return the index of the current element. If the callback never returns true, myFunc should return -1;
 
 */
-function myFunc(array, callback) {}
+
+// ============================== SOLUTION 1 ==============================
+// =======================================================================
+
+// function myFunc(array, callback) {
+//   return array.findIndex(ele => callback(ele) === true)
+// }
+
+// ============================== SOLUTION 2 ==============================
+// =======================================================================
+
+const myFunc = (arr, cb) => arr.findIndex(ele => cb(ele) === true);
 
 const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
@@ -696,6 +805,7 @@ const evens = [2, 4, 6, 8, 10, 12, 64];
 // }
 
 // /*** Uncomment these to check your work! ***/
+
 // console.log(myFunc(numbers, isOdd)); // Output should be 1
 // console.log(myFunc(evens, isOdd)); // Output should be -1
 
@@ -708,7 +818,29 @@ Write a function myForEach that accepts an array and a callback function. Your f
 
 */
 
-function myForEach(array, callback) {}
+// ============================== SOLUTION 1 ==============================
+// =======================================================================
+
+function myForEach(array, callback, i) {
+	if (arguments.length < 2) {
+		throw new Error(`myForEach requires an array and a callback function`);
+	}
+	if (!Array.isArray(array)) {
+		throw new Error(`${array} is not an array`);
+	}
+	if (typeof callback !== 'function') {
+		throw new Error(`${callback} is not a function`);
+	}
+	i = 0;
+	while (i < array.length) {
+		let iValue;
+		if (i in array) {
+			iValue = array[i];
+			callback(iValue, i);
+		}
+		i++;
+	}
+}
 
 let sum = 0;
 
@@ -717,6 +849,6 @@ function addToSum(num) {
 }
 
 // /*** Uncomment these to check your work! ***/
-// const nums = [1, 2, 3];
-// myForEach(nums, addToSum);
-// console.log(sum); // Should output 6
+const nums2 = [1, 2, 3];
+myForEach(nums2, addToSum);
+console.log(sum); // Should output 6
