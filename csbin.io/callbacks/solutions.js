@@ -806,8 +806,8 @@ const evens = [2, 4, 6, 8, 10, 12, 64];
 
 // /*** Uncomment these to check your work! ***/
 
-console.log(myFunc(numbers, isOdd)); // Output should be 1
-console.log(myFunc(evens, isOdd)); // Output should be -1
+// console.log(myFunc(numbers, isOdd)); // Output should be 1
+// console.log(myFunc(evens, isOdd)); // Output should be -1
 
 // ============================== CHALLENGE 24  ==============================
 // ==========================================================================
@@ -818,7 +818,29 @@ Write a function myForEach that accepts an array and a callback function. Your f
 
 */
 
-function myForEach(array, callback) {}
+// ============================== SOLUTION 1 ==============================
+// =======================================================================
+
+function myForEach(array, callback, i) {
+	if (arguments.length < 2) {
+		throw new Error(`myForEach requires an array and a callback function`);
+	}
+	if (!Array.isArray(array)) {
+		throw new Error(`${array} is not an array`);
+	}
+	if (typeof callback !== 'function') {
+		throw new Error(`${callback} is not a function`);
+	}
+	i = 0;
+	while (i < array.length) {
+		let iValue;
+		if (i in array) {
+			iValue = array[i];
+			callback(iValue, i);
+		}
+		i++;
+	}
+}
 
 let sum = 0;
 
@@ -827,6 +849,6 @@ function addToSum(num) {
 }
 
 // /*** Uncomment these to check your work! ***/
-// const nums = [1, 2, 3];
-// myForEach(nums, addToSum);
-// console.log(sum); // Should output 6
+const nums2 = [1, 2, 3];
+myForEach(nums2, addToSum);
+console.log(sum); // Should output 6
