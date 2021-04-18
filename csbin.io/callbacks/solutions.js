@@ -731,9 +731,9 @@ groupOfFuncs.double = n => n * 2;
 groupOfFuncs.addTen = n => n + 10;
 groupOfFuncs.inverse = n => n * -1;
 
-console.log(highestFunc(groupOfFuncs, 5)); // should log: 'addTen'
-console.log(highestFunc(groupOfFuncs, 11)); // should log: 'double'
-console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
+// console.log(highestFunc(groupOfFuncs, 5)); // should log: 'addTen'
+// console.log(highestFunc(groupOfFuncs, 11)); // should log: 'double'
+// console.log(highestFunc(groupOfFuncs, -20)); // should log: 'inverse'
 
 // ============================== CHALLENGE 22  ==============================
 // ==========================================================================
@@ -744,7 +744,17 @@ Create a function, combineOperations, that takes two parameters: a starting valu
 
 */
 
-function combineOperations(startVal, arrOfFuncs) {}
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+// function combineOperations(startVal, arrOfFuncs) {
+//   return arrOfFuncs.reduce((value, func) => func(value), startVal)
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const combineOperations = (startVal, funcs) => funcs.reduce((value, func) => func(value), startVal);
 
 function add100(num) {
 	return num + 100;
@@ -758,9 +768,13 @@ function multiplyByThree(num) {
 	return num * 3;
 }
 
+function addTen(num) {
+	return num + 10;
+}
+
 // /*** Uncomment these to check your work! ***/
-// console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60 -->
-// console.log(combineOperations(0, [divByFive, multiplyFive, addTen])); // Should output 10
+console.log(combineOperations(0, [add100, divByFive, multiplyByThree])); // Should output 60
+console.log(combineOperations(0, [divByFive, multiplyByThree, addTen])); // Should output 10
 
 // ============================== CHALLENGE 23  ==============================
 // ==========================================================================
@@ -770,6 +784,7 @@ function multiplyByThree(num) {
 Define a function myFunc that takes an array and a callback. myFunc should pass each element from the array (in order) into the callback. If the callback returns true, myFunc should return the index of the current element. If the callback never returns true, myFunc should return -1;
 
 */
+
 function myFunc(array, callback) {}
 
 const numbers = [2, 3, 6, 64, 10, 8, 12];
