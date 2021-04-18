@@ -690,7 +690,7 @@ const addLowerCase = str => str + str.toLowerCase();
 const repeat = str => str + str;
 const capAddlowRepeat = [capitalize, addLowerCase, repeat];
 
-console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
+// console.log(pipe(capAddlowRepeat, 'cat')); // should log: 'CATcatCATcat'
 
 // ============================== CHALLENGE 21  ==============================
 // ==========================================================================
@@ -785,7 +785,17 @@ Define a function myFunc that takes an array and a callback. myFunc should pass 
 
 */
 
-function myFunc(array, callback) {}
+// ============================== SOLUTION 1 ==============================
+// =======================================================================
+
+// function myFunc(array, callback) {
+//   return array.findIndex(ele => callback(ele) === true)
+// }
+
+// ============================== SOLUTION 2 ==============================
+// =======================================================================
+
+const myFunc = (arr, cb) => arr.findIndex(ele => cb(ele) === true);
 
 const numbers = [2, 3, 6, 64, 10, 8, 12];
 const evens = [2, 4, 6, 8, 10, 12, 64];
@@ -795,8 +805,9 @@ const evens = [2, 4, 6, 8, 10, 12, 64];
 // }
 
 // /*** Uncomment these to check your work! ***/
-// console.log(myFunc(numbers, isOdd)); // Output should be 1
-// console.log(myFunc(evens, isOdd)); // Output should be -1
+
+console.log(myFunc(numbers, isOdd)); // Output should be 1
+console.log(myFunc(evens, isOdd)); // Output should be -1
 
 // ============================== CHALLENGE 24  ==============================
 // ==========================================================================
