@@ -146,9 +146,9 @@ const once = func => {
 
 // /*** Uncomment these to check your work! ***/
 const onceFunc = once(addByTwo);
-console.log(onceFunc(4)); // => should log 6
-console.log(onceFunc(10)); // => should log 6
-console.log(onceFunc(9001)); // => should log 6
+// console.log(onceFunc(4)); // => should log 6
+// console.log(onceFunc(10)); // => should log 6
+// console.log(onceFunc(9001)); // => should log 6
 
 // ============================== CHALLENGE 5  ==============================
 // ==========================================================================
@@ -162,14 +162,28 @@ Write a function after that takes the number of times the callback needs to be c
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function after(count, func) {}
+// function after(count, func) {
+// 	return function (...args) {
+// 		if (count <= 1) {
+// 			return func(...args);
+// 		}
+// 		count--;
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const after = (count, func) => (...args) => (count <= 1 ? func(...args) : (count--, undefined));
 
 // /*** Uncomment these to check your work! ***/
-// const called = function() { console.log('hello') };
-// const afterCalled = after(3, called);
-// afterCalled(); // => nothing is printed
-// afterCalled(); // => nothing is printed
-// afterCalled(); // => 'hello' is printed
+const called = function () {
+	console.log('hello');
+};
+const afterCalled = after(3, called);
+afterCalled(); // => nothing is printed
+afterCalled(); // => nothing is printed
+afterCalled(); // => 'hello' is printed
 
 // ============================== CHALLENGE 6  ==============================
 // ==========================================================================
