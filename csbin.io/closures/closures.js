@@ -25,7 +25,7 @@ const createFunction = () => () => console.log(`hello`);
 
 // /*** Uncomment these to check your work! ***/
 const function1 = createFunction();
-function1(); // => should console.log('hello');
+// function1(); // => should console.log('hello');
 
 // ============================== CHALLENGE 2  ==============================
 // ==========================================================================
@@ -38,12 +38,22 @@ Create a function createFunctionPrinter that accepts one input and returns a fun
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
-function createFunctionPrinter(input) {}
+
+// function createFunctionPrinter(input) {
+// 	return function () {
+// 		console.log(input);
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const createFunctionPrinter = input => () => console.log(input);
 
 // /*** Uncomment these to check your work! ***/
-// const printSample = createFunctionPrinter('sample');
+const printSample = createFunctionPrinter('sample');
 // printSample(); // => should console.log('sample');
-// const printHello = createFunctionPrinter('hello');
+const printHello = createFunctionPrinter('hello');
 // printHello(); // => should console.log('hello');
 
 // ============================== CHALLENGE 3  ==============================
