@@ -181,9 +181,9 @@ const called = function () {
 	console.log('hello');
 };
 const afterCalled = after(3, called);
-afterCalled(); // => nothing is printed
-afterCalled(); // => nothing is printed
-afterCalled(); // => 'hello' is printed
+// afterCalled(); // => nothing is printed
+// afterCalled(); // => nothing is printed
+// afterCalled(); // => 'hello' is printed
 
 // ============================== CHALLENGE 6  ==============================
 // ==========================================================================
@@ -197,7 +197,23 @@ Write a function delay that accepts a callback as the first parameter and the wa
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function delay(func, wait) {}
+// function delay(func, wait) {
+// 	return function (...args) {
+// 		setTimeout(func, wait, ...args);
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const delay = (func, wait) => (...args) => setTimeout(func, wait, ...args);
+
+// UNCOMMENT THE CODE BELOW TO TEST DELAY
+let count = 0;
+const delayedFunc = delay(() => count++, 1000);
+delayedFunc();
+// console.log(count); // should print '0'
+// setTimeout(() => console.log(count), 1000); // should print '1' after 1 second
 
 // ============================== CHALLENGE 7  ==============================
 // ==========================================================================
