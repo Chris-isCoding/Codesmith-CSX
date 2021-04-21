@@ -324,10 +324,10 @@ const cycleIterator = array => {
 // /*** Uncomment these to check your work! ***/
 const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
 const getDay = cycleIterator(threeDayWeekend);
-console.log(getDay()); // => should log 'Fri'
-console.log(getDay()); // => should log 'Sat'
-console.log(getDay()); // => should log 'Sun'
-console.log(getDay()); // => should log 'Fri'
+// console.log(getDay()); // => should log 'Fri'
+// console.log(getDay()); // => should log 'Sat'
+// console.log(getDay()); // => should log 'Sun'
+// console.log(getDay()); // => should log 'Fri'
 
 // ============================== CHALLENGE 10  ==============================
 // ==========================================================================
@@ -340,12 +340,24 @@ Create a function defineFirstArg that accepts a function and an argument. Also, 
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
-function defineFirstArg(func, arg) {}
+
+// function defineFirstArg(func, arg) {
+// 	return function (...args) {
+// 		return func(arg, ...args);
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const defineFirstArg = (func, arg) => (...args) => func(arg, ...args);
 
 // /*** Uncomment these to check your work! ***/
-// const subtract = function(big, small) { return big - small; };
-// const subFrom20 = defineFirstArg(subtract, 20);
-// console.log(subFrom20(5)); // => should log 15
+const subtract = function (big, small) {
+	return big - small;
+};
+const subFrom20 = defineFirstArg(subtract, 20);
+console.log(subFrom20(5)); // => should log 15
 
 // ============================== CHALLENGE 11  ==============================
 // ==========================================================================
