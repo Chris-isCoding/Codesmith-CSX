@@ -290,9 +290,9 @@ const multiplyBy2 = function (num) {
 	return num * 2;
 };
 const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
-console.log(multBy2AndLog(2)); // => should log 4
-console.log(multBy2AndLog(9)); // => should log 18
-console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
+// console.log(multBy2AndLog(2)); // => should log 4
+// console.log(multBy2AndLog(9)); // => should log 18
+// console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
 
 // ============================== CHALLENGE 9 ==============================
 // ==========================================================================
@@ -306,15 +306,28 @@ Create a function cycleIterator that accepts an array, and returns a function. T
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function cycleIterator(array) {}
+// function cycleIterator(array) {
+// 	let counter = 0;
+// 	return function () {
+// 		return array[counter++ % array.length];
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const cycleIterator = array => {
+	let counter = 0;
+	return () => array[counter++ % array.length];
+};
 
 // /*** Uncomment these to check your work! ***/
-// const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
-// const getDay = cycleIterator(threeDayWeekend);
-// console.log(getDay()); // => should log 'Fri'
-// console.log(getDay()); // => should log 'Sat'
-// console.log(getDay()); // => should log 'Sun'
-// console.log(getDay()); // => should log 'Fri'
+const threeDayWeekend = ['Fri', 'Sat', 'Sun'];
+const getDay = cycleIterator(threeDayWeekend);
+console.log(getDay()); // => should log 'Fri'
+console.log(getDay()); // => should log 'Sat'
+console.log(getDay()); // => should log 'Sun'
+console.log(getDay()); // => should log 'Fri'
 
 // ============================== CHALLENGE 10  ==============================
 // ==========================================================================
