@@ -227,14 +227,33 @@ Write a function rollCall that accepts an array of names and returns a function.
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function rollCall(names) {}
+// function rollCall(names) {
+//   let count = 0;
+//   return function() {
+//     if (count >= names.length) {
+//       console.log(`Everyone accounted for`)
+//     } else {
+//       console.log(names[count++]);
+//     }
+//   };
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const rollCall = names => {
+	let count = 0;
+	return () => {
+		count >= names.length ? console.log(`Everyone accounted for`) : console.log(names[count++]);
+	};
+};
 
 // /*** Uncomment these to check your work! ***/
-// const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth'])
-// rollCaller() // => should log 'Victoria'
-// rollCaller() // => should log 'Juan'
-// rollCaller() // => should log 'Ruth'
-// rollCaller() // => should log 'Everyone accounted for'
+const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth']);
+rollCaller(); // => should log 'Victoria'
+rollCaller(); // => should log 'Juan'
+rollCaller(); // => should log 'Ruth'
+rollCaller(); // => should log 'Everyone accounted for'
 
 // ============================== CHALLENGE 8 ==============================
 // ==========================================================================
