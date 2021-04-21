@@ -384,8 +384,8 @@ const dateStamp = func => (...args) => ({ date: new Date().toDateString(), outpu
 
 // /*** Uncomment these to check your work! ***/
 const stampedMultBy2 = dateStamp(n => n * 2);
-console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
-console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
+// console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
+// console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
@@ -399,13 +399,37 @@ Create a function censor that accepts no arguments. censor will return a functio
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function censor() {}
+// function censor() {
+// 	const pairs = {};
+// 	return function (str1, str2) {
+// 		if (str2 === undefined) {
+// 			for (const [string1, string2] of Object.entries(pairs)) {
+// 				str1 = str1.replaceA(string1, string2); // replaceAll
+// 			}
+// 			return str1;
+// 		}
+// 		pairs[str1] = str2;
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const censor = () => {
+	const pairs = {};
+	return (...strings) => {
+		if (strings.length === 1) {
+			return Object.keys(pairs).reduce((string, word) => string.replace(word, pairs[word]), strings[0]); // replaceAll
+		}
+		pairs[strings[0]] = strings[1];
+	};
+};
 
 // /*** Uncomment these to check your work! ***/
-// const changeScene = censor();
-// changeScene('dogs', 'cats');
-// changeScene('quick', 'slow');
-// console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
+const changeScene = censor();
+changeScene('dogs', 'cats');
+changeScene('quick', 'slow');
+console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
 
 // ============================== CHALLENGE 13  ==============================
 // ==========================================================================
