@@ -250,10 +250,10 @@ const rollCall = names => {
 
 // /*** Uncomment these to check your work! ***/
 const rollCaller = rollCall(['Victoria', 'Juan', 'Ruth']);
-rollCaller(); // => should log 'Victoria'
-rollCaller(); // => should log 'Juan'
-rollCaller(); // => should log 'Ruth'
-rollCaller(); // => should log 'Everyone accounted for'
+// rollCaller(); // => should log 'Victoria'
+// rollCaller(); // => should log 'Juan'
+// rollCaller(); // => should log 'Ruth'
+// rollCaller(); // => should log 'Everyone accounted for'
 
 // ============================== CHALLENGE 8 ==============================
 // ==========================================================================
@@ -267,14 +267,32 @@ Create a function saveOutput that accepts a function (that will accept one argum
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function saveOutput(func, magicWord) {}
+// function saveOutput(func, magicWord) {
+// 	const cache = {};
+// 	return function (arg) {
+// 		if (arg === magicWord) {
+// 			return cache;
+// 		}
+// 		return (cache[arg] = func(arg));
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const saveOutput = (func, magicWord) => {
+	const cache = {};
+	return arg => (arg === magicWord ? cache : (cache[arg] = func(arg)));
+};
 
 // /*** Uncomment these to check your work! ***/
-// const multiplyBy2 = function(num) { return num * 2; };
-// const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
-// console.log(multBy2AndLog(2)); // => should log 4
-// console.log(multBy2AndLog(9)); // => should log 18
-// console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
+const multiplyBy2 = function (num) {
+	return num * 2;
+};
+const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
+console.log(multBy2AndLog(2)); // => should log 4
+console.log(multBy2AndLog(9)); // => should log 18
+console.log(multBy2AndLog('boo')); // => should log { 2: 4, 9: 18 }
 
 // ============================== CHALLENGE 9 ==============================
 // ==========================================================================
