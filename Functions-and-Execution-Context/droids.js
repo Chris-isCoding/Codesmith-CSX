@@ -10,58 +10,18 @@ Complete the function droids that accepts an array of strings and iterates throu
 // ========================== SOLUTION ======================================
 // ================================================================================
 
-// ======== FIRST SOLUTION ========
-// ================================
-
-// function droids(arr) {
-//   let result;
-//   for (let i = 0; i < arr.length; i++) {
-//     if (arr[i] === 'Droids') {
-//       result = 'Found Droids!';
-//     } else {
-//       result = `These are not the droids you're looking for.`
-//     }
-//   }
-//   return result;
-// }
-
-// ======== SECOND SOLUTION =======
-// ================================
-
-// const droids = (arr) => {
-// 	let result = '';
-// 	let i = 0;
-// 	while (i < arr.length) {
-// 		result =
-// 			arr[i] === 'Droids'
-// 				? 'Found Droids!'
-// 				: `These are not the droids you're looking for.`;
-// 		i++;
-// 	}
-// 	return result;
-// };
-
-// ======== THIRD SOLUTION =======
-// ================================
-
-// const droids = arr => {
-//   let result = '';
-//   for (let i = 0; i < arr.length; i++) {
-//     result = (arr[i] === 'Droids') ? 'Found Droids!' : `These are not the droids you're looking for.`;
-//   }
-//   return result;
-// }
-
-// ======== FOURTH SOLUTION =======
-// ================================
-
 function droids(arr) {
+	let result = '';
 	for (let i = 0; i < arr.length; i++) {
 		if (arr[i] === 'Droids') {
-			return 'Found Droids!';
+			result = 'Found Droids!';
+			i = 1 / 0;
 		}
 	}
-	return `These are not the droids you're looking for.`;
+	if (result.length === 0) {
+		result = `These are not the droids you're looking for.`;
+	}
+	return result;
 }
 
 // Uncomment these to check your work!
