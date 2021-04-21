@@ -357,7 +357,7 @@ const subtract = function (big, small) {
 	return big - small;
 };
 const subFrom20 = defineFirstArg(subtract, 20);
-console.log(subFrom20(5)); // => should log 15
+// console.log(subFrom20(5)); // => should log 15
 
 // ============================== CHALLENGE 11  ==============================
 // ==========================================================================
@@ -371,12 +371,21 @@ Create a function dateStamp that accepts a function and returns a function. The 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function dateStamp(func) {}
+// function dateStamp(func) {
+// 	return function (...args) {
+// 		return { date: new Date().toDateString(), output: func(...args) };
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const dateStamp = func => (...args) => ({ date: new Date().toDateString(), output: func(...args) });
 
 // /*** Uncomment these to check your work! ***/
-// const stampedMultBy2 = dateStamp(n => n * 2);
-// console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
-// console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
+const stampedMultBy2 = dateStamp(n => n * 2);
+console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
+console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
 
 // ============================== CHALLENGE 12  ==============================
 // ==========================================================================
