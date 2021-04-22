@@ -540,7 +540,7 @@ const play = russianRoulette();
 // console.log(play()); // => should log 'click'
 // console.log(play()); // => should log 'bang'
 // console.log(play()); // => should log 'reload to play again'
-console.log(play()); // => should log 'reload to play again'
+// console.log(play()); // => should log 'reload to play again'
 
 // ============================== CHALLENGE 16  ==============================
 // ==========================================================================
@@ -588,25 +588,34 @@ const avgSoFar = average();
 
 /*
 
-Create a function makeHistory that accepts a number (which will serve as a limit), and returns a function (that will accept a string). The returned function will save a history of the most recent "limit" number of strings passed into the returned function (one per invocation only). Every time a string is passed into the function, the function should return that same string with the word 'done' after it (separated by a space). However, if the string 'undo' is passed into the function, then the function should delete the last action saved in the history, and return that deleted string with the word 'undone' after (separated by a space). If 'undo' is passed into the function and the function's history is empty, then the function should return the string 'nothing to undo'.
+Create a function makeFuncTester that accepts an array (of two-element sub-arrays), and returns a function (that will accept a callback). The returned function should return true if the first elements (of each sub-array) being passed into the callback all yield the corresponding second elements (of the same sub-array). Otherwise, the returned function should return false.
 
 */
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function makeFuncTester(arrOfTests) {}
+function makeFuncTester(arrOfTests) {
+	return function (cb) {
+		return arrOfTests.filter(pair => cb(pair[0]) === pair[1]).length === arrOfTests.length;
+	};
+}
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+// const makeFuncTester = wordsPairs => cb => !wordsPairs.some(pair => cb(pair[0]) !== pair[1]);
 
 // /*** Uncomment these to check your work! ***/
-// const capLastTestCases = [];
-// capLastTestCases.push(['hello', 'hellO']);
-// capLastTestCases.push(['goodbye', 'goodbyE']);
-// capLastTestCases.push(['howdy', 'howdY']);
-// const shouldCapitalizeLast = makeFuncTester(capLastTestCases);
-// const capLastAttempt1 = str => str.toUpperCase();
-// const capLastAttempt2 = str => str.slice(0, -1) + str.slice(-1).toUpperCase();
-// console.log(shouldCapitalizeLast(capLastAttempt1)); // => should log false
-// console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
+const capLastTestCases = [];
+capLastTestCases.push(['hello', 'hellO']);
+capLastTestCases.push(['goodbye', 'goodbyE']);
+capLastTestCases.push(['howdy', 'howdY']);
+const shouldCapitalizeLast = makeFuncTester(capLastTestCases);
+const capLastAttempt1 = str => str.toUpperCase();
+const capLastAttempt2 = str => str.slice(0, -1) + str.slice(-1).toUpperCase();
+console.log(shouldCapitalizeLast(capLastAttempt1)); // => should log false
+console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
 
 // ============================== CHALLENGE 18  ==============================
 // ==========================================================================
