@@ -472,7 +472,29 @@ Write a function, callTimes, that returns a new function. The new function shoul
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function callTimes() {}
+// function callTimes() {
+// 	let counter = 0;
+// 	return function () {
+// 		return ++counter;
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const callTimes = () => {
+	let counter = 0;
+	return () => ++counter;
+};
+
+// /*** Uncomment these to check your work! ***/
+
+let myNewFunc1 = callTimes();
+let myNewFunc2 = callTimes();
+console.log(myNewFunc1()); // => 1
+console.log(myNewFunc1()); // => 2
+console.log(myNewFunc2()); // => 1
+console.log(myNewFunc2()); // => 2
 
 // /*** Uncomment these to check your work! ***/
 // let myNewFunc1 = callTimes();
@@ -497,7 +519,7 @@ Create a function russianRoulette that accepts a number (let us call it n), and 
 function russianRoulette(num) {}
 
 // /*** Uncomment these to check your work! ***/
-// const play = russianRoulette(3);
+const play = russianRoulette(3);
 // console.log(play()); // => should log 'click'
 // console.log(play()); // => should log 'click'
 // console.log(play()); // => should log 'bang'
