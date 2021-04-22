@@ -614,8 +614,8 @@ capLastTestCases.push(['howdy', 'howdY']);
 const shouldCapitalizeLast = makeFuncTester(capLastTestCases);
 const capLastAttempt1 = str => str.toUpperCase();
 const capLastAttempt2 = str => str.slice(0, -1) + str.slice(-1).toUpperCase();
-console.log(shouldCapitalizeLast(capLastAttempt1)); // => should log false
-console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
+// console.log(shouldCapitalizeLast(capLastAttempt1)); // => should log false
+// console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
 
 // ============================== CHALLENGE 18  ==============================
 // ==========================================================================
@@ -629,18 +629,47 @@ Create a function makeHistory that accepts a number (which will serve as a limit
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function makeHistory(limit) {}
+// function makeHistory(limit) {
+// 	const stringStore = [];
+// 	return function (string) {
+// 		if (string === 'undo') {
+// 			if (stringStore.length === 0) {
+// 				return `nothing to undo`;
+// 			}
+// 			return `${stringStore.shift()} undone`;
+// 		}
+// 		if (stringStore.unshift(string) > limit) {
+// 			stringStore.length = limit;
+// 		}
+// 		return `${string} done`;
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const makeHistory = limit => {
+	const strings = [];
+	return str =>
+		str === `undo`
+			? !(0 in strings)
+				? `nothing to undo`
+				: `${strings.shift()} undone`
+			: strings.unshift(str) > limit
+			? ((strings.length = limit), `${str} done`)
+			: `${str} done`;
+};
 
 // /*** Uncomment these to check your work! ***/
-// const myActions = makeHistory(2);
-// console.log(myActions('jump')); // => should log 'jump done'
-// console.log(myActions('undo')); // => should log 'jump undone'
-// console.log(myActions('walk')); // => should log 'walk done'
-// console.log(myActions('code')); // => should log 'code done'
-// console.log(myActions('pose')); // => should log 'pose done'
-// console.log(myActions('undo')); // => should log 'pose undone'
-// console.log(myActions('undo')); // => should log 'code undone'
-// console.log(myActions('undo')); // => should log 'nothing to undo'
+const myActions = makeHistory(2);
+console.log(myActions('jump')); // => should log 'jump done'
+console.log(myActions('undo')); // => should log 'jump undone'
+console.log(myActions('walk')); // => should log 'walk done'
+console.log(myActions('code')); // => should log 'code done'
+console.log(myActions('pose')); // => should log 'pose done'
+console.log(myActions('undo')); // => should log 'pose undone'
+console.log(myActions('undo')); // => should log 'code undone'
+console.log(myActions('undo')); // => should log 'nothing to undo'
 
 // ============================== CHALLENGE 19  ==============================
 // ==========================================================================
