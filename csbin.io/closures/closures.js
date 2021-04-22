@@ -527,11 +527,11 @@ function russianRoulette(num) {
 
 // /*** Uncomment these to check your work! ***/
 const play = russianRoulette(3);
-console.log(play()); // => should log 'click'
-console.log(play()); // => should log 'click'
-console.log(play()); // => should log 'bang'
-console.log(play()); // => should log 'reload to play again'
-console.log(play()); // => should log 'reload to play again'
+// console.log(play()); // => should log 'click'
+// console.log(play()); // => should log 'click'
+// console.log(play()); // => should log 'bang'
+// console.log(play()); // => should log 'reload to play again'
+// console.log(play()); // => should log 'reload to play again'
 
 // ============================== CHALLENGE 16  ==============================
 // ==========================================================================
@@ -545,10 +545,28 @@ Create a function average that accepts no arguments, and returns a function (tha
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function average() {}
+// function average() {
+// 	let sum = 0;
+// 	let times = 0;
+// 	return function (num) {
+// 		if (arguments.length === 0) {
+// 			if (times === 0) return sum;
+// 			return sum / times;
+// 		}
+// 		return (sum += num) / ++times;
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const average = () => {
+	const cache = { sum: 0, times: 0 };
+	return num => (num === undefined ? (cache.times === 0 ? cache.sum : cache.sum / cache.times) : (cache.sum += num) / ++cache.times);
+};
 
 // /*** Uncomment these to check your work! ***/
-// const avgSoFar = average();
+const avgSoFar = average();
 // console.log(avgSoFar()); // => should log 0
 // console.log(avgSoFar(4)); // => should log 4
 // console.log(avgSoFar(8)); // => should log 6
