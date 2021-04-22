@@ -516,22 +516,31 @@ Create a function russianRoulette that accepts a number (let us call it n), and 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function russianRoulette(num) {
-	return function () {
-		--num;
-		if (num > 0) return 'click';
-		if (num === 0) return 'bang';
-		if (num < 0) return 'reload to play again';
-	};
-}
+// function russianRoulette(num) {
+// 	return function () {
+// 		--num;
+// 		if (num > 0) return 'click';
+// 		if (num === 0) return 'bang';
+// 		if (num < 0) return 'reload to play again';
+// 	};
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+//randomize num :]
+
+const russianRoulette = () => {
+	let num = Math.floor(Math.random() * 5 + 1);
+	return () => (--num > 0 ? 'click' : num === 0 ? 'bang' : 'reload to play again');
+};
 
 // /*** Uncomment these to check your work! ***/
-const play = russianRoulette(3);
+const play = russianRoulette();
 // console.log(play()); // => should log 'click'
 // console.log(play()); // => should log 'click'
 // console.log(play()); // => should log 'bang'
 // console.log(play()); // => should log 'reload to play again'
-// console.log(play()); // => should log 'reload to play again'
+console.log(play()); // => should log 'reload to play again'
 
 // ============================== CHALLENGE 16  ==============================
 // ==========================================================================
