@@ -429,7 +429,7 @@ const censor = () => {
 const changeScene = censor();
 changeScene('dogs', 'cats');
 changeScene('quick', 'slow');
-console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
+// console.log(changeScene('The quick, brown fox jumps over the lazy dogs.')); // => should log 'The slow, brown fox jumps over the lazy cats.'
 
 // ============================== CHALLENGE 13  ==============================
 // ==========================================================================
@@ -443,13 +443,22 @@ There's no such thing as private properties on a JavaScript object! But, maybe t
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function createSecretHolder(secret) {}
+function createSecretHolder(secret) {
+	const secretHolder = {};
+	secretHolder.getSecret = function () {
+		return secret;
+	};
+	secretHolder.setSecret = function (value) {
+		secret = value;
+	};
+	return secretHolder;
+}
 
 // /*** Uncomment these to check your work! ***/
-// obj = createSecretHolder(5)
-// obj.getSecret() // => returns 5
-// obj.setSecret(2)
-// obj.getSecret() // => returns 2
+const obj = createSecretHolder(5);
+// console.log(obj.getSecret()); // => returns 5
+obj.setSecret(2);
+// console.log(obj.getSecret()); // => returns 2
 
 // ============================== CHALLENGE 14  ==============================
 // ==========================================================================
@@ -462,6 +471,7 @@ Write a function, callTimes, that returns a new function. The new function shoul
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function callTimes() {}
 
 // /*** Uncomment these to check your work! ***/
