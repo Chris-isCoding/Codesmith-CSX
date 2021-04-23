@@ -662,14 +662,14 @@ const makeHistory = limit => {
 
 // /*** Uncomment these to check your work! ***/
 const myActions = makeHistory(2);
-console.log(myActions('jump')); // => should log 'jump done'
-console.log(myActions('undo')); // => should log 'jump undone'
-console.log(myActions('walk')); // => should log 'walk done'
-console.log(myActions('code')); // => should log 'code done'
-console.log(myActions('pose')); // => should log 'pose done'
-console.log(myActions('undo')); // => should log 'pose undone'
-console.log(myActions('undo')); // => should log 'code undone'
-console.log(myActions('undo')); // => should log 'nothing to undo'
+// console.log(myActions('jump')); // => should log 'jump done'
+// console.log(myActions('undo')); // => should log 'jump undone'
+// console.log(myActions('walk')); // => should log 'walk done'
+// console.log(myActions('code')); // => should log 'code done'
+// console.log(myActions('pose')); // => should log 'pose done'
+// console.log(myActions('undo')); // => should log 'pose undone'
+// console.log(myActions('undo')); // => should log 'code undone'
+// console.log(myActions('undo')); // => should log 'nothing to undo'
 
 // ============================== CHALLENGE 19  ==============================
 // ==========================================================================
@@ -704,38 +704,54 @@ BONUS: Implement blackjack so the DEALER function can return more PLAYER functio
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function blackjack(array) {}
+function blackjack(array) {
+	let draft = 0;
+	let busted;
+	return function (num1, num2) {
+		let score = num1 + num2;
+		let started = 0;
+		busted = false;
+		return function () {
+			if (busted) return `you are done!`;
+			if (started === 0) {
+				started++;
+				return score > 21 ? ((busted = true), `bust`) : score;
+			}
+			return (score += array[draft++]) > 21 ? ((busted = true), `bust`) : score;
+		};
+	};
+}
 
 // /*** Uncomment these to check your work! ***/
 
 // /*** DEALER ***/
-// const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
+const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
 
 // /*** PLAYER 1 ***/
-// const i_like_to_live_dangerously = deal(4, 5);
-// console.log(i_like_to_live_dangerously()); // => should log 9
-// console.log(i_like_to_live_dangerously()); // => should log 11
-// console.log(i_like_to_live_dangerously()); // => should log 17
-// console.log(i_like_to_live_dangerously()); // => should log 18
-// console.log(i_like_to_live_dangerously()); // => should log 'bust'
-// console.log(i_like_to_live_dangerously()); // => should log 'you are done!'
-// console.log(i_like_to_live_dangerously()); // => should log 'you are done!'
+const player1 = deal(4, 5);
+console.log(player1()); // => should log 9
+console.log(player1()); // => should log 11
+console.log(player1()); // => should log 17
+console.log(player1()); // => should log 18
+console.log(player1()); // => should log 'bust'
+console.log(player1()); // => should log 'you are done!'
+console.log(player1()); // => should log 'you are done!'
 
 // /*** BELOW LINES ARE FOR THE BONUS ***/
 
 // /*** PLAYER 2 ***/
-// const i_TOO_like_to_live_dangerously = deal(2, 2);
-// console.log(i_TOO_like_to_live_dangerously()); // => should log 4
-// console.log(i_TOO_like_to_live_dangerously()); // => should log 15
-// console.log(i_TOO_like_to_live_dangerously()); // => should log 19
-// console.log(i_TOO_like_to_live_dangerously()); // => should log 'bust'
-// console.log(i_TOO_like_to_live_dangerously()); // => should log 'you are done!
-// console.log(i_TOO_like_to_live_dangerously()); // => should log 'you are done!
+const player2 = deal(2, 2);
+console.log(player2()); // => should log 4
+console.log(player2()); // => should log 15
+console.log(player2()); // => should log 19
+console.log(player2()); // => should log 'bust'
+console.log(player2()); // => should log 'you are done!
+console.log(player2()); // => should log 'you are done!
 
 // /*** PLAYER 3 ***/
-// const i_ALSO_like_to_live_dangerously = deal(3, 7);
-// console.log(i_ALSO_like_to_live_dangerously()); // => should log 10
-// console.log(i_ALSO_like_to_live_dangerously()); // => should log 13
-// console.log(i_ALSO_like_to_live_dangerously()); // => should log 'bust'
-// console.log(i_ALSO_like_to_live_dangerously()); // => should log 'you are done!
-// console.log(i_ALSO_like_to_live_dangerously()); // => should log 'you are done!
+const player3 = deal(3, 7);
+console.log(player3()); // => should log 10
+console.log(player3()); // => should log 13
+console.log(player3()); // => should log 'bust'
+console.log(player3()); // => should log 'you are done!
+console.log(player3()); // => should log 'you are done!
