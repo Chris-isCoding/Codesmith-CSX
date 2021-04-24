@@ -20,25 +20,40 @@ function countdown(n) {
 }
 
 // To check if you've completed it, uncomment these console.logs!
-countdown(5);
-countdown(10);
+// countdown(5);
+// countdown(10);
 
 // ============================== CHALLENGE 2  ==============================
 // ==========================================================================
 
 /*
 
-Write a recursive function countdown that accepts a positive integer n as an input and logs every number from n (inclusive) to 0 (exclusive) to the console.
+Write a recursive function sum that calculates the sum of an array of integers.
 
 */
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
-function sum(array) {}
+
+// function sum(array) {
+// 	function sumHelper(i, sum) {
+// 		if (!(i in array)) return sum;
+// 		return sumHelper(i + 1, (sum += array[i]));
+// 	}
+// 	return sumHelper(0, 0);
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const sum = array => {
+	const sumHelper = i => (array[i] === undefined ? 0 : array[i] + sumHelper(i + 1));
+	return sumHelper(0);
+};
 
 // uncomment these to check your work
-//  console.log(sum([1,1,1])); // -> returns 3
-//  console.log(sum([1,2,3,4,5,6])); // -> returns 21
+console.log(sum([1, 1, 1])); // -> returns 3
+console.log(sum([1, 2, 3, 4, 5, 6])); // -> returns 21
 
 // ============================== CHALLENGE 3  ==============================
 // ==========================================================================
