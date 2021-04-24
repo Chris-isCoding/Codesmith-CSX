@@ -706,18 +706,20 @@ BONUS: Implement blackjack so the DEALER function can return more PLAYER functio
 
 function blackjack(array) {
 	let draft = 0;
-	let busted;
+	let counter = 0;
+	const players = {};
 	return function (num1, num2) {
+		const id = ++counter;
 		let score = num1 + num2;
-		let started = 0;
-		busted = false;
+		let started = false;
+		players[id] = 0;
 		return function () {
-			if (busted) return `you are done!`;
-			if (started === 0) {
-				started++;
-				return score > 21 ? ((busted = true), `bust`) : score;
+			if (players[id]) return `you are done!`;
+			if (started === false) {
+				started = true;
+				return score > 21 ? ((players[id] = 1), `bust`) : score;
 			}
-			return (score += array[draft++]) > 21 ? ((busted = true), `bust`) : score;
+			return (score += array[draft++]) > 21 ? ((players[id] = 1), `bust`) : score;
 		};
 	};
 }
@@ -755,3 +757,60 @@ console.log(player3()); // => should log 13
 console.log(player3()); // => should log 'bust'
 console.log(player3()); // => should log 'you are done!
 console.log(player3()); // => should log 'you are done!
+
+// BONUS VERSION
+
+const blackjack = arr => {
+	const deck = Array(4).fill(arr).flat(); // deck holds 4 times each value of provided cards
+	const shuffle = () => {
+		// define simple function expression to shuffle deck
+		deck.forEach((card, i) => {
+			const random = Math.floor(Math.random() * deck.length);
+			[deck[i], deck[random]] = [deck[random], deck[i]];
+		});
+	};
+	shuffle(); // shuffling deck
+	const stack = [...deck];
+	const add = () => {
+		// function expression to add shuffled deck to current stack of cards
+		shuffle();
+		stack.push(...deck);
+	};
+	let draft = 0; // keeps track how many cards were drafted
+	let counter = 0; // keeps track of how many players joined the game
+	const players = {};
+	return () => {
+		let id = 'player' + ++counter; // gives new id to every player
+		players[id] = { fresh: 1 };
+		if (draft === stack.length - 3) add();
+		let score = stack[draft++] + stack[draft++]; // new player joins and drafts 2 cards
+		return () => {
+			if (players[id].status) return `you are done!`;
+			if (players[id].fresh) {
+				players[id].fresh = 0;
+				return score === 21 ? ((players[id].status = 1), `You won!`) : score > 21 ? ((players[id].status = 1), `bust`) : score;
+			}
+			if (draft === stack.length - 2) add();
+			return (score += stack[draft++]) === 21 ? ((players[id].status = 1), `You won!`) : score > 21 ? ((players[id].status = 1), `bust`) : score;
+		};
+	};
+};
+
+const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+const deal = blackjack(cards);
+
+const player1 = deal();
+const player2 = deal();
+const player3 = deal();
+console.log(player1());
+console.log(player1());
+console.log(player1());
+console.log(player1());
+console.log(player2());
+console.log(player2());
+console.log(player2());
+console.log(player2());
+console.log(player3());
+console.log(player3());
+console.log(player3());
+console.log(player3());
