@@ -12,11 +12,16 @@ Write a recursive function countdown that accepts a positive integer n as an inp
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function countdown(n) {}
+function countdown(n) {
+	// n is positive integer
+	if (n === 0) return;
+	console.log(n);
+	return countdown(n - 1);
+}
 
 // To check if you've completed it, uncomment these console.logs!
-// countdown(5);
-// countdown(10);
+countdown(5);
+countdown(10);
 
 // ============================== CHALLENGE 2  ==============================
 // ==========================================================================
