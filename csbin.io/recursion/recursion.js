@@ -52,26 +52,46 @@ const sum = array => {
 };
 
 // uncomment these to check your work
-console.log(sum([1, 1, 1])); // -> returns 3
-console.log(sum([1, 2, 3, 4, 5, 6])); // -> returns 21
+// console.log(sum([1, 1, 1])); // -> returns 3
+// console.log(sum([1, 2, 3, 4, 5, 6])); // -> returns 21
 
 // ============================== CHALLENGE 3  ==============================
 // ==========================================================================
 
 /*
 
-Write a recursive function countdown that accepts a positive integer n as an input and logs every number from n (inclusive) to 0 (exclusive) to the console.
+Write a recursive function palindrome that accepts a string as an input and returns true if that string is a palindrome (the string is the same forward and backwards). The input string may have punctuation and symbols, but that should not affect whether the string is a palindrome.
 
 */
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function palindrome(string) {}
+// function palindrome(string) {
+// 	const palindromeHelper = str => {
+// 		if (!str.length) return true;
+// 		if (str[0] !== str[str.length - 1]) return false;
+// 		return palindromeHelper(str.slice(1, -1));
+// 	};
+// 	return palindromeHelper(string.replaceAll(/[\p{P}\p{S}\s]/gu, '').toLowerCase());
+// }
 
-// console.log(palindrome("Anne, I vote more cars race Rome-to-Vienna")); //-> true
-// console.log(palindrome("llama mall")); //-> true
-// console.log(palindrome("jmoney")); //-> false
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const palindrome = string => {
+	const stripped = string.replace(/[\p{P}\p{S}\s]/gu, '').toLowerCase();
+	const paliHelper = i => {
+		if (i === stripped.length) return true;
+		if (stripped[i] !== stripped[stripped.length - i - 1]) return false;
+		return paliHelper(i + 1);
+	};
+	return paliHelper(0);
+};
+
+// console.log(palindrome('Anne, I vote more cars race Rome-to-Vienna')); //-> true
+// console.log(palindrome('llama mall')); //-> true
+// console.log(palindrome('jmoney')); //-> false
 
 // ============================== CHALLENGE 4  ==============================
 // ==========================================================================
@@ -108,6 +128,7 @@ pathFinder(obj,arr);   //-> "finish"
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function pathFinder(obj, arr) {}
 
 // const obj = { first: { second: { third: "finish" } }, second: { third: "wrong" } };
@@ -125,6 +146,7 @@ Write a recursive function flattenRecursively that flattens a nested array. Your
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function flattenRecursively(arr) {}
 
 // console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
@@ -141,6 +163,7 @@ Write a recursive function findInOrderedSet that determines if a number is in an
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function findInOrderedSet(arr, target) {}
 
 // const nums = [1, 4, 6, 7, 9, 17, 45];
@@ -158,6 +181,7 @@ There are n stairs. A person standing at the bottom wants to reach the top. The 
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function countWaysToReachNthStair(n) {}
 
 // console.log(countWaysToReachNthStair(1)) //-> 1 (only one way to climb 1 stair)
@@ -185,6 +209,7 @@ Output:[
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function getPermutations(arr) {}
 
 // console.log(getPermutations([1, 2])) //-> [[1, 2], [2, 1]]
@@ -201,6 +226,7 @@ Write a function getRangeBetween that returns an array of all integers between v
 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
+
 function getRangeBetween(x, y) {}
 
 // console.log(getRangeBetween(2, 9)) //-> [3, 4, 5, 6, 7, 8]
