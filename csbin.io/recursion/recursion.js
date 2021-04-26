@@ -116,10 +116,10 @@ function isPrime(num) {
 	return isPrimeHelper(3);
 }
 
-console.log(isPrime(1)); //-> false
-console.log(isPrime(2)); //-> true
-console.log(isPrime(3)); //-> true
-console.log(isPrime(4)); //-> false
+// console.log(isPrime(1)); //-> false
+// console.log(isPrime(2)); //-> true
+// console.log(isPrime(3)); //-> true
+// console.log(isPrime(4)); //-> false
 
 // ============================== CHALLENGE 5  ==============================
 // ==========================================================================
@@ -138,11 +138,26 @@ pathFinder(obj,arr);   //-> "finish"
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function pathFinder(obj, arr) {}
+// function pathFinder(obj, arr) {
+// 	if (!arr.length) return obj;
+// 	if (!(arr[0] in obj)) return undefined;
+// 	return pathFinder(obj[arr[0]], arr.slice(1));
+// }
 
-// const obj = { first: { second: { third: "finish" } }, second: { third: "wrong" } };
-// const arr = ["first", "second", "third"];
-// console.log(pathFinder(obj, arr));   //-> "finish"
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const pathFinder = (obj, arr) => {
+	const pathFinderHelper = (obj, i) => (i === arr.length || obj === undefined ? obj : pathFinderHelper(obj[arr[i]], i + 1));
+	return pathFinderHelper(obj, 0);
+};
+
+const obj = { first: { second: { third: 'finish' } }, second: { third: 'wrong' } };
+const arr = ['first', 'second', 'third'];
+
+console.log(pathFinder(obj, arr)); //-> "finish"
+console.log(pathFinder(obj, [])); //-> obj
+console.log(pathFinder(obj, ['first', '2nd', 'third'])); // -> undefined
 
 // ============================== CHALLENGE 6  ==============================
 // ==========================================================================
