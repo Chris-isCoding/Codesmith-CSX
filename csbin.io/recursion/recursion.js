@@ -105,12 +105,21 @@ Write a recursive function isPrime that determines if a number is prime and retu
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function isPrime(num) {}
+function isPrime(num) {
+	if (num < 2) return false;
+	if (num % 2 === 0) return num === 2;
+	const isPrimeHelper = i => {
+		if (num % i) return num === i;
+		if (num / i < i) return true;
+		return isPrimeHelper(i + 2);
+	};
+	return isPrimeHelper(3);
+}
 
-// console.log(isPrime(1)); //-> false
-// console.log(isPrime(2)); //-> true
-// console.log(isPrime(3)); //-> true
-// console.log(isPrime(4)); //-> false
+console.log(isPrime(1)); //-> false
+console.log(isPrime(2)); //-> true
+console.log(isPrime(3)); //-> true
+console.log(isPrime(4)); //-> false
 
 // ============================== CHALLENGE 5  ==============================
 // ==========================================================================
