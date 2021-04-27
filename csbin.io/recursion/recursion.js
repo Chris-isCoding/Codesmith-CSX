@@ -179,8 +179,8 @@ function flattenRecursively(arr) {
 	return flatHelper(0);
 }
 
-console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
-console.log(flattenRecursively([1, {}, [3, [[4]]]])); //-> [1, {}, 3, 4]
+// console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
+// console.log(flattenRecursively([1, {}, [3, [[4]]]])); //-> [1, {}, 3, 4]
 
 // ============================== CHALLENGE 7  ==============================
 // ==========================================================================
@@ -194,11 +194,19 @@ Write a recursive function findInOrderedSet that determines if a number is in an
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function findInOrderedSet(arr, target) {}
+function findInOrderedSet(arr, target) {
+	if (arr.length === 0) return `empty array`;
+	const findHelper = i => {
+		if (arr[i] > target) return false;
+		if (arr[i] === target) return true;
+		return findHelper(i + 1);
+	};
+	return findHelper(0);
+}
 
-// const nums = [1, 4, 6, 7, 9, 17, 45];
-// console.log(findInOrderedSet(nums, 4));  //-> true
-// console.log(findInOrderedSet(nums, 2));  //-> false
+const nums = [1, 4, 6, 7, 9, 17, 45];
+console.log(findInOrderedSet(nums, 4)); //-> true
+console.log(findInOrderedSet(nums, 2)); //-> false
 
 // ============================== CHALLENGE 8 ==============================
 // ==========================================================================
