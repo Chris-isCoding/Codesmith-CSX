@@ -205,8 +205,8 @@ function findInOrderedSet(arr, target) {
 }
 
 const nums = [1, 4, 6, 7, 9, 17, 45];
-console.log(findInOrderedSet(nums, 4)); //-> true
-console.log(findInOrderedSet(nums, 2)); //-> false
+// console.log(findInOrderedSet(nums, 4)); //-> true
+// console.log(findInOrderedSet(nums, 2)); //-> false
 
 // ============================== CHALLENGE 8 ==============================
 // ==========================================================================
@@ -265,7 +265,36 @@ Write a function getRangeBetween that returns an array of all integers between v
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function getRangeBetween(x, y) {}
+// function getRangeBetween(x, y) {
+// 	const arr = [];
+// 	if (x > y) {
+// 		[x, y] = [y, x];
+// 		return getRangeBetween(x, y).reverse();
+// 	}
+// 	const ranger = n => {
+// 		if (n === y) return arr;
+// 		arr.push(n);
+// 		return ranger(n + 1);
+// 	};
+// 	return ranger(x + 1);
+// }
 
-// console.log(getRangeBetween(2, 9)) //-> [3, 4, 5, 6, 7, 8]
-// console.log(getRangeBetween(-5, 5)) //-> [-4, -3, -2, 1, 0, 1, 2, 3, 4]
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const getRangeBetween = (x, y) => {
+	const arr = [];
+	if (x > y) {
+		[x, y] = [y, x];
+		return getRangeBetween(x, y).reverse();
+	}
+	const ranger = i => {
+		if (i === y - x - 1) return arr;
+		arr[i] = x + 1 + i;
+		return ranger(i + 1);
+	};
+	return ranger(0);
+};
+
+console.log(getRangeBetween(2, 9)); //-> [3, 4, 5, 6, 7, 8]
+console.log(getRangeBetween(-5, 5)); //-> [-4, -3, -2, 1, 0, 1, 2, 3, 4]
