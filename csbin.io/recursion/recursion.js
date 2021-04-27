@@ -155,9 +155,9 @@ const pathFinder = (obj, arr) => {
 const obj = { first: { second: { third: 'finish' } }, second: { third: 'wrong' } };
 const arr = ['first', 'second', 'third'];
 
-console.log(pathFinder(obj, arr)); //-> "finish"
-console.log(pathFinder(obj, [])); //-> obj
-console.log(pathFinder(obj, ['first', '2nd', 'third'])); // -> undefined
+// console.log(pathFinder(obj, arr)); //-> "finish"
+// console.log(pathFinder(obj, [])); //-> obj
+// console.log(pathFinder(obj, ['first', '2nd', 'third'])); // -> undefined
 
 // ============================== CHALLENGE 6  ==============================
 // ==========================================================================
@@ -171,10 +171,16 @@ Write a recursive function flattenRecursively that flattens a nested array. Your
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function flattenRecursively(arr) {}
+function flattenRecursively(arr) {
+	const flatHelper = i => {
+		if (i === arr.length) return arr;
+		return Array.isArray(arr[i]) ? (arr.splice(i, 1, ...arr[i]), flatHelper(i)) : flatHelper(i + 1);
+	};
+	return flatHelper(0);
+}
 
-// console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
-// console.log(flattenRecursively([1, {}, [3, [[4]]]])); //-> [1, {}, 3, 4]
+console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
+console.log(flattenRecursively([1, {}, [3, [[4]]]])); //-> [1, {}, 3, 4]
 
 // ============================== CHALLENGE 7  ==============================
 // ==========================================================================
