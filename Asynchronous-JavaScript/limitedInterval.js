@@ -18,7 +18,7 @@ limitedInterval should run the callback once every wait milliseconds, up to limi
 
 function limitedInterval(callback, wait, limit) {
 	const startRepeat = setInterval(callback, wait);
-	const stopRepeat = setTimeout(clearInterval, 550, startRepeat);
+	setTimeout(() => clearInterval(startRepeat), limit);
 }
 
 // /* Uncomment the following line and click 'run' to test your work */
