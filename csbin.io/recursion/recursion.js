@@ -220,11 +220,17 @@ There are n stairs. A person standing at the bottom wants to reach the top. The 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function countWaysToReachNthStair(n) {}
+function countWaysToReachNthStair(n) {
+	const countHelper = (num, prev, cur) => {
+		if (num === 0) return cur;
+		return countHelper(num - 1, cur, prev + cur);
+	};
+	return countHelper(Math.abs(n), 0, 1);
+}
 
-// console.log(countWaysToReachNthStair(1)) //-> 1 (only one way to climb 1 stair)
-// console.log(countWaysToReachNthStair(2)) //-> 2 ((1, 1), (2))
-// console.log(countWaysToReachNthStair(4)) //-> 5 ((1, 1, 1, 1), (1, 1, 2), (2, 1, 1), (2, 2))
+console.log(countWaysToReachNthStair(1)); //-> 1 (only one way to climb 1 stair)
+console.log(countWaysToReachNthStair(2)); //-> 2 ((1, 1), (2))
+console.log(countWaysToReachNthStair(4)); //-> 5 ((1, 1, 1, 1), (1, 1, 2), (2, 1, 1), (2, 2))
 
 // ============================== CHALLENGE 9  ==============================
 // ==========================================================================
@@ -296,5 +302,5 @@ const getRangeBetween = (x, y) => {
 	return ranger(0);
 };
 
-console.log(getRangeBetween(2, 9)); //-> [3, 4, 5, 6, 7, 8]
-console.log(getRangeBetween(-5, 5)); //-> [-4, -3, -2, 1, 0, 1, 2, 3, 4]
+// console.log(getRangeBetween(2, 9)); //-> [3, 4, 5, 6, 7, 8]
+// console.log(getRangeBetween(-5, 5)); //-> [-4, -3, -2, 1, 0, 1, 2, 3, 4]
