@@ -12,11 +12,11 @@ Add code to the function arrToObj in the place marked "ADD CODE HERE" in order t
 // ================================================================================
 
 function arrToObj(array, callback) {
-	const obj = {};
-	for (let ele in array) {
-		obj[array[ele]] = callback(array[ele]);
-	}
-	return obj;
+  const obj = {};
+  for (const ele of array) {
+    obj[ele] = callback(ele);
+  }
+  return obj;
 }
 
 // Uncomment these to check your work!
