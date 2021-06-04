@@ -19,22 +19,29 @@
 //     }
 //     countdown--;
 //   }
-//   console.log(`That was kind of a let down`)
+//   console.log(`That was kind of a let down`);
 // }
 
 // ========================== SECOND SOLUTION ==========================
 // ====================================================================
 
 function imAboutToExplodeWithExcitement(n) {
-	let countdown = n;
-	while (countdown > 0) {
-		countdown === 5
-			? console.log(`Oh wow, I can't handle the anticipation!`)
-			: console.log(countdown);
-		countdown === 3 ? console.log(`I'm about to explode with excitement!`) : '';
-		countdown--;
-	}
-	console.log(`That was kind of a let down`);
+  let countdown = n;
+  while (countdown > 0) {
+    switch (countdown) {
+      case 5:
+        console.log(`Oh wow, I can't handle the anticipation!`);
+        break;
+      case 3:
+        console.log(`I'm about to explode with excitement!`);
+        break;
+      default:
+        console.log(countdown);
+        break;
+    }
+    countdown--;
+  }
+  console.log(`That was kind of a let down`);
 }
 
 // Uncomment the line below to check your work!
