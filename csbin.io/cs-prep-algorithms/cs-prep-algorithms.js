@@ -30,7 +30,13 @@ function modeTests() {
 // Ex: [1, 2, 3, 4, 5], median is 3
 // Ex: [10, 4, 7, 6, 1], median is 6
 
-function median(array) {}
+function median(array) {
+  const sorted = [...array].sort((a, b) => a - b);
+  if (array.length % 2) {
+    return sorted[Math.floor(sorted.length / 2)];
+  }
+  return (sorted[sorted.length / 2 - 1] + sorted[sorted.length / 2]) / 2;
+}
 
 function medianTests() {
   console.log(median([1, 2, 3, 4, 5]), ' -> 3');
