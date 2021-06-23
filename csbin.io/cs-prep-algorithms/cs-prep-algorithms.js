@@ -182,7 +182,13 @@ function sortTests() {
 // implement your own function to randomize an array - each element should have an equal chance of landing in any spot
 // What is its time complexity?
 
-function shuffle(array) {}
+function shuffle(array) {
+  for (let i = 0; i < array.length; i++) {
+    const j = Math.floor(Math.random() * array.length);
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
 
 function shuffleTests() {
   console.log(shuffle([1, 2, 3, 4, 5]), ' -> ?');
@@ -190,7 +196,7 @@ function shuffleTests() {
   console.log(shuffle([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), ' -> ?');
 }
 
-// shuffleTests() // Determine a way to test this function!
+shuffleTests(); // Determine a way to test this function!
 
 /// /////////////////////////
 //     Challenge 10
