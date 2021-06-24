@@ -8,7 +8,29 @@
 // If there is a tie, return the greater number of tied modes.
 // ex. mode([1,1,2,2,3,3,2,4,5]) === 2 // true because 2 appears most often in the array (the number 2 appears 3 times)
 // ex. mode([1,1,1,3,3,3]) === 3 // true, because 3 and 1 are tied as the mode, but 3 > 1 and the mode function will return the greater of the mode values
-function mode(array) {}
+
+function mode(array) {
+  const freq = {};
+  for (const ele of array) {
+    if (!freq[ele]) {
+      freq[ele] = 1;
+    } else {
+      freq[ele]++;
+    }
+  }
+  let maxFreq = 0;
+  let curVal;
+  for (const [key, value] of Object.entries(freq)) {
+    const num = Number(key);
+    if (value === maxFreq && num > curVal) {
+      curVal = num;
+    } else if (value > maxFreq) {
+      maxFreq = value;
+      curVal = Number(key);
+    }
+  }
+  return curVal;
+}
 
 // Extension: solve this in 0(n) time
 
@@ -16,9 +38,10 @@ function modeTests() {
   console.log(mode([1, 2, 2, 1, 1, 3, 7, 3]), ' -> 1');
   console.log(mode([1]), '1');
   console.log(mode([2, 2, 2, 2, 3, 3, 3]), ' -> 2');
+  console.log(mode([1.2, 1.2, 1.3, 1.3, 1.1, 1.1, 1.1, 1.1]), ' -> 1.1');
 }
 
-// modeTests() // uncomment to test!
+modeTests(); // uncomment to test!
 
 /// /////////////////////////
 //     Challenge 2
