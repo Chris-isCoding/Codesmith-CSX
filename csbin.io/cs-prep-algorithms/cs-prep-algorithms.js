@@ -120,9 +120,9 @@ function ransomTests() {
 
 // Write a function that takes in an array and returns a new array with duplicates removed
 
-function deleteDups(arr) {}
-
-// Extension: solve in 0(n) time
+function deleteDups(arr) {
+  return [...new Set(arr)];
+}
 
 function dupsTests() {
   console.log(deleteDups(['a', 'a', 'a', 'a', 'a']), ' -> [a]');
@@ -143,7 +143,9 @@ function dupsTests() {
 // The function should return the number that appears exactly once.
 // ex. uniqueNumber([1,1,4,2,3,2,3]) should return the number 4 since it is the number that appears exactly once in the array
 
-function uniqueNumber(array) {}
+function uniqueNumber(array) {
+  return array.find((ele) => array.indexOf);
+}
 
 function uniqueNumberTests() {
   console.log(uniqueNumber([1, 2, 2, 1, 3, 7, 3]), ' -> 7');
