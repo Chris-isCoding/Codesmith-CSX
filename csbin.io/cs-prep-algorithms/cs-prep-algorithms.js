@@ -77,7 +77,22 @@ function medianTests() {
 
 // Modify the function so that it return whether a number is prime
 
-function isPrime(num) {}
+function isPrime(num) {
+  if (num < 2) {
+    return false;
+  }
+  if (num % 2 === 0) {
+    return num === 2;
+  }
+  // div * div > num
+  // div > num / div
+  for (let div = 3; div < num / div; div += 2) {
+    if (num % div === 0) {
+      return false;
+    }
+  }
+  return true;
+}
 
 // Extension: solve this in 0(logn) time
 
@@ -88,7 +103,7 @@ function primeTests() {
   console.log(isPrime(4), ' -> false');
 }
 
-// primeTests() // Uncomment to check code!
+primeTests(); // Uncomment to check code!
 
 /// /////////////////////////
 //     Challenge 4
