@@ -101,7 +101,26 @@ function primeTests() {
 // Imagine a ransom note (second string) constructed from cut-out letters from a magazine (first string). Except you also need to cut out spaces for some reason.
 // Capitalization matters!
 
-function ransomNote(magazine, message) {}
+function ransomNote(magazine, message) {
+  const countOfLetters = [...magazine].reduce((acc, char) => {
+    if (acc[char]) {
+      acc[char]++;
+    } else {
+      acc[char] = 1;
+    }
+    return acc;
+  }, {});
+
+  for (const letter of message) {
+    let numOfLetters = countOfLetters[letter];
+    if (numOfLetters > 0) {
+      numOfLetters--;
+    } else {
+      return false;
+    }
+  }
+  return true;
+}
 
 function ransomTests() {
   console.log(ransomNote('this is a string!!!', 'is this a string!!'), ' -> true');
@@ -110,7 +129,7 @@ function ransomTests() {
   console.log(ransomNote('this is a string', ''), ' -> true');
 }
 
-// ransomTests() // Uncomment to check code!
+ransomTests(); // Uncomment to check code!
 
 /// /////////////////////////
 //     Challenge 5
@@ -143,9 +162,7 @@ function dupsTests() {
 // The function should return the number that appears exactly once.
 // ex. uniqueNumber([1,1,4,2,3,2,3]) should return the number 4 since it is the number that appears exactly once in the array
 
-function uniqueNumber(array) {
-  return array.find((ele) => array.indexOf);
-}
+function uniqueNumber(array) {}
 
 function uniqueNumberTests() {
   console.log(uniqueNumber([1, 2, 2, 1, 3, 7, 3]), ' -> 7');
