@@ -265,7 +265,15 @@ shuffleTests(); // Determine a way to test this function!
 
 // Challenge: give this function 0(n) time complexity, 0(1) space complexity
 
-function findMissing(array) {}
+function findMissing(array) {
+  const sorted = array.sort((a, b) => a - b);
+  for (let i = 0; i < sorted.length; i++) {
+    if (sorted[i] !== i) {
+      return i;
+    }
+  }
+  return 'No missing numbers';
+}
 
 function findMissingTests() {
   console.log(findMissing([0, 1, 2, 3, 4, 5, 7]), ' -> 6');
@@ -273,4 +281,4 @@ function findMissingTests() {
   console.log(findMissing([0, 7, 1, 5, 2, 4, 3]), ' -> 6');
 }
 
-// findMissingTests() // Uncomment to test this function
+findMissingTests(); // Uncomment to test this function
