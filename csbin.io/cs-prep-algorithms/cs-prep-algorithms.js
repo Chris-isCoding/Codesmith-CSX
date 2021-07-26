@@ -200,7 +200,20 @@ function uniqueNumberTests() {
 
 // Hint: look up how to use regex in JS - specifically how to rip away all characters that aren't letters
 
-function palindrome(string) {}
+function palindrome(string) {
+  const stripped = string.replaceAll(/\p{S}|\p{P}|\s/gu, '').toLowerCase();
+  const last = stripped.length - 1;
+  const palindromeHelper = (i) => {
+    if (i >= last / 2) {
+      return true;
+    }
+    if (stripped[i] !== stripped[last - i]) {
+      return false;
+    }
+    return palindromeHelper(i + 1);
+  };
+  return palindromeHelper(0);
+}
 
 function palindromeTests() {
   console.log(palindrome('Anne, I vote more cars race Rome-to-Vienna'), ' -> true');
@@ -208,7 +221,7 @@ function palindromeTests() {
   console.log(palindrome('jmoney'), ' -> false');
 }
 
-// palindromeTests() // uncomment to check code!
+palindromeTests(); // uncomment to check code!
 
 /// /////////////////////////
 //     Challenge 8
