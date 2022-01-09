@@ -127,9 +127,8 @@ function ransomNote(magazine, message) {
   }, {});
 
   for (const letter of message) {
-    let numOfLetters = countOfLetters[letter];
-    if (numOfLetters > 0) {
-      numOfLetters--;
+    if (countOfLetters[letter] > 0) {
+      countOfLetters[letter]--;
     } else {
       return false;
     }
@@ -138,8 +137,14 @@ function ransomNote(magazine, message) {
 }
 
 function ransomTests() {
-  console.log(ransomNote('this is a string!!!', 'is this a string!!'), ' -> true');
-  console.log(ransomNote('this is a string!!', 'this is a string!!!'), ' -> false');
+  console.log(
+    ransomNote('this is a string!!!', 'is this a string!!'),
+    ' -> true'
+  );
+  console.log(
+    ransomNote('this is a string!!', 'this is a string!!!'),
+    ' -> false'
+  );
   console.log(ransomNote('THIS IS A STRING', 'this is a string'), ' -> false');
   console.log(ransomNote('this is a string', ''), ' -> true');
 }
@@ -161,10 +166,13 @@ function deleteDups(arr) {
 function dupsTests() {
   console.log(deleteDups(['a', 'a', 'a', 'a', 'a']), ' -> [a]');
   console.log(deleteDups(['a', 'b', 'c', 'd']), ' -> [a, b, c, d]');
-  console.log(deleteDups(['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd']), ' -> [a, b, c, d]');
+  console.log(
+    deleteDups(['a', 'b', 'c', 'd', 'a', 'b', 'c', 'd']),
+    ' -> [a, b, c, d]'
+  );
 }
 
-// dupsTests() // Uncomment to check code!
+dupsTests(); // Uncomment to check code!
 
 /// /////////////////////////
 //     Challenge 6
@@ -182,10 +190,13 @@ function uniqueNumber(array) {}
 function uniqueNumberTests() {
   console.log(uniqueNumber([1, 2, 2, 1, 3, 7, 3]), ' -> 7');
   console.log(uniqueNumber([1, 2, 2, 1, 3]), ' -> 3');
-  console.log(uniqueNumber([1, 2, 2, 1, 3, 7, 3, 5, 5, 6, 6, 7, 9, 8, 9]), ' -> 8');
+  console.log(
+    uniqueNumber([1, 2, 2, 1, 3, 7, 3, 5, 5, 6, 6, 7, 9, 8, 9]),
+    ' -> 8'
+  );
 }
 
-// uniqueNumberTests() // uncomment to test!
+// uniqueNumberTests(); // uncomment to test!
 
 /// /////////////////////////
 //     Challenge 7
@@ -216,7 +227,10 @@ function palindrome(string) {
 }
 
 function palindromeTests() {
-  console.log(palindrome('Anne, I vote more cars race Rome-to-Vienna'), ' -> true');
+  console.log(
+    palindrome('Anne, I vote more cars race Rome-to-Vienna'),
+    ' -> true'
+  );
   console.log(palindrome('llama mall'), ' -> true');
   console.log(palindrome('jmoney'), ' -> false');
 }
@@ -238,7 +252,10 @@ function sort(array) {}
 function sortTests() {
   console.log(sort([1, 2, 3, 4, 5]), ' -> [1, 2, 3, 4, 5]');
   console.log(sort([10, 4, 7, 6, 1]), ' -> [1, 4, 6, 7, 10]');
-  console.log(sort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]), ' -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]');
+  console.log(
+    sort([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]),
+    ' -> [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]'
+  );
 }
 
 // sortTests() // uncomment to test!
