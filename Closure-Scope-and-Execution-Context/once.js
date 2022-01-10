@@ -27,17 +27,21 @@ Write a function once that accepts a callback as input and returns a function. W
 // ================================================================================
 
 const once = (cb) => {
-	const called = {};
-	return (...args) =>
-		called.once ? called.once : ((called.once = cb(...args)), called.once);
+  let calledOnce = false;
+  let result;
+  return (...args) => {
+    if (!calledOnce) {
+      result = cb(...args);
+      calledOnce = true;
+    }
+    return result;
+  };
 };
 
 // UNCOMMENT THESE TO TEST YOUR WORK!
 
-const addByTwoOnce = once(function (num) {
-	return num + 2;
-});
+const addByTwoOnce = once((num) => num + 2);
 
-console.log(addByTwoOnce(5)); //should log 7
-console.log(addByTwoOnce(10)); //should log 7
-console.log(addByTwoOnce(9001)); //should log 7
+console.log(addByTwoOnce(5)); // should log 7
+console.log(addByTwoOnce(10)); // should log 7
+console.log(addByTwoOnce(9001)); // should log 7
