@@ -24,7 +24,7 @@ cascade(12345) should print
 // ================================================================================
 
 function cascade(number) {
-  if (!number) return;
+  if (!Number.isInteger(number) || number < 0) return;
   const stringified = number.toString();
   const cascadeDecreasing = (i) => {
     if (i === 0) return;
