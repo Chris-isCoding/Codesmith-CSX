@@ -185,7 +185,19 @@ dupsTests(); // Uncomment to check code!
 // The function should return the number that appears exactly once.
 // ex. uniqueNumber([1,1,4,2,3,2,3]) should return the number 4 since it is the number that appears exactly once in the array
 
-function uniqueNumber(array) {}
+function uniqueNumber(array) {
+  const counter = {};
+  for (const num of array) {
+    if (!counter[num]) {
+      counter[num] = 1;
+    } else {
+      counter[num]++;
+    }
+  }
+  return Number(
+    Object.entries(counter).find(([_key, value]) => value === 1)[0]
+  );
+}
 
 function uniqueNumberTests() {
   console.log(uniqueNumber([1, 2, 2, 1, 3, 7, 3]), ' -> 7');
@@ -196,7 +208,7 @@ function uniqueNumberTests() {
   );
 }
 
-// uniqueNumberTests(); // uncomment to test!
+uniqueNumberTests(); // uncomment to test!
 
 /// /////////////////////////
 //     Challenge 7
