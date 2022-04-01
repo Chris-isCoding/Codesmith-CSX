@@ -13,10 +13,10 @@ Write a recursive function countdown that accepts a positive integer n as an inp
 // ==========================================================================
 
 function countdown(n) {
-	// n is positive integer
-	if (n === 0) return;
-	console.log(n);
-	return countdown(n - 1);
+  // n is positive integer
+  if (n === 0) return;
+  console.log(n);
+  countdown(n - 1);
 }
 
 // To check if you've completed it, uncomment these console.logs!
@@ -46,9 +46,10 @@ Write a recursive function sum that calculates the sum of an array of integers.
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const sum = array => {
-	const sumHelper = i => (array[i] === undefined ? 0 : array[i] + sumHelper(i + 1));
-	return sumHelper(0);
+const sum = (array) => {
+  const sumHelper = (i) =>
+    array[i] === undefined ? 0 : array[i] + sumHelper(i + 1);
+  return sumHelper(0);
 };
 
 // uncomment these to check your work
@@ -79,14 +80,14 @@ Write a recursive function palindrome that accepts a string as an input and retu
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const palindrome = string => {
-	const stripped = string.replace(/[\p{P}\p{S}\s]/gu, '').toLowerCase();
-	const paliHelper = i => {
-		if (i === stripped.length) return true;
-		if (stripped[i] !== stripped[stripped.length - i - 1]) return false;
-		return paliHelper(i + 1);
-	};
-	return paliHelper(0);
+const palindrome = (string) => {
+  const stripped = string.replace(/[\p{P}\p{S}\s]/gu, '').toLowerCase();
+  const paliHelper = (i) => {
+    if (i === stripped.length) return true;
+    if (stripped[i] !== stripped[stripped.length - i - 1]) return false;
+    return paliHelper(i + 1);
+  };
+  return paliHelper(0);
 };
 
 // console.log(palindrome('Anne, I vote more cars race Rome-to-Vienna')); //-> true
@@ -106,14 +107,14 @@ Write a recursive function isPrime that determines if a number is prime and retu
 // ==========================================================================
 
 function isPrime(num) {
-	if (num < 2) return false;
-	if (num % 2 === 0) return num === 2;
-	const isPrimeHelper = i => {
-		if (num % i) return num === i;
-		if (num / i < i) return true;
-		return isPrimeHelper(i + 2);
-	};
-	return isPrimeHelper(3);
+  if (num < 2) return false;
+  if (num % 2 === 0) return num === 2;
+  const isPrimeHelper = (i) => {
+    if (num % i === 0) return num === i;
+    if (num / i < i) return true;
+    return isPrimeHelper(i + 2);
+  };
+  return isPrimeHelper(3);
 }
 
 // console.log(isPrime(1)); //-> false
@@ -148,11 +149,18 @@ pathFinder(obj,arr);   //-> "finish"
 // ==========================================================================
 
 const pathFinder = (obj, arr) => {
-	const pathFinderHelper = (obj, i) => (i === arr.length || obj === undefined ? obj : pathFinderHelper(obj[arr[i]], i + 1));
-	return pathFinderHelper(obj, 0);
+  const pathFinderHelper = (obj, i) =>
+    i === arr.length || obj === undefined
+      ? obj
+      : pathFinderHelper(obj[arr[i]], i + 1);
+  return pathFinderHelper(obj, 0);
 };
 
-const obj = { first: { second: { third: 'finish' } }, second: { third: 'wrong' } };
+const obj = {
+  first: { second: { third: 'finish' } },
+  second: { third: 'wrong' },
+};
+
 const arr = ['first', 'second', 'third'];
 
 // console.log(pathFinder(obj, arr)); //-> "finish"
@@ -172,11 +180,13 @@ Write a recursive function flattenRecursively that flattens a nested array. Your
 // ==========================================================================
 
 function flattenRecursively(arr) {
-	const flatHelper = i => {
-		if (i === arr.length) return arr;
-		return Array.isArray(arr[i]) ? (arr.splice(i, 1, ...arr[i]), flatHelper(i)) : flatHelper(i + 1);
-	};
-	return flatHelper(0);
+  const flatHelper = (i) => {
+    if (i === arr.length) return arr;
+    return Array.isArray(arr[i])
+      ? (arr.splice(i, 1, ...arr[i]), flatHelper(i))
+      : flatHelper(i + 1);
+  };
+  return flatHelper(0);
 }
 
 // console.log(flattenRecursively([1, [2, 3, [4]]])); //-> [1, 2, 3, 4]
@@ -195,13 +205,13 @@ Write a recursive function findInOrderedSet that determines if a number is in an
 // ==========================================================================
 
 function findInOrderedSet(arr, target) {
-	if (arr.length === 0) return `empty array`;
-	const findHelper = i => {
-		if (arr[i] > target) return false;
-		if (arr[i] === target) return true;
-		return findHelper(i + 1);
-	};
-	return findHelper(0);
+  if (arr.length === 0) return `empty array`;
+  const findHelper = (i) => {
+    if (arr[i] > target) return false;
+    if (arr[i] === target) return true;
+    return findHelper(i + 1);
+  };
+  return findHelper(0);
 }
 
 const nums = [1, 4, 6, 7, 9, 17, 45];
@@ -221,16 +231,16 @@ There are n stairs. A person standing at the bottom wants to reach the top. The 
 // ==========================================================================
 
 function countWaysToReachNthStair(n) {
-	const countHelper = (num, prev, cur) => {
-		if (num === 0) return cur;
-		return countHelper(num - 1, cur, prev + cur);
-	};
-	return countHelper(Math.abs(n), 0, 1);
+  const countHelper = (num, prev, cur) => {
+    if (num === 0) return cur;
+    return countHelper(num - 1, cur, prev + cur);
+  };
+  return countHelper(Math.abs(n), 0, 1);
 }
 
-console.log(countWaysToReachNthStair(1)); //-> 1 (only one way to climb 1 stair)
-console.log(countWaysToReachNthStair(2)); //-> 2 ((1, 1), (2))
-console.log(countWaysToReachNthStair(4)); //-> 5 ((1, 1, 1, 1), (1, 1, 2), (2, 1, 1), (2, 2))
+console.log(countWaysToReachNthStair(1)); // -> 1 (only one way to climb 1 stair)
+console.log(countWaysToReachNthStair(2)); // -> 2 ((1, 1), (2))
+console.log(countWaysToReachNthStair(4)); // -> 5 ((1, 1, 1, 1), (1, 1, 2), (2, 1, 1), (2, 2))
 
 // ============================== CHALLENGE 9  ==============================
 // ==========================================================================
@@ -289,17 +299,17 @@ Write a function getRangeBetween that returns an array of all integers between v
 // ==========================================================================
 
 const getRangeBetween = (x, y) => {
-	const arr = [];
-	if (x > y) {
-		[x, y] = [y, x];
-		return getRangeBetween(x, y).reverse();
-	}
-	const ranger = i => {
-		if (i === y - x - 1) return arr;
-		arr[i] = x + 1 + i;
-		return ranger(i + 1);
-	};
-	return ranger(0);
+  const arr = [];
+  if (x > y) {
+    [x, y] = [y, x];
+    return getRangeBetween(x, y).reverse();
+  }
+  const ranger = (i) => {
+    if (i === y - x - 1) return arr;
+    arr[i] = x + 1 + i;
+    return ranger(i + 1);
+  };
+  return ranger(0);
 };
 
 // console.log(getRangeBetween(2, 9)); //-> [3, 4, 5, 6, 7, 8]
