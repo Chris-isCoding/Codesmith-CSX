@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 // console.log(`Hello World!`);
 
 // ============================== CHALLENGE 1  ==============================
@@ -48,7 +49,7 @@ Create a function createFunctionPrinter that accepts one input and returns a fun
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const createFunctionPrinter = input => () => console.log(input);
+const createFunctionPrinter = (input) => () => console.log(input);
 
 // /*** Uncomment these to check your work! ***/
 const printSample = createFunctionPrinter('sample');
@@ -67,12 +68,12 @@ Uncomment those lines of code. Try to deduce the output before executing. Now we
 */
 
 function outer() {
-	let counter = 0; // this variable is outside incrementCounter's scope
-	function incrementCounter() {
-		counter++;
-		console.log('counter', counter);
-	}
-	return incrementCounter;
+  let counter = 0; // this variable is outside incrementCounter's scope
+  function incrementCounter() {
+    counter++;
+    console.log('counter', counter);
+  }
+  return incrementCounter;
 }
 
 const willCounter = outer();
@@ -101,7 +102,7 @@ const jasCounter = outer();
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const addByX = x => num => num + x;
+const addByX = (x) => (num) => num + x;
 
 // /*** Uncomment these to check your work! ***/
 const addByTwo = addByX(2);
@@ -139,9 +140,12 @@ Write a function once that accepts a callback as input and returns a function. W
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const once = func => {
-	const firstTime = {};
-	return (...args) => ('called' in firstTime ? firstTime.called : (firstTime.called = func(...args)));
+const once = (func) => {
+  const firstTime = {};
+  return (...args) =>
+    'called' in firstTime
+      ? firstTime.called
+      : (firstTime.called = func(...args));
 };
 
 // /*** Uncomment these to check your work! ***/
@@ -174,11 +178,14 @@ Write a function after that takes the number of times the callback needs to be c
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const after = (count, func) => (...args) => (count <= 1 ? func(...args) : (count--, undefined));
+const after =
+  (count, func) =>
+  (...args) =>
+    count <= 1 ? func(...args) : (count--, undefined);
 
 // /*** Uncomment these to check your work! ***/
 const called = function () {
-	console.log('hello');
+  console.log('hello');
 };
 const afterCalled = after(3, called);
 // afterCalled(); // => nothing is printed
@@ -206,7 +213,10 @@ Write a function delay that accepts a callback as the first parameter and the wa
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const delay = (func, wait) => (...args) => setTimeout(func, wait, ...args);
+const delay =
+  (func, wait) =>
+  (...args) =>
+    setTimeout(func, wait, ...args);
 
 // UNCOMMENT THE CODE BELOW TO TEST DELAY
 let count = 0;
@@ -241,11 +251,13 @@ Write a function rollCall that accepts an array of names and returns a function.
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const rollCall = names => {
-	let count = 0;
-	return () => {
-		count >= names.length ? console.log(`Everyone accounted for`) : console.log(names[count++]);
-	};
+const rollCall = (names) => {
+  let count = 0;
+  return () => {
+    count >= names.length
+      ? console.log(`Everyone accounted for`)
+      : console.log(names[count++]);
+  };
 };
 
 // /*** Uncomment these to check your work! ***/
@@ -281,13 +293,13 @@ Create a function saveOutput that accepts a function (that will accept one argum
 // ==========================================================================
 
 const saveOutput = (func, magicWord) => {
-	const cache = {};
-	return arg => (arg === magicWord ? cache : (cache[arg] = func(arg)));
+  const cache = {};
+  return (arg) => (arg === magicWord ? cache : (cache[arg] = func(arg)));
 };
 
 // /*** Uncomment these to check your work! ***/
 const multiplyBy2 = function (num) {
-	return num * 2;
+  return num * 2;
 };
 const multBy2AndLog = saveOutput(multiplyBy2, 'boo');
 // console.log(multBy2AndLog(2)); // => should log 4
@@ -316,9 +328,9 @@ Create a function cycleIterator that accepts an array, and returns a function. T
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const cycleIterator = array => {
-	let counter = 0;
-	return () => array[counter++ % array.length];
+const cycleIterator = (array) => {
+  let counter = 0;
+  return () => array[counter++ % array.length];
 };
 
 // /*** Uncomment these to check your work! ***/
@@ -350,11 +362,14 @@ Create a function defineFirstArg that accepts a function and an argument. Also, 
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const defineFirstArg = (func, arg) => (...args) => func(arg, ...args);
+const defineFirstArg =
+  (func, arg) =>
+  (...args) =>
+    func(arg, ...args);
 
 // /*** Uncomment these to check your work! ***/
 const subtract = function (big, small) {
-	return big - small;
+  return big - small;
 };
 const subFrom20 = defineFirstArg(subtract, 20);
 // console.log(subFrom20(5)); // => should log 15
@@ -380,10 +395,12 @@ Create a function dateStamp that accepts a function and returns a function. The 
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const dateStamp = func => (...args) => ({ date: new Date().toDateString(), output: func(...args) });
+const dateStamp =
+  (func) =>
+  (...args) => ({ date: new Date().toDateString(), output: func(...args) });
 
 // /*** Uncomment these to check your work! ***/
-const stampedMultBy2 = dateStamp(n => n * 2);
+const stampedMultBy2 = dateStamp((n) => n * 2);
 // console.log(stampedMultBy2(4)); // => should log { date: (today's date), output: 8 }
 // console.log(stampedMultBy2(6)); // => should log { date: (today's date), output: 12 }
 
@@ -416,13 +433,16 @@ Create a function censor that accepts no arguments. censor will return a functio
 // ==========================================================================
 
 const censor = () => {
-	const pairs = {};
-	return (...strings) => {
-		if (strings.length === 1) {
-			return Object.keys(pairs).reduce((string, word) => string.replace(word, pairs[word]), strings[0]); // replaceAll
-		}
-		pairs[strings[0]] = strings[1];
-	};
+  const pairs = {};
+  return (...strings) => {
+    if (strings.length === 1) {
+      return Object.keys(pairs).reduce(
+        (string, word) => string.replace(word, pairs[word]),
+        strings[0]
+      ); // replaceAll
+    }
+    pairs[strings[0]] = strings[1];
+  };
 };
 
 // /*** Uncomment these to check your work! ***/
@@ -444,14 +464,14 @@ There's no such thing as private properties on a JavaScript object! But, maybe t
 // ==========================================================================
 
 function createSecretHolder(secret) {
-	const secretHolder = {};
-	secretHolder.getSecret = function () {
-		return secret;
-	};
-	secretHolder.setSecret = function (value) {
-		secret = value;
-	};
-	return secretHolder;
+  const secretHolder = {};
+  secretHolder.getSecret = function () {
+    return secret;
+  };
+  secretHolder.setSecret = function (value) {
+    secret = value;
+  };
+  return secretHolder;
 }
 
 // /*** Uncomment these to check your work! ***/
@@ -483,14 +503,14 @@ Write a function, callTimes, that returns a new function. The new function shoul
 // ==========================================================================
 
 const callTimes = () => {
-	let counter = 0;
-	return () => ++counter;
+  let counter = 0;
+  return () => ++counter;
 };
 
 // /*** Uncomment these to check your work! ***/
 
-let myNewFunc1 = callTimes();
-let myNewFunc2 = callTimes();
+const myNewFunc1 = callTimes();
+const myNewFunc2 = callTimes();
 // console.log(myNewFunc1()); // => 1
 // console.log(myNewFunc1()); // => 2
 // console.log(myNewFunc2()); // => 1
@@ -527,11 +547,12 @@ Create a function russianRoulette that accepts a number (let us call it n), and 
 
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
-//randomize num :]
+// randomize num :]
 
 const russianRoulette = () => {
-	let num = Math.floor(Math.random() * 5 + 1);
-	return () => (--num > 0 ? 'click' : num === 0 ? 'bang' : 'reload to play again');
+  let num = Math.floor(Math.random() * 5 + 1);
+  return () =>
+    --num > 0 ? 'click' : num === 0 ? 'bang' : 'reload to play again';
 };
 
 // /*** Uncomment these to check your work! ***/
@@ -554,34 +575,40 @@ Create a function average that accepts no arguments, and returns a function (tha
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-// function average() {
-// 	let sum = 0;
-// 	let times = 0;
-// 	return function (num) {
-// 		if (arguments.length === 0) {
-// 			if (times === 0) return sum;
-// 			return sum / times;
-// 		}
-// 		return (sum += num) / ++times;
-// 	};
-// }
+function average() {
+  let sum = 0;
+  let times = 0;
+  return function (num) {
+    if (arguments.length !== 0) {
+      times++;
+      sum += num;
+    }
+    return times && sum / times;
+  };
+}
 
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const average = () => {
-	const cache = { sum: 0, times: 0 };
-	return num => (num === undefined ? (cache.times === 0 ? cache.sum : cache.sum / cache.times) : (cache.sum += num) / ++cache.times);
-};
+// const average = () => {
+//   const cache = { sum: 0, times: 0 };
+//   return (num) => {
+//     if (num !== undefined) {
+//       cache.times++;
+//       cache.sum += num;
+//     }
+//     return cache.times && cache.sum / cache.times;
+//   };
+// };
 
 // /*** Uncomment these to check your work! ***/
 const avgSoFar = average();
-// console.log(avgSoFar()); // => should log 0
-// console.log(avgSoFar(4)); // => should log 4
-// console.log(avgSoFar(8)); // => should log 6
-// console.log(avgSoFar()); // => should log 6
-// console.log(avgSoFar(12)); // => should log 8
-// console.log(avgSoFar()); // => should log 8
+console.log(avgSoFar()); // => should log 0
+console.log(avgSoFar(4)); // => should log 4
+console.log(avgSoFar(8)); // => should log 6
+console.log(avgSoFar()); // => should log 6
+console.log(avgSoFar(12)); // => should log 8
+console.log(avgSoFar()); // => should log 8
 
 // ============================== CHALLENGE 17  ==============================
 // ==========================================================================
@@ -596,9 +623,12 @@ Create a function makeFuncTester that accepts an array (of two-element sub-array
 // ==========================================================================
 
 function makeFuncTester(arrOfTests) {
-	return function (cb) {
-		return arrOfTests.filter(pair => cb(pair[0]) === pair[1]).length === arrOfTests.length;
-	};
+  return function (cb) {
+    return (
+      arrOfTests.filter((pair) => cb(pair[0]) === pair[1]).length ===
+      arrOfTests.length
+    );
+  };
 }
 
 // ============================== SOLUTION 2 ==============================
@@ -612,8 +642,8 @@ capLastTestCases.push(['hello', 'hellO']);
 capLastTestCases.push(['goodbye', 'goodbyE']);
 capLastTestCases.push(['howdy', 'howdY']);
 const shouldCapitalizeLast = makeFuncTester(capLastTestCases);
-const capLastAttempt1 = str => str.toUpperCase();
-const capLastAttempt2 = str => str.slice(0, -1) + str.slice(-1).toUpperCase();
+const capLastAttempt1 = (str) => str.toUpperCase();
+const capLastAttempt2 = (str) => str.slice(0, -1) + str.slice(-1).toUpperCase();
 // console.log(shouldCapitalizeLast(capLastAttempt1)); // => should log false
 // console.log(shouldCapitalizeLast(capLastAttempt2)); // => should log true
 
@@ -648,16 +678,16 @@ Create a function makeHistory that accepts a number (which will serve as a limit
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const makeHistory = limit => {
-	const strings = [];
-	return str =>
-		str === `undo`
-			? !(0 in strings)
-				? `nothing to undo`
-				: `${strings.shift()} undone`
-			: strings.unshift(str) > limit
-			? ((strings.length = limit), `${str} done`)
-			: `${str} done`;
+const makeHistory = (limit) => {
+  const strings = [];
+  return (str) =>
+    str === `undo`
+      ? !(0 in strings)
+        ? `nothing to undo`
+        : `${strings.shift()} undone`
+      : strings.unshift(str) > limit
+      ? ((strings.length = limit), `${str} done`)
+      : `${str} done`;
 };
 
 // /*** Uncomment these to check your work! ***/
@@ -705,32 +735,36 @@ BONUS: Implement blackjack so the DEALER function can return more PLAYER functio
 // ==========================================================================
 
 function blackjack(array) {
-	let draft = 0;
-	let counter = 0;
-	const players = {};
-	return function (num1, num2) {
-		const id = ++counter;
-		let score = num1 + num2;
-		let started = false;
-		players[id] = 0;
-		return function () {
-			if (players[id]) return `you are done!`;
-			if (started === false) {
-				started = true;
-				return score > 21 ? ((players[id] = 1), `bust`) : score;
-			}
-			return (score += array[draft++]) > 21 ? ((players[id] = 1), `bust`) : score;
-		};
-	};
+  let draft = 0;
+  let counter = 0;
+  const players = {};
+  return function (num1, num2) {
+    const id = ++counter;
+    let score = num1 + num2;
+    let started = false;
+    players[id] = 0;
+    return function () {
+      if (players[id]) return `you are done!`;
+      if (started === false) {
+        started = true;
+        return score > 21 ? ((players[id] = 1), `bust`) : score;
+      }
+      return (score += array[draft++]) > 21
+        ? ((players[id] = 1), `bust`)
+        : score;
+    };
+  };
 }
 
 // /*** Uncomment these to check your work! ***/
 
 // /*** DEALER ***/
-const deal = blackjack([2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11]);
+// const deal = blackjack([
+//   2, 6, 1, 7, 11, 4, 6, 3, 9, 8, 9, 3, 10, 4, 5, 3, 7, 4, 9, 6, 10, 11,
+// ]);
 
 // /*** PLAYER 1 ***/
-const player1 = deal(4, 5);
+// const player1 = deal(4, 5);
 console.log(player1()); // => should log 9
 console.log(player1()); // => should log 11
 console.log(player1()); // => should log 17
@@ -742,7 +776,7 @@ console.log(player1()); // => should log 'you are done!'
 // /*** BELOW LINES ARE FOR THE BONUS ***/
 
 // /*** PLAYER 2 ***/
-const player2 = deal(2, 2);
+// const player2 = deal(2, 2);
 console.log(player2()); // => should log 4
 console.log(player2()); // => should log 15
 console.log(player2()); // => should log 19
@@ -751,7 +785,7 @@ console.log(player2()); // => should log 'you are done!
 console.log(player2()); // => should log 'you are done!
 
 // /*** PLAYER 3 ***/
-const player3 = deal(3, 7);
+// const player3 = deal(3, 7);
 console.log(player3()); // => should log 10
 console.log(player3()); // => should log 13
 console.log(player3()); // => should log 'bust'
@@ -759,43 +793,51 @@ console.log(player3()); // => should log 'you are done!
 console.log(player3()); // => should log 'you are done!
 
 // BONUS VERSION
-
-const blackjack = arr => {
-	const deck = Array(4).fill(arr).flat(); // deck holds 4 times each value of provided cards
-	const shuffle = () => {
-		// define simple function expression to shuffle deck
-		deck.forEach((card, i) => {
-			const random = Math.floor(Math.random() * deck.length);
-			[deck[i], deck[random]] = [deck[random], deck[i]];
-		});
-	};
-	shuffle(); // shuffling deck
-	const stack = [...deck];
-	const add = () => {
-		// function expression to add shuffled deck to current stack of cards
-		shuffle();
-		stack.push(...deck);
-	};
-	let draft = 0; // keeps track how many cards were drafted
-	let counter = 0; // keeps track of how many players joined the game
-	const players = {};
-	return () => {
-		let id = 'player' + ++counter; // gives new id to every player
-		players[id] = { fresh: 1 };
-		if (draft === stack.length - 3) add();
-		let score = stack[draft++] + stack[draft++]; // new player joins and drafts 2 cards
-		return () => {
-			if (players[id].status) return `you are done!`;
-			if (players[id].fresh) {
-				players[id].fresh = 0;
-				return score === 21 ? ((players[id].status = 1), `You won!`) : score > 21 ? ((players[id].status = 1), `bust`) : score;
-			}
-			if (draft === stack.length - 2) add();
-			return (score += stack[draft++]) === 21 ? ((players[id].status = 1), `You won!`) : score > 21 ? ((players[id].status = 1), `bust`) : score;
-		};
-	};
+/*
+const blackjack = (arr) => {
+  const deck = Array(4).fill(arr).flat(); // deck holds 4 times each value of provided cards
+  const shuffle = () => {
+    // define simple function expression to shuffle deck
+    deck.forEach((card, i) => {
+      const random = Math.floor(Math.random() * deck.length);
+      [deck[i], deck[random]] = [deck[random], deck[i]];
+    });
+  };
+  shuffle(); // shuffling deck
+  const stack = [...deck];
+  const add = () => {
+    // function expression to add shuffled deck to current stack of cards
+    shuffle();
+    stack.push(...deck);
+  };
+  let draft = 0; // keeps track how many cards were drafted
+  let counter = 0; // keeps track of how many players joined the game
+  const players = {};
+  return () => {
+    let id = 'player' + ++counter; // gives new id to every player
+    players[id] = { fresh: 1 };
+    if (draft === stack.length - 3) add();
+    let score = stack[draft++] + stack[draft++]; // new player joins and drafts 2 cards
+    return () => {
+      if (players[id].status) return `you are done!`;
+      if (players[id].fresh) {
+        players[id].fresh = 0;
+        return score === 21
+          ? ((players[id].status = 1), `You won!`)
+          : score > 21
+          ? ((players[id].status = 1), `bust`)
+          : score;
+      }
+      if (draft === stack.length - 2) add();
+      return (score += stack[draft++]) === 21
+        ? ((players[id].status = 1), `You won!`)
+        : score > 21
+        ? ((players[id].status = 1), `bust`)
+        : score;
+    };
+  };
 };
-
+*/
 const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
 const deal = blackjack(cards);
 
