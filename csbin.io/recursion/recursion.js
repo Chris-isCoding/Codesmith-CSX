@@ -298,19 +298,28 @@ Write a function getRangeBetween that returns an array of all integers between v
 // ============================== SOLUTION 2 ==============================
 // ==========================================================================
 
-const getRangeBetween = (x, y) => {
-  const arr = [];
-  if (x > y) {
-    [x, y] = [y, x];
-    return getRangeBetween(x, y).reverse();
-  }
-  const ranger = (i) => {
-    if (i === y - x - 1) return arr;
-    arr[i] = x + 1 + i;
-    return ranger(i + 1);
-  };
-  return ranger(0);
-};
+// const getRangeBetween = (x, y) => {
+//   const arr = [];
+//   if (x > y) {
+//     [x, y] = [y, x];
+//     return getRangeBetween(x, y).reverse();
+//   }
+//   const ranger = (i) => {
+//     if (i === y - x - 1) return arr;
+//     arr[i] = x + 1 + i;
+//     return ranger(i + 1);
+//   };
+//   return ranger(0);
+// };
 
-// console.log(getRangeBetween(2, 9)); //-> [3, 4, 5, 6, 7, 8]
-// console.log(getRangeBetween(-5, 5)); //-> [-4, -3, -2, 1, 0, 1, 2, 3, 4]
+function getRangeBetween(x, y) {
+  if (y < x) {
+    [x, y] = [y, x];
+    return [x + 1].concat(getRangeBetween(x + 1, y)).reverse();
+  }
+  if (y - x === 1) return [];
+  return [x + 1].concat(getRangeBetween(x + 1, y));
+}
+
+console.log(getRangeBetween(2, -9)); // -> [3, 4, 5, 6, 7, 8]
+console.log(getRangeBetween(-5, 5)); // -> [-4, -3, -2, 1, 0, 1, 2, 3, 4]
