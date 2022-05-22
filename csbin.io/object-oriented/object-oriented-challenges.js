@@ -15,13 +15,18 @@ Create a function that has two parameters (name and age) and returns an object. 
 // ============================== SOLUTION 1 ==============================
 // ==========================================================================
 
-function makePerson(name, age) {
-  const person = {};
-  person.name = name;
-  person.age = age;
+// function makePerson(name, age) {
+//   const person = {};
+//   person.name = name;
+//   person.age = age;
 
-  return person;
-}
+//   return person;
+// }
+
+// ============================== SOLUTION 2 ==============================
+// ==========================================================================
+
+const makePerson = (name, age) => ({ name, age });
 
 const vicky = makePerson('Vicky', 24);
 
