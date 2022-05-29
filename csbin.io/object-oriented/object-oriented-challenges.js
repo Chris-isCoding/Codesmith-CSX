@@ -43,6 +43,9 @@ Inside personStore object, create a property greet where the value is a function
 
 */
 
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
 const personStore = {
   greet() {
     console.log('hello');
@@ -50,7 +53,7 @@ const personStore = {
 };
 
 // /********* Uncomment this line to test your work! *********/
-personStore.greet(); // -> Logs 'hello'
+// personStore.greet(); // -> Logs 'hello'
 
 // ============================== CHALLENGE 3  ==============================
 // ==========================================================================
@@ -60,6 +63,23 @@ personStore.greet(); // -> Logs 'hello'
 Create a function personFromPersonStore that takes as input a name and an age. When called, the function will create person objects using the Object.create method on the personStore object.
 
 */
+
+// ============================== SOLUTION 1 ==============================
+// ==========================================================================
+
+function personFromPersonStore(name, age) {
+  const person = Object.create(personStore);
+  person.name = name;
+  person.age = age;
+  return person;
+}
+
+const sandra = personFromPersonStore('Sandra', 26);
+
+// /********* Uncomment these lines to test your work! *********/
+console.log(sandra.name); // -> Logs 'Sandra'
+console.log(sandra.age); // -> Logs 26
+sandra.greet(); // -> Logs 'hello'
 
 // ============================== CHALLENGE 4  ==============================
 // ==========================================================================
