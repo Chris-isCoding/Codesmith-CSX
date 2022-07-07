@@ -13,7 +13,7 @@ console.log(typeof myStr === "string") //=> true
 
 */
 
-//Uncomment the lines below to test your code
+// Uncomment the lines below to test your code
 // console.log(typeof 7.0 === "number")
 // console.log(typeof 22 === "number")
 // console.log(typeof true === "boolean")
@@ -24,7 +24,7 @@ console.log(typeof myStr === "string") //=> true
 // myVar = 'Chris' //add your name here
 // console.log(typeof myVar === "string")
 
-//Comment them back out with two forward slashes at the beginning once you have finished
+// Comment them back out with two forward slashes at the beginning once you have finished
 
 // ============================== CHALLENGE 2  ==============================
 // ==========================================================================
@@ -36,8 +36,10 @@ Create a functon buildSentence that takes three words (strings) and adds them to
 */
 
 function buildSentence(word1, word2, word3) {
-	const sentence = `${word1[0].toUpperCase()}${word1.slice(1)} ${word2} ${word3}.`;
-	console.log(sentence);
+  const sentence = `${word1[0].toUpperCase()}${word1.slice(
+    1
+  )} ${word2} ${word3}.`;
+  console.log(sentence);
 }
 
 // buildSentence("coding", "is", "awesome") //=> "Coding is awesome."
@@ -54,10 +56,10 @@ Hint: Remember that each character/letter in a string has an index position that
 */
 
 function lastLetter(word) {
-	console.log(word[word.length - 1]);
+  console.log(word[word.length - 1]);
 }
 
-//Uncomment the lines below to test your code
+// Uncomment the lines below to test your code
 // lastLetter("hello") //=> "o"
 // lastLetter("goodbye!") //=> "!"
 // lastLetter("ZeltoiD") //=> "D"
@@ -78,15 +80,15 @@ If time is anything else: "That's not a real time, <name>. Maybe you need some s
 */
 
 function buildGreeting(time, name) {
-	if (time >= 0 && time <= 11) {
-		console.log(`"Good Morning, ${name}!`);
-	} else if (time >= 12 && time <= 16) {
-		console.log(`Good Afternoon, ${name}!`);
-	} else if (time >= 17 && time <= 23) {
-		console.log(`Good Evening, ${name}!`);
-	} else {
-		console.log(`That's not a real time, ${name}. Maybe you need some sleep!`);
-	}
+  if (time >= 0 && time <= 11) {
+    console.log(`"Good Morning, ${name}!`);
+  } else if (time >= 12 && time <= 16) {
+    console.log(`Good Afternoon, ${name}!`);
+  } else if (time >= 17 && time <= 23) {
+    console.log(`Good Evening, ${name}!`);
+  } else {
+    console.log(`That's not a real time, ${name}. Maybe you need some sleep!`);
+  }
 }
 
 // buildGreeting(8, "Maggie") //=> "Good Morning, Maggie!"
@@ -106,10 +108,20 @@ Enter the index position you think indexOf will return for each below.
 
 */
 
-// console.log( "CodeSmith".indexOf("o") === 1 );
-// console.log( "hello".indexOf("ll") === 2 )
-// console.log( "zebra".indexOf("z") === 0 )
-// console.log( "banana".indexOf("B") === -1 )
+const indexOf = (str1, str2) => {
+  for (let i = 0; i < str1.length; i++) {
+    const substring = str1.substring(i, i + str2.length);
+    if (substring === str2) {
+      return i;
+    }
+  }
+  return -1;
+};
+
+console.log(indexOf('CodeSmith', 'o') === 1);
+console.log(indexOf('hello', 'll') === 2);
+console.log(indexOf('zebra', 'z') === 0);
+console.log(indexOf('banana', 'B') === -1);
 
 // ============================== CHALLENGE 6  ==============================
 // ==========================================================================
@@ -122,7 +134,7 @@ Create a function letterExists that takes a word (string) and a character (strin
 */
 
 function letterExists(word, letter) {
-	console.log(word.indexOf(letter) !== -1);
+  console.log(word.indexOf(letter) !== -1);
 }
 
 // letterExists("superman", "e") //=> true
@@ -143,27 +155,27 @@ Create a function isPrime that console.logs a boolean indicating if `number` is 
 // ==========================================================================
 
 function isPrime(number) {
-	let result;
-	if (number < 2) {
-		result = false;
-	}
-	if (result === undefined) {
-		if (number % 2 === 0) {
-			result = number === 2;
-		}
-	}
-	if (result === undefined) {
-		for (let i = 3; i < Math.sqrt(number); i += 2) {
-			if (number % i === 0) {
-				result = false;
-				break;
-			}
-		}
-	}
-	if (result === undefined) {
-		result = true;
-	}
-	console.log(result);
+  let result;
+  if (number < 2) {
+    result = false;
+  }
+  if (result === undefined) {
+    if (number % 2 === 0) {
+      result = number === 2;
+    }
+  }
+  if (result === undefined) {
+    for (let i = 3; i < Math.sqrt(number); i += 2) {
+      if (number % i === 0) {
+        result = false;
+        break;
+      }
+    }
+  }
+  if (result === undefined) {
+    result = true;
+  }
+  console.log(result);
 }
 
 // ============================== SOLUTION 2 ==============================
@@ -218,33 +230,33 @@ Create a function range that console.logs all numbers between 'start' and 'end' 
 // ==========================================================================
 
 function range(start, end) {
-	let ranger = '';
-	for (let i = start; i <= end; i++) {
-		if (i === end) {
-			ranger += i;
-		} else {
-			ranger += `${i}, `;
-		}
-	}
-	console.log(ranger);
+  let ranger = '';
+  for (let i = start; i <= end; i++) {
+    if (i === end) {
+      ranger += i;
+    } else {
+      ranger += `${i}, `;
+    }
+  }
+  console.log(ranger);
 }
 
 // ============================== SOLUTION 2  ==============================
 // ==========================================================================
 
-function range(start, end) {
-	const ranger = [];
-	for (let i = start; i <= end; i++) {
-		if (i === end) {
-			ranger.push(i);
-		} else {
-			ranger.push(i + ',');
-		}
-	}
-	console.log(...ranger);
-}
+// function range(start, end) {
+//   const ranger = [];
+//   for (let i = start; i <= end; i++) {
+//     if (i === end) {
+//       ranger.push(i);
+//     } else {
+//       ranger.push(i + ',');
+//     }
+//   }
+//   console.log(...ranger);
+// }
 
-//Uncomment the lines below to test your code
+// Uncomment the lines below to test your code
 // range(1,4) //=> 1, 2, 3, 4
 // range(4,2) //=>
 
@@ -260,15 +272,16 @@ DO NOT USE THE BUILT-IN `indexOf` METHOD IN YOUR SOLUTION!
 */
 
 function myIndexOf(array, ele) {
-	for (let i = 0; i <= array.length; i++) {
-		if (i === array.length) {
-			console.log(-1);
-		}
-		if (array[i] === ele) {
-			console.log(i);
-			break;
-		}
-	}
+  for (let i = 0; i <= array.length; i++) {
+    if (i === array.length) {
+      console.log(-1);
+      break;
+    }
+    if (array[i] === ele) {
+      console.log(i);
+      break;
+    }
+  }
 }
 
 // myIndexOf([1, 2, 3, 4, 5], 5) //=> 4
@@ -285,7 +298,7 @@ Create a function unique that console.logs an array where all the duplicates of 
 */
 
 function unique(array) {
-	console.log([...new Set(array)]);
+  console.log([...new Set(array)]);
 }
 
 // unique([1, 1, 2, 3, 3]) // => [1, 2, 3]
@@ -302,18 +315,18 @@ If there are ties, the function should return the later word.
 */
 
 function longestWord(sentence) {
-	const longest = { word: '' };
-	const removed = sentence.replace(/[^A-Za-z\s]/g, ' ');
-	const words = removed.split(' ');
-	for (const ele of words) {
-		if (ele.length >= longest.word.length) {
-			longest.word = ele;
-		}
-	}
-	return longest.word;
+  const longest = { word: '' };
+  const removed = sentence.replace(/[^A-Za-z\s]/g, ' ');
+  const words = removed.split(' ');
+  for (const ele of words) {
+    if (ele.length >= longest.word.length) {
+      longest.word = ele;
+    }
+  }
+  return longest.word;
 }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(longestWord('my JavaScript is exceptional')); // => 'exceptional'
 // console.log(longestWord('hate having hungry hippos')); // => 'hippos'
@@ -358,7 +371,7 @@ Create a function disemvowel that takes in a string and returns a string with al
 //   return noVowels;
 // }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(disemvowel('CodeSmith')); // => 'CdSmth'
 // console.log(disemvowel('BANANA')); // => 'BNN'
@@ -375,16 +388,16 @@ It should return an array of all the pairs of indices whose sum is a multiple of
 */
 
 function divisibleByFivePairSum(array) {
-	const pairs = [];
-	for (let i = 0; i < array.length; i++) {
-		for (let j = i + 1; j < array.length; j++) {
-			if ((array[i] + array[j]) % 5 === 0) pairs.push([i, j]);
-		}
-	}
-	return pairs;
+  const pairs = [];
+  for (let i = 0; i < array.length; i++) {
+    for (let j = i + 1; j < array.length; j++) {
+      if ((array[i] + array[j]) % 5 === 0) pairs.push([i, j]);
+    }
+  }
+  return pairs;
 }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(divisibleByFivePairSum([1, 5, 2, 0, 4])); // => [ [ 0, 4 ], [ 1, 3 ] ]
 // console.log(divisibleByFivePairSum([13, 22, 8, -3, 12])); // => [[ 0, 1 ], [ 0, 3 ], [ 0, 4 ], [ 1, 2 ], [ 2, 3 ], [ 2, 4 ]]
@@ -405,24 +418,24 @@ Assume the array contains at least 1 student object and the student with the hig
 */
 
 function highestScore(students) {
-	let best = students[0];
-	for (const student of students) {
-		if (student.score > best.score) {
-			best = students[students.indexOf(student)];
-		}
-	}
-	const name = best.name.split(' ');
-	const initials = name[0].slice(0, 1) + name[1].slice(0, 1);
-	return initials + best.id;
+  let best = students[0];
+  for (const student of students) {
+    if (student.score > best.score) {
+      best = students[students.indexOf(student)];
+    }
+  }
+  const name = best.name.split(' ');
+  const initials = name[0].slice(0, 1) + name[1].slice(0, 1);
+  return initials + best.id;
 }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
-var students = [
-	{ name: 'Will Sentance', id: 128, score: -42 },
-	{ name: 'Jamie Bradshaw', id: 32, score: 57 },
-	{ name: 'Lisa Simpson', id: 2, score: 99 },
-	{ name: 'Luke Skywalker', id: 256, score: 94 },
+const students = [
+  { name: 'Will Sentance', id: 128, score: -42 },
+  { name: 'Jamie Bradshaw', id: 32, score: 57 },
+  { name: 'Lisa Simpson', id: 2, score: 99 },
+  { name: 'Luke Skywalker', id: 256, score: 94 },
 ];
 
 // console.log(highestScore(students)); //=> 'LS2'
@@ -440,31 +453,31 @@ Create a function leastCommonMultiple that takes two numbers (integers) as input
 // ==========================================================================
 
 function leastCommonMultiple(num1, num2) {
-	let least = num1 * num2;
-	const low = Math.min(num1, num2);
-	const high = Math.max(num1, num2);
-	for (let i = least; i >= high; i -= high) {
-		if (i % low === 0) {
-			least = i;
-		}
-	}
-	return least;
+  let least = num1 * num2;
+  const low = Math.min(num1, num2);
+  const high = Math.max(num1, num2);
+  for (let i = least; i >= high; i -= high) {
+    if (i % low === 0) {
+      least = i;
+    }
+  }
+  return least;
 }
 
 // ============================== SOLUTION 2  ==============================
 // ==========================================================================
 
-const leastCommonMultiple = (num1, num2) => {
-	let low, high;
-	num1 > num2 ? ((high = num1), (low = num2)) : ((high = num2), (low = num1));
-	for (let least = high; least <= high * low; least += high) {
-		if (least % low === 0) {
-			return least;
-		}
-	}
-};
+// const leastCommonMultiple = (num1, num2) => {
+//   let low, high;
+//   num1 > num2 ? ((high = num1), (low = num2)) : ((high = num2), (low = num1));
+//   for (let least = high; least <= high * low; least += high) {
+//     if (least % low === 0) {
+//       return least;
+//     }
+//   }
+// };
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(leastCommonMultiple(2, 3)); //=> 6
 // console.log(leastCommonMultiple(6, 10)); //=> 30
@@ -489,7 +502,7 @@ Create a function arrayBuilder that takes in a count object and returns an array
 //   return arr;
 // }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(arrayBuilder({'cats': 2, 'dogs': 1})); //=> ['cats', 'cats', 'dogs']
 // console.log(arrayBuilder({})); //=> []
@@ -504,14 +517,14 @@ Create a function objectBuilder that takes in a number and returns an object who
 */
 
 function objectBuilder(count) {
-	const obj = {};
-	for (let i = 0; i <= count; i++) {
-		obj[i] = i * 5;
-	}
-	return obj;
+  const obj = {};
+  for (let i = 0; i <= count; i++) {
+    obj[i] = i * 5;
+  }
+  return obj;
 }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(objectBuilder(4)); //=> { 0: 0, 1: 5, 2: 10, 3: 15, 4: 20 }
 // console.log(objectBuilder(0)); //=> { 0: 0 }
@@ -526,14 +539,14 @@ Create a function secretCipher that takes in an string(sentence) and an object(c
 */
 
 function secretCipher(sentence, cipher) {
-	let replaced = sentence;
-	for (const [key, value] of Object.entries(cipher)) {
-		replaced = replaced.replaceAll(key, value);
-	}
-	return replaced;
+  let replaced = sentence;
+  for (const [key, value] of Object.entries(cipher)) {
+    replaced = replaced.replaceAll(key, value);
+  }
+  return replaced;
 }
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
 // console.log(secretCipher("lqq me on flcebzzk" , { l : "a", q : "d", z: "o"})); //=> "add me on facebook"
 // console.log(secretCipher("where are you???" , { v : "l", '?' : "!"})) //=> "where are you!!!"
@@ -570,74 +583,81 @@ It should iterate through the list of students and return an array of the names 
 // ==========================================================================
 
 function passingStudents(students) {
-	const above70 = [];
-	for (const student of students) {
-		let sumOfGrades = 0;
-		let numOfGrades = 0;
-		for (const list in student.grades) {
-			sumOfGrades += student.grades[list].score;
-			numOfGrades++;
-		}
-		if (sumOfGrades / numOfGrades >= 70) {
-			above70.push(student.name);
-		}
-	}
-	return above70;
+  const above70 = [];
+  for (const student of students) {
+    let sumOfGrades = 0;
+    let numOfGrades = 0;
+    for (const list in student.grades) {
+      sumOfGrades += student.grades[list].score;
+      numOfGrades++;
+    }
+    if (sumOfGrades / numOfGrades >= 70) {
+      above70.push(student.name);
+    }
+  }
+  return above70;
 }
 
 // ============================== SOLUTION 3  ==============================
 // ==========================================================================
 
-function passingStudents(students) {
-	const above70 = [];
-	for (const student of students) {
-		let sumOfGrades = 0;
-		for (const list in student.grades) {
-			sumOfGrades += student.grades[list].score;
-		}
-		if (sumOfGrades / student.grades.length >= 70) {
-			above70.push(student.name);
-		}
-	}
-	return above70;
-}
+// function passingStudents(students) {
+//   const above70 = [];
+//   for (const student of students) {
+//     let sumOfGrades = 0;
+//     for (const list in student.grades) {
+//       sumOfGrades += student.grades[list].score;
+//     }
+//     if (sumOfGrades / student.grades.length >= 70) {
+//       above70.push(student.name);
+//     }
+//   }
+//   return above70;
+// }
 
 // ============================== SOLUTION 3  ==============================
 // ==========================================================================
 
-const passingStudents = arr =>
-	arr.filter(student => student.grades.reduce((acc, obj) => (acc += obj.score), 0) / student.grades.length > 70).map(student => student.name);
+// const passingStudents = (arr) =>
+//   arr
+//     .filter(
+//       (student) =>
+//         student.grades.reduce((acc, obj) => (acc += obj.score), 0) /
+//           student.grades.length >
+//         70
+//     )
+//     .map((student) => student.name);
 
-//Uncomment the lines below to test your function:
+// Uncomment the lines below to test your function:
 
-var students = [
-	{
-		name: 'Marco',
-		id: 12345,
-		grades: [
-			{ id: 0, score: 65 },
-			{ id: 1, score: 75 },
-			{ id: 2, score: 85 },
-		],
-	},
-	{
-		name: 'Donna',
-		id: 55555,
-		grades: [
-			{ id: 0, score: 100 },
-			{ id: 1, score: 100 },
-			{ id: 2, score: 100 },
-		],
-	},
-	{
-		name: 'Jukay',
-		id: 94110,
-		grades: [
-			{ id: 0, score: 65 },
-			{ id: 1, score: 60 },
-			{ id: 2, score: 65 },
-		],
-	},
+const studentsList = [
+  {
+    name: 'Marco',
+    id: 12345,
+    grades: [
+      { id: 0, score: 65 },
+      { id: 1, score: 75 },
+      { id: 2, score: 85 },
+    ],
+  },
+  {
+    name: 'Donna',
+    id: 55555,
+    grades: [
+      { id: 0, score: 100 },
+      { id: 1, score: 100 },
+      { id: 2, score: 100 },
+    ],
+  },
+  {
+    name: 'Jukay',
+    id: 94110,
+    grades: [
+      { id: 0, score: 65 },
+      { id: 1, score: 60 },
+      { id: 2, score: 65 },
+    ],
+  },
 ];
 
-console.log(passingStudents(students)); // => [ 'Marco', 'Donna' ]
+console.log(passingStudents(studentsList)); // => [ 'Marco', 'Donna' ]
