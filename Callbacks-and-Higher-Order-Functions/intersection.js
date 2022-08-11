@@ -155,27 +155,26 @@ Construct a function intersection that compares input arrays and returns a new a
 // ========================== SOLUTION 11 ======================================
 // =============================================================================
 
-// const intersection = (arrays) => [
-//   ...arrays.slice(1).reduce(
-//     (acc, arr) =>
-//       arr.reduce((common, ele) => {
-//         if (acc.has(ele)) {
-//           common.add(ele);
-//         }
-//         return common;
-//       }, new Set()),
-//     new Set(arrays[0])
-//   ),
-// ];
+const intersection = (arrays) => [
+  ...arrays.reduce((acc, arr) => {
+    const accSet = new Set(acc);
+    return arr.reduce((common, ele) => {
+      if (accSet.has(ele)) {
+        common.add(ele);
+      }
+      return common;
+    }, new Set());
+  }),
+];
 
 // ========================== SOLUTION 12 =====================================
 // =============================================================================
 
-const intersection = (arrays) =>
-  arrays.reduce((acc, arr) => {
-    const accSet = new Set(acc);
-    return arr.filter((ele) => accSet.has(ele));
-  });
+// const intersection = (arrays) =>
+//   arrays.reduce((acc, arr) => {
+//     const accSet = new Set(acc);
+//     return arr.filter((ele) => accSet.has(ele));
+//   });
 
 // Uncomment these to check your work!
 const arr1 = [5, 10, 15, 20];
