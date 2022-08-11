@@ -8,7 +8,7 @@ Construct a function intersection that compares input arrays and returns a new a
 */
 
 // ========================== SOLUTION 1 ======================================
-// ===============================================================================
+// =============================================================================
 
 // function intersection(arrayOfArrays) {
 //   const result = arrayOfArrays[0].reduce(function(accumulatorArray, currentArrayElement) {
@@ -23,7 +23,7 @@ Construct a function intersection that compares input arrays and returns a new a
 // }
 
 // ========================== SOLUTION 2 ======================================
-// ===============================================================================
+// =============================================================================
 
 // const intersection = (arrays) =>
 //   arrays[0].reduce((acc, cur) => {
@@ -53,7 +53,7 @@ Construct a function intersection that compares input arrays and returns a new a
 // };
 
 // ========================== SOLUTION 4 ======================================
-// ===============================================================================
+// =============================================================================
 
 // const intersection = (arrays) =>
 //   arrays.reduce(
@@ -62,7 +62,7 @@ Construct a function intersection that compares input arrays and returns a new a
 //   );
 
 // ========================== SOLUTION 5 ======================================
-// ===============================================================================
+// =============================================================================
 
 // const intersection = (arrays) =>
 //   arrays.reduce(
@@ -71,7 +71,7 @@ Construct a function intersection that compares input arrays and returns a new a
 //   );
 
 // ========================== SOLUTION 6 ======================================
-// ===============================================================================
+// =============================================================================
 
 // function intersection(arrays) {
 //   let acc = arrays[0];
@@ -88,7 +88,7 @@ Construct a function intersection that compares input arrays and returns a new a
 // }
 
 // ========================== SOLUTION 7 ======================================
-// ===============================================================================
+// =============================================================================
 
 // function intersection(arrays) {
 //   let acc = [...new Set(arrays[0])];
@@ -118,7 +118,7 @@ Construct a function intersection that compares input arrays and returns a new a
 // }
 
 // ========================== SOLUTION 9 ======================================
-// ===============================================================================
+// =============================================================================
 // only works if elements in the arrays don't repeat
 
 // const intersection = (arrays) => {
@@ -134,8 +134,8 @@ Construct a function intersection that compares input arrays and returns a new a
 //   return newArr;
 // };
 
-// ========================== SOLUTION 10 ======================================
-// ===============================================================================
+// ========================== SOLUTION 10 =====================================
+// =============================================================================
 
 // VERY BAD solution, modifying input arrays - not recommended
 
@@ -153,20 +153,29 @@ Construct a function intersection that compares input arrays and returns a new a
 // }
 
 // ========================== SOLUTION 11 ======================================
-// ===============================================================================
+// =============================================================================
 
-const intersection = (arrays) => [
-  ...arrays.slice(1).reduce(
-    (acc, arr) =>
-      arr.reduce((common, ele) => {
-        if (acc.has(ele)) {
-          common.add(ele);
-        }
-        return common;
-      }, new Set()),
-    new Set(arrays[0])
-  ),
-];
+// const intersection = (arrays) => [
+//   ...arrays.slice(1).reduce(
+//     (acc, arr) =>
+//       arr.reduce((common, ele) => {
+//         if (acc.has(ele)) {
+//           common.add(ele);
+//         }
+//         return common;
+//       }, new Set()),
+//     new Set(arrays[0])
+//   ),
+// ];
+
+// ========================== SOLUTION 12 =====================================
+// =============================================================================
+
+const intersection = (arrays) =>
+  arrays.reduce((acc, arr) => {
+    const accSet = new Set(acc);
+    return arr.filter((ele) => accSet.has(ele));
+  });
 
 // Uncomment these to check your work!
 const arr1 = [5, 10, 15, 20];
