@@ -25,132 +25,148 @@ Construct a function intersection that compares input arrays and returns a new a
 // ========================== SOLUTION 2 ======================================
 // ===============================================================================
 
-const intersection = (arrays) =>
-  arrays[0].reduce((acc, cur) => {
-    if (
-      acc.indexOf(cur) === -1 &&
-      arrays.every((arr) => arr.indexOf(cur) !== -1)
-    ) {
-      acc.push(cur);
-    }
-    return acc;
-  }, []);
+// const intersection = (arrays) =>
+//   arrays[0].reduce((acc, cur) => {
+//     if (
+//       acc.indexOf(cur) === -1 &&
+//       arrays.every((arr) => arr.indexOf(cur) !== -1)
+//     ) {
+//       acc.push(cur);
+//     }
+//     return acc;
+//   }, []);
 
 // ========================== SOLUTION 3 ======================================
 // ===============================================================================
 
-const intersection = (arrays) => {
-  const result = arrays[0].reduce((acc, curEl) => {
-    if (
-      !acc.includes(curEl) &&
-      arrays.every((array) => array.includes(curEl))
-    ) {
-      acc.push(curEl);
-    }
-    return acc;
-  }, []);
-  return result;
-};
+// const intersection = (arrays) => {
+//   const result = arrays[0].reduce((acc, curEl) => {
+//     if (
+//       !acc.includes(curEl) &&
+//       arrays.every((array) => array.includes(curEl))
+//     ) {
+//       acc.push(curEl);
+//     }
+//     return acc;
+//   }, []);
+//   return result;
+// };
 
 // ========================== SOLUTION 4 ======================================
 // ===============================================================================
 
-const intersection = (arrays) =>
-  arrays.reduce(
-    (acc, arr) => acc.filter((ele) => arr.includes(ele)),
-    [...new Set(arrays[0])]
-  );
+// const intersection = (arrays) =>
+//   arrays.reduce(
+//     (acc, arr) => acc.filter((ele) => arr.includes(ele)),
+//     [...new Set(arrays[0])]
+//   );
 
 // ========================== SOLUTION 5 ======================================
 // ===============================================================================
 
-const intersection = (arrays) =>
-  arrays.reduce(
-    (acc, arr) => acc.filter((ele) => arr.indexOf(ele) !== -1),
-    [...new Set(arrays[0])]
-  );
+// const intersection = (arrays) =>
+//   arrays.reduce(
+//     (acc, arr) => acc.filter((ele) => arr.indexOf(ele) !== -1),
+//     [...new Set(arrays[0])]
+//   );
 
 // ========================== SOLUTION 6 ======================================
 // ===============================================================================
 
-function intersection(arrays) {
-  let acc = arrays[0];
-  for (let i = 1; i < arrays.length; i++) {
-    const tempArr = [];
-    arrays[i].forEach((ele) => {
-      if (acc.indexOf(ele) !== -1 && tempArr.indexOf(ele) === -1) {
-        tempArr.push(ele);
-      }
-    });
-    acc = tempArr;
-  }
-  return acc;
-}
+// function intersection(arrays) {
+//   let acc = arrays[0];
+//   for (let i = 1; i < arrays.length; i++) {
+//     const tempArr = [];
+//     arrays[i].forEach((ele) => {
+//       if (acc.indexOf(ele) !== -1 && tempArr.indexOf(ele) === -1) {
+//         tempArr.push(ele);
+//       }
+//     });
+//     acc = tempArr;
+//   }
+//   return acc;
+// }
 
 // ========================== SOLUTION 7 ======================================
 // ===============================================================================
 
-function intersection(arrays) {
-  let acc = [...new Set(arrays[0])];
-  for (let i = 1; i < arrays.length; i++) {
-    acc = arrays[i].filter((ele) => acc.includes(ele));
-  }
-  return acc;
-}
+// function intersection(arrays) {
+//   let acc = [...new Set(arrays[0])];
+//   for (let i = 1; i < arrays.length; i++) {
+//     acc = arrays[i].filter((ele) => acc.includes(ele));
+//   }
+//   return acc;
+// }
 
-// ========================== SOLUTION 8 ======================================
-// ===============================================================================
+// // ========================== SOLUTION 8 ======================================
+// // ===============================================================================
 
-function intersection(arrays) {
-  let acc = arrays[0];
-  let i = 0;
-  while (i < arrays.length) {
-    const tempArr = [];
-    arrays[i].forEach((ele) => {
-      if (acc.includes(ele) && !tempArr.includes(ele)) {
-        tempArr.push(ele);
-      }
-    });
-    acc = tempArr;
-    i++;
-  }
-  return acc;
-}
+// function intersection(arrays) {
+//   let acc = arrays[0];
+//   let i = 0;
+//   while (i < arrays.length) {
+//     const tempArr = [];
+//     arrays[i].forEach((ele) => {
+//       if (acc.includes(ele) && !tempArr.includes(ele)) {
+//         tempArr.push(ele);
+//       }
+//     });
+//     acc = tempArr;
+//     i++;
+//   }
+//   return acc;
+// }
 
 // ========================== SOLUTION 9 ======================================
 // ===============================================================================
 // only works if elements in the arrays don't repeat
 
-const intersection = (arrays) => {
-  const freqCounter = {};
-  const flattened = arrays.flat();
-  for (const ele of flattened) {
-    freqCounter[ele] = freqCounter[ele] ? freqCounter[ele] + 1 : 1;
-  }
-  const newArr = [];
-  for (const [key, value] of Object.entries(freqCounter)) {
-    if (value === arrays.length) newArr.push(key * 1);
-  }
-  return newArr;
-};
+// const intersection = (arrays) => {
+//   const freqCounter = {};
+//   const flattened = arrays.flat();
+//   for (const ele of flattened) {
+//     freqCounter[ele] = freqCounter[ele] ? freqCounter[ele] + 1 : 1;
+//   }
+//   const newArr = [];
+//   for (const [key, value] of Object.entries(freqCounter)) {
+//     if (value === arrays.length) newArr.push(key * 1);
+//   }
+//   return newArr;
+// };
 
 // ========================== SOLUTION 10 ======================================
 // ===============================================================================
 
 // VERY BAD solution, modifying input arrays - not recommended
 
-function intersection(arrays) {
-  let acc = arrays.pop();
-  while (arrays.length) {
-    const current = arrays.pop();
-    const newArr = [];
-    current.forEach((ele) => {
-      if (acc.includes(ele) && !newArr.includes(ele)) newArr.push(ele);
-    });
-    acc = newArr;
-  }
-  return acc;
-}
+// function intersection(arrays) {
+//   let acc = arrays.pop();
+//   while (arrays.length) {
+//     const current = arrays.pop();
+//     const newArr = [];
+//     current.forEach((ele) => {
+//       if (acc.includes(ele) && !newArr.includes(ele)) newArr.push(ele);
+//     });
+//     acc = newArr;
+//   }
+//   return acc;
+// }
+
+// ========================== SOLUTION 11 ======================================
+// ===============================================================================
+
+const intersection = (arrays) => [
+  ...arrays.slice(1).reduce(
+    (acc, arr) =>
+      arr.reduce((common, ele) => {
+        if (acc.has(ele)) {
+          common.add(ele);
+        }
+        return common;
+      }, new Set()),
+    new Set(arrays[0])
+  ),
+];
 
 // Uncomment these to check your work!
 const arr1 = [5, 10, 15, 20];
