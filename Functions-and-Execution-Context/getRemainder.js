@@ -1,5 +1,5 @@
 // ============================== INSTRUCTIONS ==============================
-// ================================================================================
+// =============================================================================
 
 /*
 Challenge: getRemainder
@@ -9,11 +9,8 @@ Hint- You have no guarantee which number will be the bigger number, how can you 
 
 */
 
-// ========================== SOLUTION ======================================
-// ================================================================================
-
-//======== FIRST SOLUTION ========
-//================================
+// ========================== SOLUTION 1 ======================================
+// =============================================================================
 
 // function getRemainder(num1, num2) {
 //   if (num1 > num2) {
@@ -22,13 +19,13 @@ Hint- You have no guarantee which number will be the bigger number, how can you 
 //   return num2 % num1;
 // }
 
-//======== SECOND SOLUTION =======
-//================================
+// ========================== SOLUTION 2 ======================================
+// =============================================================================
 
-//======== TERNARY OPERATOR && ARROW FUNCTION && BUILD IN MATH METHODS ========
-//===============================================================================
+// ======== TERNARY OPERATOR && ARROW FUNCTION && BUILD IN MATH METHODS =======
+// =============================================================================
 const getRemainder = (num1, num2) =>
-	Math.max(num1, num2) % Math.min(num1, num2);
+  Math.max(num1, num2) % Math.min(num1, num2);
 
 // Uncomment the lines below to test your code
 console.log(getRemainder(17, 5)); // => 2
