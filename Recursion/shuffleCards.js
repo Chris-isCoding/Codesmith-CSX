@@ -50,17 +50,23 @@ Output: {Array} - the top and bottom halves of the deck interleaved together, wi
 // ========================== SOLUTION 2 =====================================
 // =============================================================================
 
-function shuffleCards(topHalf, bottomHalf) {
-  if (!topHalf.length) {
-    return bottomHalf;
-  }
-  if (!bottomHalf.length) {
-    return topHalf;
-  }
-  return [topHalf[0], bottomHalf[0]].concat(
-    shuffleCards(topHalf.slice(1), bottomHalf.slice(1))
-  );
-}
+// function shuffleCards(topHalf, bottomHalf) {
+//   if (!topHalf.length) {
+//     return bottomHalf;
+//   }
+//   if (!bottomHalf.length) {
+//     return topHalf;
+//   }
+//   return [topHalf[0], bottomHalf[0]].concat(
+//     shuffleCards(topHalf.slice(1), bottomHalf.slice(1))
+//   );
+// }
+
+// ========================== SOLUTION 3 =====================================
+// =============================================================================
+
+const shuffleCards = ([card, ...top], bottom) =>
+  !card ? [...bottom] : [card, ...shuffleCards(bottom, top)];
 
 // UNCOMMENT TO TEST YOUR WORK
 const topHalf = [
