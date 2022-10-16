@@ -315,3 +315,70 @@ ArrayCreate.prototype = arrayMethods;
 // console.log(array5.pop());
 // console.log(array5.length);
 // console.log(array5);
+
+// ========================== SOLUTION 6 ======================================
+// =============================================================================
+
+function arrayCreator() {
+  class ArrayClass {
+    #len = 0;
+
+    get length() {
+      return this.#len;
+    }
+
+    push(...args) {
+      for (let i = 0; i < args.length; i++) {
+        this[this.#len] = args[i];
+        this.#len++;
+      }
+      return this.#len;
+    }
+
+    pop() {
+      if (this.#len === 0) {
+        return;
+      }
+      this.#len--;
+      const lastElement = this[this.#len];
+      delete this[this.#len];
+      return lastElement;
+    }
+
+    shift() {
+      if (this.#len === 0) {
+        return;
+      }
+      this.#len--;
+      const firstElement = this[0];
+      delete this[0];
+      for (let i = 0; i < this.#len; i++) {
+        this[i] = this[i + 1];
+      }
+      delete this[this.#len];
+      return firstElement;
+    }
+
+    unshift(...args) {
+      for (let i = this.#len - 1; i >= 0; i--) {
+        this[i + args.length] = this[i];
+      }
+      for (let i = 0; i < args.length; i++) {
+        this[i] = args[i];
+      }
+      this.#len += args.length;
+      return this.#len;
+    }
+  }
+  return new ArrayClass();
+}
+
+const array6 = new ArrayCreator();
+console.log(array6.length);
+console.log(array6);
+console.log(array6.push('e'));
+console.log(array6.unshift('a', 'b', 'c', 'd'));
+console.log(array6);
+console.log(array6.pop());
+console.log(array6.length);
+console.log(array6);
