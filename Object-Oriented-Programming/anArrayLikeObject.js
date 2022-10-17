@@ -373,12 +373,33 @@ function arrayCreator() {
   return new ArrayClass();
 }
 
-const array6 = new ArrayCreator();
-console.log(array6.length);
-console.log(array6);
-console.log(array6.push('e'));
-console.log(array6.unshift('a', 'b', 'c', 'd'));
-console.log(array6);
-console.log(array6.pop());
-console.log(array6.length);
-console.log(array6);
+// const array6 = new ArrayCreator();
+// console.log(array6.length);
+// console.log(array6);
+// console.log(array6.push('e'));
+// console.log(array6.unshift('a', 'b', 'c', 'd'));
+// console.log(array6);
+// console.log(array6.pop());
+// console.log(array6.length);
+// console.log(array6);
+
+// ========================== SOLUTION 7 ======================================
+// =============================================================================
+
+function anArrayLikeObject() {
+  function arrayPrototype() {}
+  Object.defineProperty(arrayPrototype, 'length', { value: 0, writable: true });
+  arrayPrototype.push = Array.prototype.push;
+  arrayPrototype.pop = Array.prototype.pop;
+  arrayPrototype.shift = Array.prototype.shift;
+  arrayPrototype.unshift = Array.prototype.unshift;
+
+  return Object.create(arrayPrototype);
+}
+
+const array7 = anArrayLikeObject();
+console.log(array7.length);
+console.log(array7);
+console.log(array7.push('e'));
+console.log(array7.unshift('a', 'b', 'c', 'd'));
+console.log(array7);
